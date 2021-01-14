@@ -8,7 +8,7 @@ import 'package:meta/meta.dart';
 
 @immutable
 class AFSIConceptualTheme extends AFConceptualTheme {
-  AFSIConceptualTheme(AFFundamentalTheme fundamentals): super(fundamentals: fundamentals);
+  AFSIConceptualTheme(AFFundamentalTheme fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.conceptual);
 
   //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({String text}) {
@@ -184,6 +184,6 @@ class AFSIConceptualTheme extends AFConceptualTheme {
   }
 }
 
-AFConceptualTheme createPrimaryTheme(AFFundamentalTheme fundamentals) {
-  return AFSIConceptualTheme(fundamentals);
+void initConceptualThemes(AFConceptualThemeDefinitionContext context) {
+  context.initUnlessPresent(AFSIThemeID.conceptual, createTheme: (f) => AFSIConceptualTheme(f));
 }

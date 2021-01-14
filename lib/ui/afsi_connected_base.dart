@@ -1,4 +1,5 @@
 
+import 'package:afib_signin/id.dart';
 import 'package:afib_signin/ui/themes/afsi_conceptual_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:afib/afib_flutter.dart';
@@ -22,5 +23,5 @@ class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRou
 }
 
 abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateArea, AFSIConceptualTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
-  AFSIConnectedScreen(AFScreenID screen): super(screen);
+  AFSIConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.conceptual);
 }
