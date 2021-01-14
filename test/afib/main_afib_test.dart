@@ -1,7 +1,7 @@
 import 'package:afib/afib_flutter.dart';
-import 'package:afib_signin/initialization/create_dart_params.g.dart';
-import 'package:afib_signin/initialization/extend/extend_app.dart';
-import 'package:afib_signin/initialization/extend/extend_test.dart';
+import 'package:afib_signin/src/initialization/create_dart_params.g.dart';
+import 'package:afib_signin/src/initialization/extend/extend_app.dart';
+import 'package:afib_signin/src/initialization/extend/extend_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 //------------------------------------------------------------------------------

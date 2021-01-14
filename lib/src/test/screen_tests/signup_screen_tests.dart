@@ -1,7 +1,7 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
-import 'package:afib_signin/ui/screens/signin_screen.dart';
-import 'package:afib_signin/ui/screens/signup_screen.dart';
+import 'package:afib_signin/src/ui/screens/signin_screen.dart';
+import 'package:afib_signin/src/ui/screens/signup_screen.dart';
 import 'package:flutter_test/flutter_test.dart' as ft;
 
 void initSignupScreenTests(AFSingleScreenTestDefinitionContext definitions) {

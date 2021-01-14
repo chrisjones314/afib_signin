@@ -1,6 +1,6 @@
 //--------------------------------------------------------------------------------------
 import 'package:afib/afib_flutter.dart';
-import 'package:afib_signin/ui/afsi_connected_base.dart';
+import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:flutter/material.dart';
 
 enum AFSISigninStatus {

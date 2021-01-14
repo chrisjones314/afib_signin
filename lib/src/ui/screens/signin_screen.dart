@@ -1,10 +1,12 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
-import 'package:afib_signin/ui/afsi_connected_base.dart';
-import 'package:afib_signin/ui/screens/forgot_password_screen.dart';
-import 'package:afib_signin/ui/screens/signin_screen_base.dart';
+import 'package:afib_signin/src/ui/afsi_connected_base.dart';
+import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
+import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter/material.dart';
 
+/// Used to supply the implementation that actually does the signin,
+/// forgot password, or signup actions.
 abstract class AFSISigninConfiguration {
   void onSignin(AFBuildContext context, String email, String password);
   void onResetPassword(AFBuildContext context, String email);
@@ -35,7 +37,6 @@ class AFSITestActionConfiguration extends AFSISigninConfiguration {
 
 }
 
-//--------------------------------------------------------------------------------------
 class SigninScreenRouteParam extends AFRouteParam {
   final AFSISigninStatus status;
   final String statusMessage; 
@@ -56,7 +57,6 @@ class SigninScreenRouteParam extends AFRouteParam {
     @required this.showPassword,
   });
 
-  //--------------------------------------------------------------------------------------
   SigninScreenRouteParam copyWith({
     AFSISigninStatus status,
     String statusMessage,
@@ -76,7 +76,6 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  //--------------------------------------------------------------------------------------
   factory SigninScreenRouteParam.createWithStatusOncePerScreen(String status, AFSISigninConfiguration actions) {
     return SigninScreenRouteParam(
       status: AFSISigninStatus.loading,
@@ -89,7 +88,6 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  //--------------------------------------------------------------------------------------
   factory SigninScreenRouteParam.createLoginOncePerScreen(AFSISigninConfiguration actions) {
     return SigninScreenRouteParam(
       statusMessage: "",
@@ -102,14 +100,14 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  //--------------------------------------------------------------------------------------
   @override
   void dispose() {
     textControllers.dispose();
   }
 }
 
-//--------------------------------------------------------------------------------------
+/// The primary username/password signing screen, with buttons linking to forgot password
+/// and register.
 class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam> {
 
   SigninScreen(): super(AFSIScreenID.signin);

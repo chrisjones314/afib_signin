@@ -27,6 +27,10 @@ class AFSIStateTestID {
 }
 
 class AFSIReusableTestID {
+  /// Fills in the username and password, and clicks "Sign In"
+  /// 
+  /// The username and password should be supplied as param1 and param2 to 
+  /// [AFWorkflowTestExecute.runScreenTest].
   static const signupScreen = AFReusableTestID("signup_screen", AFSILibraryID.id);
   static const forgotPasswordSubmit = AFReusableTestID("forgot_password_submit", AFSILibraryID.id);
   static const signinScreenLogin = AFReusableTestID("signin_screen_login", AFSILibraryID.id);
