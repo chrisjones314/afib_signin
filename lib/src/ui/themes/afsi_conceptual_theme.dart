@@ -68,6 +68,7 @@ class AFSIConceptualTheme extends AFConceptualTheme {
     String text,
     AFPressedDelegate onPressed,
   }) {
+    final cop = colorOnPrimary;
     return childMargin(
       margin: marginButtonsSignin,
       child: OutlineButton(
@@ -75,9 +76,9 @@ class AFSIConceptualTheme extends AFConceptualTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
-        borderSide: BorderSide(color: Colors.white),
-        highlightedBorderColor: Colors.white,
+        color: cop,
+        borderSide: BorderSide(color: cop),
+        highlightedBorderColor: cop,
         onPressed: onPressed,
         child: Container(
           padding: const EdgeInsets.symmetric(
@@ -128,7 +129,7 @@ class AFSIConceptualTheme extends AFConceptualTheme {
       helperStyle: TextStyle(color: Colors.white),
       focusedBorder: border,
       enabledBorder: border,
-      labelText: text
+      labelText: translate(text)
     );
   }
 
@@ -140,7 +141,7 @@ class AFSIConceptualTheme extends AFConceptualTheme {
       messageColor = t.colorError;
       style = t.styleOnPrimary.bodyText2;
     } else {
-      messageColor = t.colorPrimary;
+      messageColor = null;
       style = t.styleOnPrimary.bodyText2;
     }
     return Container(

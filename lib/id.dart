@@ -1,7 +1,7 @@
 import 'package:afib/afib_flutter.dart';
 
 class AFSILibraryID {
-  static const id = AFLibraryID("afsi");
+  static const id = AFLibraryID(code: "afsi", name: "AFib Signin");
 }
 
 class AFSIScreenID {
@@ -37,6 +37,7 @@ class AFSIReusableTestID {
 }
 
 class AFSIScreenTestID {
+  static const signinWithError = AFSingleScreenTestID("signin_with_error", AFSILibraryID.id, tags: signinTag);
   static const signup = AFSingleScreenTestID("signup", AFSILibraryID.id, tags: signinTag);
   static const signin = AFSingleScreenTestID("signin", AFSILibraryID.id, tags: signinTag);
   static const forgotPassword = AFSingleScreenTestID("forgot_password", AFSILibraryID.id, tags: signinTag);

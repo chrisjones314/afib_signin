@@ -19,10 +19,10 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   }
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush(AFSITestActionConfiguration config) {
+  static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
     return AFNavigatePushAction(
       screen: AFSIScreenID.signup,
-      param: SigninScreenRouteParam.createLoginOncePerScreen(config)
+      param: SigninScreenRouteParam.createReadyOncePerScreen(config: config)
     );
   }
 
@@ -94,14 +94,14 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       wid: AFSIWidgetID.buttonRegister,
       text: "SIGN UP NOW",
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.normal, statusMessage: t.translate("Signing up...")));
+          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Signing up...")));
           context.p.configuration.onSignup(context, context.p.email, context.p.password);
       },
     ));
 
     rows.add(t.childButtonSecondarySignin(
       wid: AFUIWidgetID.buttonBack,
-      text: "Back to Login",
+      text: "Back to Sign In",
       onPressed: () {
         context.dispatchNavigatePop();
       },

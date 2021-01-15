@@ -3,6 +3,7 @@ import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
+import 'package:afib_signin/src/ui/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 /// Used to supply the implementation that actually does the signin,
@@ -76,27 +77,31 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  factory SigninScreenRouteParam.createWithStatusOncePerScreen(String status, AFSISigninConfiguration actions) {
+  SigninScreenRouteParam reviseStatus({AFSISigninStatus status, String message}) {
+    return copyWith(status: status, statusMessage: message);
+  }
+
+  factory SigninScreenRouteParam.createLoadingOncePerScreen({AFSISigninConfiguration config}) {
     return SigninScreenRouteParam(
       status: AFSISigninStatus.loading,
-      statusMessage: "Loading...",
+      statusMessage: "",
       email: "",
       password: "",
       textControllers: AFTextEditingControllersHolder(),
-      configuration: actions,
+      configuration: config,
       showPassword: true,
     );
   }
 
-  factory SigninScreenRouteParam.createLoginOncePerScreen(AFSISigninConfiguration actions) {
+  factory SigninScreenRouteParam.createReadyOncePerScreen({AFSISigninConfiguration config}) {
     return SigninScreenRouteParam(
       statusMessage: "",
-      status: AFSISigninStatus.normal,
+      status: AFSISigninStatus.ready,
       email: "",
       password: "",
       showPassword: false,
       textControllers: AFTextEditingControllersHolder(),
-      configuration: actions,
+      configuration: config,
     );
   }
 
@@ -119,10 +124,10 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   }
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush(AFSISigninConfiguration actions) {
+  static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
     return AFNavigatePushAction(
       screen: AFSIScreenID.signin,
-      param: SigninScreenRouteParam.createLoginOncePerScreen(actions),
+      param: SigninScreenRouteParam.createReadyOncePerScreen(config: config),
     );
   }
 
@@ -189,7 +194,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
         controllers: textControllers,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
-          text: t.translate("Password"),
+          text: "Password",
         ),
         obscureText: true,
         onChanged: (value) {
@@ -203,7 +208,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       wid: AFSIWidgetID.buttonLogin,
       text: "SIGN IN",
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.normal, statusMessage: t.translate("Signing in...")));
+          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Signing in...")));
           context.p.configuration.onSignin(context, context.p.email, context.p.password);
       },
     ));
@@ -212,7 +217,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       wid: AFSIWidgetID.buttonSignup,
       text: "Sign Up",
       onPressed: () {
-        //context.dispatch(SignupScreen.navigateTo());      
+        context.dispatchNavigate(SignupScreen.navigatePush(context.p.configuration));      
       },
     ));
 
@@ -220,7 +225,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       wid: AFSIWidgetID.buttonForgotPassword,
       text: "Forgot Password", 
       onPressed: () {
-        context.dispatch(ForgotPasswordScreen.navigatePush(context.p.configuration));
+        context.dispatchNavigate(ForgotPasswordScreen.navigatePush(context.p.configuration));
       },
     ));
   }

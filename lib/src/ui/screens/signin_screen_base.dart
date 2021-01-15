@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 enum AFSISigninStatus {
   loading,
   error,
-  normal,  
+  ready,  
+  readyEmphasis,
 }
 
 abstract class SigninScreenBase<TData extends AFStateView, TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<TData, TRouteParam> {

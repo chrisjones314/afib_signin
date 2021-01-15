@@ -18,10 +18,10 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
   }
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush(AFSISigninConfiguration actions) {
+  static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
     return AFNavigatePushAction(
       screen: AFSIScreenID.forgotPassword,
-      param: SigninScreenRouteParam.createLoginOncePerScreen(actions)
+      param: SigninScreenRouteParam.createReadyOncePerScreen(config: config)
     );
   }
 
@@ -67,14 +67,14 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
       wid: AFSIWidgetID.buttonResetPassword,
       text: "RESET PASSWORD",
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.normal, statusMessage: t.translate("Resetting password...")));
+          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Resetting password...")));
           context.p.configuration.onResetPassword(context, context.p.email);
       },
     ));
 
     rows.add(t.childButtonSecondarySignin(
       wid: AFUIWidgetID.buttonBack,
-      text: "Back to Login",
+      text: "Back to Sign In",
       onPressed: () {
         context.dispatchNavigatePop();
       },
