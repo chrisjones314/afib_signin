@@ -168,8 +168,9 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
     final t = context.t;
     final textControllers = context.p.textControllers;
 
-    rows.add(t.childSplashScreenTitle(text: "App Title"));
-    rows.add(t.childDivider());
+    rows.add(
+      t.childSplashScreenTitle(text: AFUITranslationID.appTitle)
+    );
     rows.add(t.childMargin(
       margin: t.marginEmail,
       child: t.childTextField(
@@ -178,14 +179,13 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       style: t.styleOnPrimary.bodyText2,
       controllers: textControllers,
       decoration: t.decorationTextInput(
-        text: t.translate("Email"),
+        text: "Email",
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
         updateRouteParam(context, context.p.copyWith(email: value));
       }
     )));
-    rows.add(t.childDivider());
     rows.add(t.childMargin(
       margin: t.marginPassword,
       child: t.childTextField(
@@ -201,7 +201,6 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
           updateRouteParam(context, context.p.copyWith(password: value));
         }
     )));
-    rows.add(t.childDivider());
     rows.add(t.childStatusMessage(context.t, context.p.status, context.p.statusMessage));
 
     rows.add(t.childButtonPrimarySignin(

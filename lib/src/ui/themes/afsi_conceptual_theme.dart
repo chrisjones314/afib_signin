@@ -8,11 +8,11 @@ import 'package:meta/meta.dart';
 
 @immutable
 class AFSIConceptualTheme extends AFConceptualTheme {
-  AFSIConceptualTheme(AFFundamentalTheme fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.conceptual);
+  AFSIConceptualTheme(AFFundamentalTheme fundamentals, ThemeData themeData): super(fundamentals: fundamentals, id: AFSIThemeID.conceptual, themeData: themeData);
 
   //--------------------------------------------------------------------------------------
-  Widget childSplashScreenTitle({String text}) {
-    return childText(text, style: TextStyle(fontSize: 30, color: colorOnPrimary), textAlign: TextAlign.center);
+  Widget childSplashScreenTitle({dynamic text}) {
+    return childText(text, style: styleOnPrimary.headline4, textAlign: TextAlign.center);
   }
 
   //--------------------------------------------------------------------------------------
@@ -106,11 +106,11 @@ class AFSIConceptualTheme extends AFConceptualTheme {
   }
 
   EdgeInsets get marginEmail {
-    return marginCustom(top: 5, bottom: 1);
+    return marginCustom(top: 5, bottom: 2);
   }
 
   EdgeInsets get marginPassword {
-    return marginCustom(bottom: 4);
+    return marginCustom(top: 1, bottom: 4);
   }
 
   InputDecoration decorationTextInput({
@@ -186,5 +186,5 @@ class AFSIConceptualTheme extends AFConceptualTheme {
 }
 
 void initConceptualThemes(AFConceptualThemeDefinitionContext context) {
-  context.initUnlessPresent(AFSIThemeID.conceptual, createTheme: (f) => AFSIConceptualTheme(f));
+  context.initUnlessPresent(AFSIThemeID.conceptual, createTheme: (f, t) => AFSIConceptualTheme(f, t));
 }

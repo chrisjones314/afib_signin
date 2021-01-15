@@ -10,7 +10,7 @@ void main(List<String> args) {
   final paramsD = createDartParams();
  
   var argsFull = AFArgs.create(args);
-  final debug = true;
+  final debug = false;
   if(debug) {
     argsFull.debugResetTo("test");
   } 
