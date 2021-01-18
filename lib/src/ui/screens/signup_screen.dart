@@ -47,8 +47,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
    final textControllers = context.p.textControllers;
 
-    rows.add(t.childSplashScreenTitle(text: "Signup"));
-    rows.add(t.childDivider());
+    rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleSignup));
     rows.add(t.childMargin(
       margin: t.marginEmail,
       child: t.childTextField(
@@ -57,14 +56,13 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       style: t.styleOnPrimary.bodyText2,
       controllers: textControllers,
       decoration: t.decorationTextInput(
-        text: t.translate("Email"),
+        text: AFSIWidgetID.editEmail
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
         updateRouteParam(context, context.p.copyWith(email: value));
       }
     )));
-    rows.add(t.childDivider());
     rows.add(t.childMargin(
       margin: t.marginPassword,
       child: t.childTextField(
@@ -73,7 +71,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
         controllers: textControllers,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
-          text: t.translate("Password"),
+          text: AFSIWidgetID.editPassword,
         ),
         obscureText: !context.p.showPassword,
         onChanged: (value) {
@@ -92,7 +90,6 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonRegister,
-      text: "SIGN UP NOW",
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Signing up...")));
           context.p.configuration.onSignup(context, context.p.email, context.p.password);
@@ -101,7 +98,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonSecondarySignin(
       wid: AFUIWidgetID.buttonBack,
-      text: "Back to Sign In",
+      text: AFSITranslationID.backToSignin,
       onPressed: () {
         context.dispatchNavigatePop();
       },

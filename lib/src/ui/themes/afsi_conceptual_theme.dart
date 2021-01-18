@@ -6,7 +6,6 @@ import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-@immutable
 class AFSIConceptualTheme extends AFConceptualTheme {
   AFSIConceptualTheme(AFFundamentalTheme fundamentals, ThemeData themeData): super(fundamentals: fundamentals, id: AFSIThemeID.conceptual, themeData: themeData);
 
@@ -30,9 +29,12 @@ class AFSIConceptualTheme extends AFConceptualTheme {
   /// Create a button that the user is most likely to click.
   Widget childButtonPrimarySignin({
     AFWidgetID wid,
-    String text,
+    dynamic text,
     AFPressedDelegate onPressed,
   }) {
+    if(text == null) {
+      text = wid;
+    }
     return childMargin(
       margin: marginButtonsSignin,
       child: FlatButton(
@@ -40,7 +42,7 @@ class AFSIConceptualTheme extends AFConceptualTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
+        color: colorOnPrimary,
         onPressed: onPressed,
         child: Container(
           padding: const EdgeInsets.all(20.0),
@@ -65,10 +67,13 @@ class AFSIConceptualTheme extends AFConceptualTheme {
   /// Create a button that the user is most likely to click.
   Widget childButtonSecondarySignin({
     AFWidgetID wid,
-    String text,
+    dynamic text,
     AFPressedDelegate onPressed,
   }) {
     final cop = colorOnPrimary;
+    if(text == null) {
+      text = wid;
+    }
     return childMargin(
       margin: marginButtonsSignin,
       child: OutlineButton(
@@ -89,7 +94,7 @@ class AFSIConceptualTheme extends AFConceptualTheme {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: Text(
+                child: childText(
                   text,
                   textAlign: TextAlign.center,
                   style: styleOnPrimary.bodyText2,
@@ -114,7 +119,7 @@ class AFSIConceptualTheme extends AFConceptualTheme {
   }
 
   InputDecoration decorationTextInput({
-    String text,
+    dynamic text,
   }) {
     final border = OutlineInputBorder(
         borderSide: BorderSide(
@@ -172,10 +177,12 @@ class AFSIConceptualTheme extends AFConceptualTheme {
     @required bool showPassword,
     @required AFOnChangedBoolDelegate onChanged,
   }) {
+    final wid = AFSIWidgetID.showPasswordCheck;
     return Container(
       margin: EdgeInsets.only(left: 8.0),
       child: SwitchListTile(
-        title: Text("Show Password", style: styleOnPrimary.bodyText2),
+        key: keyForWID(wid),
+        title: childText(wid, style: styleOnPrimary.bodyText2),
         activeColor: Colors.white,
         inactiveTrackColor: Colors.red,
         controlAffinity: ListTileControlAffinity.leading,

@@ -43,9 +43,8 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
   void _forgotPasswordScreen(AFSIBuildContext<AFStateView, SigninScreenRouteParam> context, List<Widget> rows) {
     final t = context.t;
     final textControllers = context.p.textControllers;
-    rows.add(context.t.childSplashScreenTitle(text: "Forgot Password"));
+    rows.add(context.t.childSplashScreenTitle(text: AFSITranslationID.titleForgotPassword));
 
-    rows.add(t.childDivider());
     rows.add(t.childMargin(
       margin: t.marginEmail,
       child: t.childTextField(
@@ -54,7 +53,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
       style: t.styleOnPrimary.bodyText2,
       controllers: textControllers,
       decoration: t.decorationTextInput(
-        text: t.translate("Email"),
+        text: AFSIWidgetID.editEmail,
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
@@ -65,7 +64,6 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
     rows.add(t.childStatusMessage(context.t, context.p.status, context.p.statusMessage));
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonResetPassword,
-      text: "RESET PASSWORD",
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Resetting password...")));
           context.p.configuration.onResetPassword(context, context.p.email);
@@ -74,7 +72,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
 
     rows.add(t.childButtonSecondarySignin(
       wid: AFUIWidgetID.buttonBack,
-      text: "Back to Sign In",
+      text: AFSITranslationID.backToSignin,
       onPressed: () {
         context.dispatchNavigatePop();
       },

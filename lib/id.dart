@@ -11,6 +11,7 @@ class AFSIScreenID {
 }
 
 class AFSIWidgetID {
+  static const showPasswordCheck = AFWidgetID("show_password_check", AFSILibraryID.id);
   static const buttonRegister = AFWidgetID("button_register", AFSILibraryID.id);
   static const buttonResetPassword = AFWidgetID("button_reset_password", AFSILibraryID.id);
   static const buttonLogin = AFWidgetID("button_login", AFSILibraryID.id);
@@ -26,6 +27,12 @@ const signinTag = ["signin"];
 class AFSIStateTestID {
 }
 
+
+class AFSITranslationID {
+  static const titleForgotPassword = AFTranslationID("title_forgot_password", AFSILibraryID.id);
+  static const titleSignup = AFTranslationID("title_signup", AFSILibraryID.id);
+  static const backToSignin = AFTranslationID("back_to_signin", AFSILibraryID.id);
+}
 class AFSIReusableTestID {
   /// Fills in the username and password, and clicks "Sign In"
   /// 

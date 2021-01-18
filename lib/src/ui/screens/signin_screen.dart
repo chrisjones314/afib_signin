@@ -179,7 +179,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       style: t.styleOnPrimary.bodyText2,
       controllers: textControllers,
       decoration: t.decorationTextInput(
-        text: "Email",
+        text: AFSIWidgetID.editEmail,
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
@@ -194,7 +194,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
         controllers: textControllers,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
-          text: "Password",
+          text: AFSIWidgetID.editPassword,
         ),
         obscureText: true,
         onChanged: (value) {
@@ -205,7 +205,6 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,
-      text: "SIGN IN",
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Signing in...")));
           context.p.configuration.onSignin(context, context.p.email, context.p.password);
@@ -214,7 +213,6 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
     
     rows.add(t.childButtonSecondarySignin(
       wid: AFSIWidgetID.buttonSignup,
-      text: "Sign Up",
       onPressed: () {
         context.dispatchNavigate(SignupScreen.navigatePush(context.p.configuration));      
       },
@@ -222,7 +220,6 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonSecondarySignin( 
       wid: AFSIWidgetID.buttonForgotPassword,
-      text: "Forgot Password", 
       onPressed: () {
         context.dispatchNavigate(ForgotPasswordScreen.navigatePush(context.p.configuration));
       },
