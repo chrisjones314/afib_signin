@@ -91,7 +91,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonRegister,
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Signing up...")));
+          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
           context.p.configuration.onSignup(context, context.p.email, context.p.password);
       },
     ));

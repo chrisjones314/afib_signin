@@ -32,7 +32,11 @@ class AFSITranslationID {
   static const titleForgotPassword = AFTranslationID("title_forgot_password", AFSILibraryID.id);
   static const titleSignup = AFTranslationID("title_signup", AFSILibraryID.id);
   static const backToSignin = AFTranslationID("back_to_signin", AFSILibraryID.id);
+  static const messageSigningIn = AFTranslationID("message_signing_in", AFSILibraryID.id);
+  static const messageResettingPassword = AFTranslationID("message_resetting_password", AFSILibraryID.id);
+  static const messageSigningUp = AFTranslationID("message_signing_up", AFSILibraryID.id);
 }
+
 class AFSIReusableTestID {
   /// Fills in the username and password, and clicks "Sign In"
   /// 

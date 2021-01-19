@@ -65,7 +65,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonResetPassword,
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate("Resetting password...")));
+          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
           context.p.configuration.onResetPassword(context, context.p.email);
       },
     ));

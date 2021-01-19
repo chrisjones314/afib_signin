@@ -17,6 +17,10 @@ void initFundamentalThemeArea(AFFundamentalDeviceTheme device, AFAppStateAreas a
     AFSITranslationID.titleForgotPassword: "Forgot Password",
     AFSIWidgetID.buttonRegister: "SIGN UP NOW",
     AFSIWidgetID.showPasswordCheck: "Show Password",
+    AFSITranslationID.messageSigningIn: "Signing in...",
+    AFSITranslationID.messageResettingPassword: "Resetting password...",
+    AFSITranslationID.messageSigningUp: "Signing up...",
+
   });
 
   primary.setTranslations(AFUILocaleID.spanish, {
@@ -31,5 +35,8 @@ void initFundamentalThemeArea(AFFundamentalDeviceTheme device, AFAppStateAreas a
     AFSITranslationID.titleForgotPassword: "Olvidó tu contraseña",
     AFSIWidgetID.buttonRegister: "REGÍSTRATE AHORA",
     AFSIWidgetID.showPasswordCheck: "Mostrar contraseña",    
+    AFSITranslationID.messageSigningIn: "Iniciando sesión...",
+    AFSITranslationID.messageResettingPassword: "Restableciendo contraseña...",
+    AFSITranslationID.messageSigningUp: "Registrarse...",
   });
 }
