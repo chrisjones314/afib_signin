@@ -16,7 +16,8 @@ void extendTest(AFTestExtensionContext extend) {
       initStateTests: initStateTests,
       initWidgetTests: initWidgetTests,
       initScreenTests: initScreenTests,
-      initWorkflowStateTests: initWorkflowStateTests
+      initWorkflowStateTests: initWorkflowStateTests,
+      initWireframes: null,
     );
 
 }
