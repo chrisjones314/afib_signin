@@ -16,7 +16,7 @@ void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) 
   var prototype = definitions.definePrototype(
       id: AFSIScreenTestID.signin,
       navigate: SigninScreen.navigatePushReady(testAdapter),
-      viewState: AFStateView()
+      stateViews: AFStateView()
     );
 
    // a test to be sure the correct widgets are present.
@@ -49,6 +49,6 @@ void _initErrorSigninScreen(AFSingleScreenTestDefinitionContext definitions) {
       id: AFSIScreenTestID.signinWithError,
       screenId: AFSIScreenID.signin,
       routeParam: errorParam,
-      viewState: AFStateView()
+      stateViews: AFStateView()
   );
 }
