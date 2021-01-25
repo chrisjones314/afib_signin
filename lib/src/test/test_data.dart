@@ -7,6 +7,6 @@ import 'package:afib/afib_flutter.dart';
 //------------------------------------------------------------------------------------
 //
 //------------------------------------------------------------------------------------
-void initTestData(AFTestDataRegistry testData) {
+void initTestData(AFCompositeTestDataRegistry testData) {
 }
 
