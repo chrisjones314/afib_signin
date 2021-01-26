@@ -6,8 +6,8 @@ import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-class AFSIConceptualTheme extends AFConceptualTheme {
-  AFSIConceptualTheme(AFFundamentalTheme fundamentals, ThemeData themeData): super(fundamentals: fundamentals, id: AFSIThemeID.conceptual, themeData: themeData);
+class AFSIConceptualTheme extends AFFunctionalTheme {
+  AFSIConceptualTheme(AFFundamentalThemeState fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.functional);
 
   //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({dynamic text}) {
@@ -193,5 +193,5 @@ class AFSIConceptualTheme extends AFConceptualTheme {
 }
 
 void initConceptualThemes(AFConceptualThemeDefinitionContext context) {
-  context.initUnlessPresent(AFSIThemeID.conceptual, createTheme: (f, t) => AFSIConceptualTheme(f, t));
+  context.initUnlessPresent(AFSIThemeID.functional, createTheme: (f) => AFSIConceptualTheme(f));
 }

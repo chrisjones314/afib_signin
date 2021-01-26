@@ -66,5 +66,5 @@ class AFSIQueryID {
 
 class AFSIThemeID {
   static const tagAFSITheme = "afsi";
-  static const conceptual = AFThemeID("conceptual", AFSILibraryID.id, tagAFSITheme);
+  static const functional = AFThemeID("conceptual", AFSILibraryID.id, tagAFSITheme);
 }

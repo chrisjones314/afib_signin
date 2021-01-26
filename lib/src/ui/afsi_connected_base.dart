@@ -17,11 +17,11 @@ class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRou
     AFStateView stateView,
     AFRouteParam routeParam,
     AFRouteParamWithChildren paramWithChildren, 
-    AFConceptualTheme theme,
+    AFFunctionalTheme theme,
     AFConnectedUIBase container
   ): super(context, dispatcher, stateView, routeParam, paramWithChildren, theme, container);
 }
 
 abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateArea, AFSIConceptualTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
-  AFSIConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.conceptual);
+  AFSIConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.functional);
 }
