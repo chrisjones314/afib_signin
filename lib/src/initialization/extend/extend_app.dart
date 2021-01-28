@@ -12,6 +12,6 @@ void extendApp(AFUILibraryExtensionContext extend) {
       initScreenMap: initScreenMap, 
       initializeAppState: () => null, 
       initFundamentalThemeArea: initFundamentalThemeArea,
-      initConceptualTheme: initConceptualThemes,
+      initFunctionalTheme: initFunctionalThemes,
     );
 }

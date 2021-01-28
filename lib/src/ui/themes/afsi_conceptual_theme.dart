@@ -6,8 +6,8 @@ import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-class AFSIConceptualTheme extends AFFunctionalTheme {
-  AFSIConceptualTheme(AFFundamentalThemeState fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.functional);
+class AFSIFunctionalTheme extends AFFunctionalTheme {
+  AFSIFunctionalTheme(AFFundamentalThemeState fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.functional);
 
   //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({dynamic text}) {
@@ -139,7 +139,7 @@ class AFSIConceptualTheme extends AFFunctionalTheme {
   }
 
   //--------------------------------------------------------------------------------------
-  Widget childStatusMessage(AFSIConceptualTheme t, AFSISigninStatus status, String statusMessage) {
+  Widget childStatusMessage(AFSIFunctionalTheme t, AFSISigninStatus status, String statusMessage) {
     var messageColor;
     var style;
     if(status == AFSISigninStatus.error) {
@@ -192,6 +192,6 @@ class AFSIConceptualTheme extends AFFunctionalTheme {
   }
 }
 
-void initConceptualThemes(AFConceptualThemeDefinitionContext context) {
-  context.initUnlessPresent(AFSIThemeID.functional, createTheme: (f) => AFSIConceptualTheme(f));
+void initFunctionalThemes(AFFunctionalThemeDefinitionContext context) {
+  context.initUnlessPresent(AFSIThemeID.functional, createTheme: (f) => AFSIFunctionalTheme(f));
 }

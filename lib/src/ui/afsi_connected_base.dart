@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:afib/afib_flutter.dart';
 
 mixin AFSIConnectedUIMixin<TStateView extends AFStateView, TRouteParam extends AFRouteParam> {
-  AFSIBuildContext<TStateView, TRouteParam> createContext(BuildContext context, AFDispatcher dispatcher, TStateView stateView, TRouteParam param, AFRouteParamWithChildren paramWithChildren, AFSIConceptualTheme theme, AFConnectedUIBase container) {
+  AFSIBuildContext<TStateView, TRouteParam> createContext(BuildContext context, AFDispatcher dispatcher, TStateView stateView, TRouteParam param, AFRouteParamWithChildren paramWithChildren, AFSIFunctionalTheme theme, AFConnectedUIBase container) {
     return AFSIBuildContext<TStateView, TRouteParam>(context, dispatcher, stateView, param, paramWithChildren, theme, container);
   }
 }
 
-class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<TStateView, TRouteParam, AFSIConceptualTheme> {
+class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<AFAppStateArea, TStateView, TRouteParam, AFSIFunctionalTheme> {
   AFSIBuildContext(
     BuildContext context, 
     AFDispatcher dispatcher, 
@@ -22,6 +22,6 @@ class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRou
   ): super(context, dispatcher, stateView, routeParam, paramWithChildren, theme, container);
 }
 
-abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateArea, AFSIConceptualTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
+abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateArea, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
   AFSIConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.functional);
 }
