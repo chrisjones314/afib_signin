@@ -86,12 +86,13 @@ class SigninScreenRouteParam extends AFRouteParam {
   }
 
   factory SigninScreenRouteParam.createLoadingOncePerScreen({AFSISigninConfiguration config}) {
+
     return SigninScreenRouteParam(
       status: AFSISigninStatus.loading,
       statusMessage: "",
       email: "",
       password: "",
-      textControllers: AFTextEditingControllersHolder(),
+      textControllers: _createEmptyText(),
       configuration: config,
       showPassword: true,
     );
@@ -104,9 +105,17 @@ class SigninScreenRouteParam extends AFRouteParam {
       email: "",
       password: "",
       showPassword: false,
-      textControllers: AFTextEditingControllersHolder(),
+      textControllers: _createEmptyText(),
       configuration: config,
     );
+  }
+
+  static AFTextEditingControllersHolder _createEmptyText() {
+    final controllers = AFTextEditingControllersHolder.createN({
+      AFSIWidgetID.editEmail: "",
+      AFSIWidgetID.editPassword: "",
+    });
+    return controllers;
   }
 
   @override
@@ -179,8 +188,8 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       margin: t.marginEmail,
       child: t.childTextField(
       wid: AFSIWidgetID.editEmail,
-      text: context.p.email,
       style: t.styleOnPrimary.bodyText2,
+      text: context.p.email,
       controllers: textControllers,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail,
@@ -194,8 +203,8 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       margin: t.marginPassword,
       child: t.childTextField(
         wid: AFSIWidgetID.editPassword,
-        text: context.p.password,
         controllers: textControllers,
+        text: context.p.password,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
           text: AFSIWidgetID.editPassword,

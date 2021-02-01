@@ -52,8 +52,8 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       margin: t.marginEmail,
       child: t.childTextField(
       wid: AFSIWidgetID.editEmail,
-      text: context.p.email,
       style: t.styleOnPrimary.bodyText2,
+      text: context.p.email,
       controllers: textControllers,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail
@@ -67,8 +67,8 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       margin: t.marginPassword,
       child: t.childTextField(
         wid: AFSIWidgetID.editPassword,
-        text: context.p.password,
         controllers: textControllers,
+        text: context.p.password,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
           text: AFSIWidgetID.editPassword,
