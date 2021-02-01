@@ -21,7 +21,7 @@ void initForgotPasswordScreenTests(AFSingleScreenTestDefinitionContext definitio
     describeParam1: "Email",
     body: (e, email) async {
       await e.setValue(AFSIWidgetID.editEmail, email);
-      await e.tap(AFSIWidgetID.buttonResetPassword);
+      await e.applyTap(AFSIWidgetID.buttonResetPassword);
       e.expect(testAdapter.email, ft.equals(email));
   });
 

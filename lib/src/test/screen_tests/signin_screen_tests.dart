@@ -33,9 +33,11 @@ void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) 
       
       await e.matchTextEquals(AFSIWidgetID.editEmail, email);
       await e.matchTextEquals(AFSIWidgetID.editPassword, pass);
-      await e.tap(AFSIWidgetID.buttonLogin);
-      e.expect(testAdapter.email, ft.equals(email));
-      e.expect(testAdapter.password, ft.equals(pass));
+      await e.applyTap(AFSIWidgetID.buttonLogin);
+      if(testAdapter.visited) {
+        e.expect(testAdapter.email, ft.equals(email));
+        e.expect(testAdapter.password, ft.equals(pass));
+      }
   });
 }
 

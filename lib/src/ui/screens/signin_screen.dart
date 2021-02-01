@@ -18,22 +18,26 @@ abstract class AFSISigninConfiguration {
 class AFSITestActionConfiguration extends AFSISigninConfiguration {
   String email;
   String password;
+  bool visited = false;
   void onSignin(AFBuildContext context, String email, String password) {
     context.log?.d("Signin $email/$password");
     this.email = email;
     this.password = password;
+    visited = true;
 
   }
 
   void onResetPassword(AFBuildContext context, String email) {
     context.log?.d("Signin $password");
     this.email = email;
+    visited = true;
   }
 
   void onSignup(AFBuildContext context, String email, String password) {
     context.log?.d("Signin $email/$password");
     this.email = email;
     this.password = password;
+    visited = true;
   }
 
 }

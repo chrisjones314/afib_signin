@@ -7,7 +7,8 @@ import 'package:afib_signin/src/initialization/extend/extend_test.dart';
 
 /// This is used to run in prototype mode during library development, it isn't used by library clients.
 void main() {  
-  afMainFirstStartup();
-  final paramsD = createDartParams();
-  afMainUILibrary<AFAppStateArea>(AFSILibraryID.id, paramsD, extendApp, extendTest);
+  afMainWrapper(() {
+    final paramsD = createDartParams();
+    afMainUILibrary<AFAppStateArea>(AFSILibraryID.id, paramsD, extendApp, extendTest);
+  });
 }

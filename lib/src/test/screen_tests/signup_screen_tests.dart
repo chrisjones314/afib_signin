@@ -27,7 +27,7 @@ void initSignupScreenTests(AFSingleScreenTestDefinitionContext definitions) {
       
       await e.matchTextEquals(AFSIWidgetID.editEmail, email);
       await e.matchTextEquals(AFSIWidgetID.editPassword, pass);
-      await e.tap(AFSIWidgetID.buttonRegister);
+      await e.applyTap(AFSIWidgetID.buttonRegister);
       e.expect(testAdapter.email, ft.equals(email));
       e.expect(testAdapter.password, ft.equals(pass));
   });
