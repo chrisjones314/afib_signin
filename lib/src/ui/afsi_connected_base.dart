@@ -1,6 +1,6 @@
 
 import 'package:afib_signin/id.dart';
-import 'package:afib_signin/src/ui/themes/afsi_conceptual_theme.dart';
+import 'package:afib_signin/src/ui/themes/afsi_functional_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:afib/afib_flutter.dart';
 
