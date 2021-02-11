@@ -18,7 +18,6 @@ void initForgotPasswordScreenTests(AFSingleScreenTestDefinitionContext definitio
     id: AFSIReusableTestID.forgotPasswordSubmit, 
     prototype: prototype,
     param1: "testuser@test.com",
-    describeParam1: "Email",
     body: (e, email) async {
       await e.setValue(AFSIWidgetID.editEmail, email);
       await e.applyTap(AFSIWidgetID.buttonResetPassword);

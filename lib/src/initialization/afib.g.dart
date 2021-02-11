@@ -1,4 +1,4 @@
-// File last generated at 2021-02-10 10:04:54.775660 on Chriss-iMac-Pro.jh
+// File last generated at 2021-02-11 10:15:43.811349 on Chriss-iMac-Pro.jh
 import 'package:afib/afib_command.dart';
 void configureAfib(AFConfig config) {
   config.setValue(AFConfigEntries.appNamespace, "afsi");

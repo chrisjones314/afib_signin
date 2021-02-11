@@ -25,8 +25,6 @@ void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) 
     prototype: prototype,
     param1: "testuser@test.com",
     param2: "testpass",
-    describeParam1: "Email",
-    describeParam2: "Password",
     body: (e, email, pass) async {
       await e.setValue(AFSIWidgetID.editEmail, email);
       await e.setValue(AFSIWidgetID.editPassword, pass);
