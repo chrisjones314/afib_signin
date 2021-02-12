@@ -18,19 +18,17 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 0.0.10
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   afib:
-    path: /projects/afib
+    path: /Users/chrisjones/projects/afib/afib
     version: ^0.0.10 
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-  integration_test:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the
