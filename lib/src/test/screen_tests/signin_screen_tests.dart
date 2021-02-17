@@ -14,14 +14,14 @@ void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) 
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.definePrototype(
-      id: AFSIScreenTestID.signin,
+      id: AFSIPrototypeID.signin,
       navigate: SigninScreen.navigatePushReady(testAdapter),
       stateViews: AFStateView()
     );
 
    // a test to be sure the correct widgets are present.
   definitions.defineReusableTest2(
-    id: AFSIReusableTestID.signinScreenLogin, 
+    id: AFSIScreenTestID.signinScreenLogin, 
     prototype: prototype,
     param1: "testuser@test.com",
     param2: "testpass",
@@ -46,7 +46,7 @@ void _initErrorSigninScreen(AFSingleScreenTestDefinitionContext definitions) {
   final errorParam = initialParam.reviseStatus(status: AFSISigninStatus.error, message: "For example: Your username or password did not match our records.");
 
   definitions.definePrototype(
-      id: AFSIScreenTestID.signinWithError,
+      id: AFSIPrototypeID.signinWithError,
       screenId: AFSIScreenID.signin,
       routeParam: errorParam,
       stateViews: AFStateView()

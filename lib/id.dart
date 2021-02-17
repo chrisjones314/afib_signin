@@ -37,31 +37,24 @@ class AFSITranslationID {
   static const messageSigningUp = AFTranslationID("message_signing_up", AFSILibraryID.id);
 }
 
-class AFSIReusableTestID {
+class AFSIScreenTestID {
   /// Fills in the username and password, and clicks "Sign In"
   /// 
   /// The username and password should be supplied as param1 and param2 to 
   /// [AFWorkflowTestExecute.runScreenTest].
-  static const signupScreen = AFReusableTestID("signup_screen", AFSILibraryID.id);
-  static const forgotPasswordSubmit = AFReusableTestID("forgot_password_submit", AFSILibraryID.id);
-  static const signinScreenLogin = AFReusableTestID("signin_screen_login", AFSILibraryID.id);
+  static const signupScreen = AFScreenTestID("signup_screen", AFSILibraryID.id);
+  static const forgotPasswordSubmit = AFScreenTestID("forgot_password_submit", AFSILibraryID.id);
+  static const signinScreenLogin = AFScreenTestID("signin_screen_login", AFSILibraryID.id);
 }
 
-class AFSIScreenTestID {
-  static const signinWithError = AFSingleScreenTestID("signin_with_error", AFSILibraryID.id, tags: signinTag);
-  static const signup = AFSingleScreenTestID("signup", AFSILibraryID.id, tags: signinTag);
-  static const signin = AFSingleScreenTestID("signin", AFSILibraryID.id, tags: signinTag);
-  static const forgotPassword = AFSingleScreenTestID("forgot_password", AFSILibraryID.id, tags: signinTag);
-}
-
-class AFSIWorkflowTestID {
+class AFSIPrototypeID {
+  static const signinWithError = AFPrototypeID("signin_with_error", AFSILibraryID.id, tags: signinTag);
+  static const signup = AFPrototypeID("signup", AFSILibraryID.id, tags: signinTag);
+  static const signin = AFPrototypeID("signin", AFSILibraryID.id, tags: signinTag);
+  static const forgotPassword = AFPrototypeID("forgot_password", AFSILibraryID.id, tags: signinTag);
 }
 
 class AFSITestDataID {  
-}
-
-class AFSIQueryID {
-  
 }
 
 class AFSIThemeID {

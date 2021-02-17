@@ -8,14 +8,14 @@ void initForgotPasswordScreenTests(AFSingleScreenTestDefinitionContext definitio
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.definePrototype(
-      id: AFSIScreenTestID.forgotPassword,
+      id: AFSIPrototypeID.forgotPassword,
       navigate: ForgotPasswordScreen.navigatePush(testAdapter),
       stateViews: AFStateView()
     );
 
    // a test to be sure the correct widgets are present.
   definitions.defineReusableTest1(
-    id: AFSIReusableTestID.forgotPasswordSubmit, 
+    id: AFSIScreenTestID.forgotPasswordSubmit, 
     prototype: prototype,
     param1: "testuser@test.com",
     body: (e, email) async {

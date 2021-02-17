@@ -8,14 +8,14 @@ void initSignupScreenTests(AFSingleScreenTestDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.definePrototype(
-      id: AFSIScreenTestID.signup,
+      id: AFSIPrototypeID.signup,
       navigate: SignupScreen.navigatePush(testAdapter),
       stateViews: AFStateView()
     );
 
    // a test to be sure the correct widgets are present.
   definitions.defineReusableTest2(
-    id: AFSIReusableTestID.signupScreen, 
+    id: AFSIScreenTestID.signupScreen, 
     prototype: prototype,
     param1: "testuser@test.com",
     param2: "testpass",

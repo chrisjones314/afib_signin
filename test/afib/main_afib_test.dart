@@ -9,13 +9,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 //------------------------------------------------------------------------------
 void main() async {
-  afMainTestFirstStartup();
+  afTestMainStartup();
 
   group("AFib Test", () {
     testWidgets('Afib Test', (tester) async {
-      await afMainTestConfigureScreenSize(tester);
       final paramsD = createDartParams();
-      await afTestMainUILibrary<AFAppStateArea>(AFSILibraryID.id, extendApp, extendThirdParty, extendTest, paramsD, tester);
+      await afTestWidgetStartup(paramsD, tester, () async {
+        await afTestMainUILibrary<AFAppStateArea>(AFSILibraryID.id, extendApp, extendThirdParty, extendTest, paramsD, tester);
+      });
     });
   });
 }
