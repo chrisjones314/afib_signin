@@ -1,4 +1,4 @@
-// File last generated at 2021-02-19 14:47:47.046763 on Chriss-iMac-Pro.jh
+// File last generated at 2021-02-19 16:50:32.152442 on Chriss-iMac-Pro.jh
 import 'package:afib/afib_command.dart';
 void configureAfib(AFConfig config) {
   // --environment         
@@ -8,17 +8,24 @@ void configureAfib(AFConfig config) {
   //       [test]          Used internally when command-line tests are executing, not usually explicitly used by developers
   config.setValue("environment", AFEnvironment.prototype);
   
-  // --logs-enabled    
-  //       [app]       Show log messages from app-specific code for query, route, state and ui
-  //       [config]    Logging on any non-test definition/initialization context, and of afib.g.dart/startup configuration values
-  //       [none]      Turn off all logging
-  //       [query]     Logging on AFStartQueryContext, AFFinishQuerySuccessContext or AFFinishQueryErrorContext
-  //       [route]     Logging of any action that modified a route
-  //       [state]     Logging of any action that modifies an app state
-  //       [test]      Logging on test definition contexts and all test execution contexts
-  //       [theme]     Logging of changes related to theming
-  //       [ui]        Show log messages on any AFBuildContext
+  // --logs-enabled       
+  //       [af:config]    Logging on any non-test definition/initialization context, and of afib.g.dart/startup configuration values
+  //       [af:query]     Internal AFib logging for queries
+  //       [af:route]     Internal AFib logging related to apps and navigation
+  //       [af:state]     Internal AFib logging related to app state
+  //       [af:test]      Internal AFib logging for testing
+  //       [af:theme]     Internal AFib logging related to theming
+  //       [af:ui]        Internal AFib logging for UI build
+  //       [none]         Turn off all logging
+  //       [query]        App logging on AFStartQueryContext, AFFinishQuerySuccessContext or AFFinishQueryErrorContext
+  //       [standard]     Logging for app query and ui, plus afib route and state
+  //       [test]         App logging on test definition contexts and all test execution contexts
+  //       [ui]           App logging on any AFBuildContext
   config.setValue("logs-enabled", []);
+  
+  // --force-dark-mode    Set to true if you'd like to run the app in dark mode, regardless of the device setting
+  //                      [true, false]
+  config.setValue("force-dark-mode", false);
   
   // --tests-enabled     
   //       [*]           Or, the full identifier of any prototype, test name, or tag
@@ -46,10 +53,6 @@ void configureAfib(AFConfig config) {
   //       [landscape]     Landscape, width larger than height
   //       [portrait]      Portrait, height larger than width
   config.setValue("test-orientation", "portrait");
-  
-  // --force-dark-mode    Set to true if you'd like to run the app in dark mode, regardless of the device setting
-  //                      [true, false]
-  config.setValue("force-dark-mode", false);
   
   // --app-namespace    A short identifier which is unique to your app, many files and classes are prefixed with these characters, so changing it later is not advised
   config.setValue("app-namespace", "afsi");
