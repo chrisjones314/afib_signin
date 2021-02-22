@@ -1,4 +1,4 @@
-// File last generated at 2021-02-19 16:50:32.152442 on Chriss-iMac-Pro.jh
+// File last generated at 2021-02-22 17:52:15.836425 on Chriss-iMac-Pro.jh
 import 'package:afib/afib_command.dart';
 void configureAfib(AFConfig config) {
   // --environment         
@@ -56,6 +56,14 @@ void configureAfib(AFConfig config) {
   
   // --app-namespace    A short identifier which is unique to your app, many files and classes are prefixed with these characters, so changing it later is not advised
   config.setValue("app-namespace", "afsi");
+  
+  // --afsi_special_config    sample configuration value
+  //                          [true, false]
+  config.setValue("afsi_special_config", false);
+  
+  // --widgetTesterContext    Internal value set to true when we are doing widget tests
+  //                          [true, false]
+  config.setValue("widgetTesterContext", false);
   
 }
 

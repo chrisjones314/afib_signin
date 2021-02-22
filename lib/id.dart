@@ -1,4 +1,5 @@
-import 'package:afib/afib_flutter.dart';
+
+import 'package:afib/afib_command.dart';
 
 class AFSILibraryID {
   static const id = AFLibraryID(code: "afsi", name: "AFib Signin");
