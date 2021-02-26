@@ -1,4 +1,4 @@
-// File last generated at 2021-02-22 17:52:15.836425 on Chriss-iMac-Pro.jh
+// File last generated at 2021-02-26 16:46:24.881917 on Chriss-iMac-Pro.jh
 import 'package:afib/afib_command.dart';
 void configureAfib(AFConfig config) {
   // --environment         
@@ -11,7 +11,7 @@ void configureAfib(AFConfig config) {
   // --logs-enabled       
   //       [af:config]    Logging on any non-test definition/initialization context, and of afib.g.dart/startup configuration values
   //       [af:query]     Internal AFib logging for queries
-  //       [af:route]     Internal AFib logging related to apps and navigation
+  //       [af:route]     Internal AFib logging related to routes and navigation
   //       [af:state]     Internal AFib logging related to app state
   //       [af:test]      Internal AFib logging for testing
   //       [af:theme]     Internal AFib logging related to theming
