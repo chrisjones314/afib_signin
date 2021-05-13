@@ -9,10 +9,10 @@ import 'package:afib_signin/src/initialization/extend/extend_command_third_party
 /// The main function for the application-specific, extensible afib command-line
 /// interface.
 void main(List<String> args) {
-  afCommandStartup(() {
+  afCommandStartup(() async {
     final paramsD = createDartParams();
 
   // execute the command.
-    afUILibraryCommandMain(paramsD, args, extendBase, extendBaseThirdParty, extendCommand, extendCommandThirdParty);
+    await afUILibraryCommandMain(paramsD, args, extendBase, extendBaseThirdParty, extendCommand, extendCommandThirdParty);
   });
 }

@@ -16,7 +16,7 @@ class AFSICustomCommand extends AFCommand {
   }
 
   @override
-  void execute(AFCommandContext ctx, args.ArgResults args) {
+  void execute(AFCommandContext ctx) {
     print("Executing afsi_custom command");
   }
 }

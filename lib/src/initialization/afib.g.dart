@@ -1,4 +1,4 @@
-// File last generated at 2021-02-26 16:46:24.881917 on Chriss-iMac-Pro.jh
+// File last generated at 2021-03-03 13:38:28.370379 on Chriss-iMac-Pro.jh
 import 'package:afib/afib_command.dart';
 void configureAfib(AFConfig config) {
   // --environment         
