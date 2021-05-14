@@ -35,15 +35,19 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
     if(text == null) {
       text = wid;
     }
-    return childMargin(
-      margin: marginButtonsSignin,
-      child: FlatButton(
-        key: keyForWID(wid),
-        shape: RoundedRectangleBorder(
+    final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+      primary: colorOnPrimary,
+      shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: colorOnPrimary,
+    );
+
+    return childMargin(
+      margin: marginButtonsSignin,
+      child: TextButton(
+        key: keyForWID(wid),
         onPressed: onPressed,
+        style: flatButtonStyle,
         child: Container(
           padding: const EdgeInsets.all(20.0),
           child: Row(
@@ -74,16 +78,21 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
     if(text == null) {
       text = wid;
     }
+    
+    final ButtonStyle outlineButtonStyle = OutlinedButton.styleFrom(
+      primary: cop,
+      side: BorderSide(color: cop),
+      //highlightedBorderColor: cop,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+    );
+
     return childMargin(
       margin: marginButtonsSignin,
-      child: OutlineButton(
+      child: OutlinedButton(
         key: keyForWID(wid),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: cop,
-        borderSide: BorderSide(color: cop),
-        highlightedBorderColor: cop,
+        style: outlineButtonStyle,
         onPressed: onPressed,
         child: Container(
           padding: const EdgeInsets.symmetric(
