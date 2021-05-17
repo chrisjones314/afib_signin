@@ -36,7 +36,7 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
       text = wid;
     }
     final ButtonStyle flatButtonStyle = TextButton.styleFrom(
-      primary: colorOnPrimary,
+      backgroundColor: colorOnPrimary,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -44,7 +44,7 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
 
     return childMargin(
       margin: marginButtonsSignin,
-      child: TextButton(
+      child: OutlinedButton(
         key: keyForWID(wid),
         onPressed: onPressed,
         style: flatButtonStyle,
