@@ -16,7 +16,13 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
 
   //--------------------------------------------------------------------------------------
   EdgeInsets get marginScreen {
-    return EdgeInsets.all(30);
+    return EdgeInsets.only(top: 30);
+  }
+
+
+  //--------------------------------------------------------------------------------------
+  double get maxWidthSigninControls {
+    return 350.0;
   }
 
   //--------------------------------------------------------------------------------------
@@ -147,7 +153,6 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
     );
   }
 
-  //--------------------------------------------------------------------------------------
   Widget childStatusMessage(AFSIFunctionalTheme t, AFSISigninStatus status, String statusMessage) {
     var messageColor;
     var style;

@@ -30,7 +30,16 @@ abstract class SigninScreenBase<TData extends AFStateView, TRouteParam extends A
         bottomNavigationBar: t.bottomNavigationBarSignin(context),
         body: Container(
           decoration: t.decorationSigninBackground(),
-          child: mainControls
+          child: ConstrainedBox(
+            constraints: BoxConstraints.expand(),
+            child: Align(
+              alignment: Alignment.center,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: t.maxWidthSigninControls),
+                child: mainControls
+              )
+            )
+          )
         )
     );
   }
