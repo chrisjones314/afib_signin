@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// Used to supply the implementation that actually does the signin,
 /// forgot password, or signup actions.
 abstract class AFSISigninConfiguration {
-  void onSignin(AFBuildContext context, String email, String password);
+  void onSignin(AFBuildContext context, String email, String password, { @required bool rememberMe } );
   void onResetPassword(AFBuildContext context, String email);
   void onSignup(AFBuildContext context, String email, String password);
 }
@@ -18,11 +18,13 @@ abstract class AFSISigninConfiguration {
 class AFSITestActionConfiguration extends AFSISigninConfiguration {
   String email;
   String password;
+  bool rememberMe;
   bool visited = false;
-  void onSignin(AFBuildContext context, String email, String password) {
+  void onSignin(AFBuildContext context, String email, String password, { @required bool rememberMe }) {
     context.log?.d("Signin $email/$password");
     this.email = email;
     this.password = password;
+    this.rememberMe = rememberMe;
     visited = true;
 
   }
@@ -47,6 +49,7 @@ class SigninScreenRouteParam extends AFRouteParam {
   final String statusMessage; 
   final AFSISigninConfiguration configuration;
   final bool showPassword;
+  final bool rememberMe;
 
   final String email;
   final String password;
@@ -60,6 +63,7 @@ class SigninScreenRouteParam extends AFRouteParam {
     @required this.password,
     @required this.textControllers,
     @required this.showPassword,
+    @required this.rememberMe,
   });
 
   SigninScreenRouteParam copyWith({
@@ -67,7 +71,8 @@ class SigninScreenRouteParam extends AFRouteParam {
     String statusMessage,
     String email,
     String password,
-    bool showPassword
+    bool showPassword,
+    bool rememberMe,
   }) {
 
     return SigninScreenRouteParam(
@@ -78,6 +83,7 @@ class SigninScreenRouteParam extends AFRouteParam {
       textControllers: this.textControllers,
       configuration: this.configuration,
       showPassword: showPassword ?? this.showPassword,
+      rememberMe: rememberMe ?? this.rememberMe,
     );
   }
 
@@ -95,6 +101,7 @@ class SigninScreenRouteParam extends AFRouteParam {
       textControllers: _createEmptyText(),
       configuration: config,
       showPassword: true,
+      rememberMe: false,
     );
   }
 
@@ -107,6 +114,7 @@ class SigninScreenRouteParam extends AFRouteParam {
       showPassword: false,
       textControllers: _createEmptyText(),
       configuration: config,
+      rememberMe: false,
     );
   }
 
@@ -190,6 +198,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
       wid: AFSIWidgetID.editEmail,
       style: t.styleOnPrimary.bodyText2,
       text: context.p.email,
+      cursorColor: t.colorCursor,
       controllers: textControllers,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail,
@@ -206,6 +215,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
         controllers: textControllers,
         text: context.p.password,
         style: t.styleOnPrimary.bodyText2,
+        cursorColor: t.colorCursor,
         decoration: t.decorationTextInput(
           text: AFSIWidgetID.editPassword,
         ),
@@ -214,13 +224,25 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
           updateRouteParam(context, context.p.copyWith(password: value));
         }
     )));
+    final rememberSigninCheck = t.childCheckRememberSignin(
+      buildContext: context.c,
+      checked: context.p.rememberMe,
+      onChanged: (newVal) {
+        final revised = context.p.copyWith(rememberMe: newVal);
+        updateRouteParam(context, revised);
+      }
+    );
+    if(rememberSigninCheck != null) {
+      rows.add(rememberSigninCheck);
+    }
+    
     rows.add(t.childStatusMessage(context.t, context.p.status, context.p.statusMessage));
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
-          context.p.configuration.onSignin(context, context.p.email, context.p.password);
+          context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
       },
     ));
     

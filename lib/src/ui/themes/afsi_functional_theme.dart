@@ -3,6 +3,7 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -23,6 +24,32 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
   //--------------------------------------------------------------------------------------
   double get maxWidthSigninControls {
     return 350.0;
+  }
+
+  Color get colorCursor {
+    return colorOnPrimary;
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget childCheckRememberSignin({ @required BuildContext buildContext, @required bool checked, @required ValueChanged<bool> onChanged }) {
+    if(!kIsWeb) {
+      return null;
+    }
+    final cols = row();
+    cols.add(Theme(data: Theme.of(buildContext).copyWith(
+        unselectedWidgetColor: Colors.white,
+      ),
+      child: Checkbox(
+      focusColor: colorOnPrimary,
+      hoverColor: colorOnPrimary,
+      overlayColor: MaterialStateProperty.all(colorOnPrimary),
+      checkColor: colorOnPrimary,
+      value: checked,
+      onChanged: onChanged,
+    )));
+
+    cols.add(childText("Stay signed in on this computer", textColor: colorOnPrimary));
+    return Row(children: cols);
   }
 
   //--------------------------------------------------------------------------------------
