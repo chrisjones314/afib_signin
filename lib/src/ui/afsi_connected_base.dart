@@ -1,25 +1,21 @@
 
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/themes/afsi_functional_theme.dart';
-import 'package:flutter/material.dart';
 import 'package:afib/afib_flutter.dart';
 
 mixin AFSIConnectedUIMixin<TStateView extends AFStateView, TRouteParam extends AFRouteParam> {
-  AFSIBuildContext<TStateView, TRouteParam> createContext(BuildContext context, AFDispatcher dispatcher, TStateView stateView, TRouteParam param, AFRouteParamWithChildren paramWithChildren, AFSIFunctionalTheme theme, AFConnectedUIBase container) {
-    return AFSIBuildContext<TStateView, TRouteParam>(context, dispatcher, stateView, param, paramWithChildren, theme, container);
+  AFSIBuildContext<TStateView, TRouteParam> createContext(AFStandardBuildContextData standard, TStateView stateView, TRouteParam param, AFSIFunctionalTheme theme) {
+    return AFSIBuildContext<TStateView, TRouteParam>(standard, stateView, param, theme);
   }
 }
 
 class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<AFAppStateArea, TStateView, TRouteParam, AFSIFunctionalTheme> {
   AFSIBuildContext(
-    BuildContext context, 
-    AFDispatcher dispatcher, 
+    AFStandardBuildContextData standard,
     AFStateView stateView,
     AFRouteParam routeParam,
-    AFRouteParamWithChildren paramWithChildren, 
-    AFFunctionalTheme theme,
-    AFConnectedUIBase container
-  ): super(context, dispatcher, stateView, routeParam, paramWithChildren, theme, container);
+    AFSIFunctionalTheme theme,
+  ): super(standard, stateView, routeParam, theme);
 }
 
 abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateArea, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
