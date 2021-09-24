@@ -12,8 +12,8 @@ mixin AFSIConnectedUIMixin<TStateView extends AFStateView, TRouteParam extends A
 class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<AFAppStateArea, TStateView, TRouteParam, AFSIFunctionalTheme> {
   AFSIBuildContext(
     AFStandardBuildContextData standard,
-    AFStateView stateView,
-    AFRouteParam routeParam,
+    TStateView stateView,
+    TRouteParam routeParam,
     AFSIFunctionalTheme theme,
   ): super(standard, stateView, routeParam, theme);
 }

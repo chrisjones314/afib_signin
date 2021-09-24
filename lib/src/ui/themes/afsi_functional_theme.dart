@@ -1,11 +1,8 @@
-
-
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 class AFSIFunctionalTheme extends AFFunctionalTheme {
   AFSIFunctionalTheme(AFFundamentalThemeState fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.functional);
@@ -31,7 +28,11 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
   }
 
   //--------------------------------------------------------------------------------------
-  Widget childCheckRememberSignin({ @required BuildContext buildContext, @required bool checked, @required ValueChanged<bool> onChanged }) {
+  Widget? childCheckRememberSignin({ 
+    required BuildContext buildContext, 
+    required bool checked, 
+    required ValueChanged<bool?> onChanged 
+  }) {
     if(!kIsWeb) {
       return null;
     }
@@ -61,13 +62,10 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
 
   /// Create a button that the user is most likely to click.
   Widget childButtonPrimarySignin({
-    AFWidgetID wid,
-    dynamic text,
-    AFPressedDelegate onPressed,
+    required AFWidgetID wid,
+    required dynamic text,
+    required AFPressedDelegate onPressed,
   }) {
-    if(text == null) {
-      text = wid;
-    }
     final ButtonStyle flatButtonStyle = TextButton.styleFrom(
       backgroundColor: colorOnPrimary,
       shape: RoundedRectangleBorder(
@@ -103,9 +101,9 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
 
   /// Create a button that the user is most likely to click.
   Widget childButtonSecondarySignin({
-    AFWidgetID wid,
-    dynamic text,
-    AFPressedDelegate onPressed,
+    required AFWidgetID wid,
+    required dynamic text,
+    required AFPressedDelegate onPressed,
   }) {
     final cop = colorOnPrimary;
     if(text == null) {
@@ -206,17 +204,19 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
   }
 
   //--------------------------------------------------------------------------------------
-  Drawer drawerSignIn(AFBuildContext context) {
+  Drawer? drawerSignIn(AFBuildContext context) {
     return null;
   }
 
-  Widget bottomNavigationBarSignin(AFBuildContext context) {
+  //--------------------------------------------------------------------------------------
+  Widget? bottomNavigationBarSignin(AFBuildContext context) {
     return null;
   }
 
+  //--------------------------------------------------------------------------------------
   Widget childShowPasswordCheck(AFBuildContext context, {
-    @required bool showPassword,
-    @required AFOnChangedBoolDelegate onChanged,
+    required bool showPassword,
+    required AFOnChangedBoolDelegate onChanged,
   }) {
     final wid = AFSIWidgetID.showPasswordCheck;
     return Container(

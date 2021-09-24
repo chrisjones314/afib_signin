@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/initialization/create_dart_params.g.dart';

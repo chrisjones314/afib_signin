@@ -23,6 +23,6 @@ class AFSICustomCommand extends AFCommand {
 
 // You can use this function to add your own commands, or to
 // import AFib-aware third party commands.
-void extendCommand(AFCommandExtensionContext definitions) {
+void extendCommand(AFCommandThirdPartyExtensionContext definitions) {
   definitions.register(AFSICustomCommand()); 
 }

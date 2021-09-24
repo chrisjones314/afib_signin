@@ -16,11 +16,11 @@ abstract class AFSISigninConfiguration {
 
 //
 class AFSITestActionConfiguration extends AFSISigninConfiguration {
-  String email;
-  String password;
-  bool rememberMe;
+  String? email;
+  String? password;
+  bool? rememberMe;
   bool visited = false;
-  void onSignin(AFBuildContext context, String email, String password, { @required bool rememberMe }) {
+  void onSignin(AFBuildContext context, String email, String password, { @required bool? rememberMe }) {
     context.log?.d("Signin $email/$password");
     this.email = email;
     this.password = password;
@@ -56,23 +56,23 @@ class SigninScreenRouteParam extends AFRouteParam {
   final AFTextEditingControllersHolder textControllers;
 
   SigninScreenRouteParam({
-    @required this.statusMessage, 
-    @required this.status,
-    @required this.configuration,
-    @required this.email,
-    @required this.password,
-    @required this.textControllers,
-    @required this.showPassword,
-    @required this.rememberMe,
+    required this.statusMessage, 
+    required this.status,
+    required this.configuration,
+    required this.email,
+    required this.password,
+    required this.textControllers,
+    required this.showPassword,
+    required this.rememberMe,
   });
 
   SigninScreenRouteParam copyWith({
-    AFSISigninStatus status,
-    String statusMessage,
-    String email,
-    String password,
-    bool showPassword,
-    bool rememberMe,
+    AFSISigninStatus? status,
+    String? statusMessage,
+    String? email,
+    String? password,
+    bool? showPassword,
+    bool? rememberMe,
   }) {
 
     return SigninScreenRouteParam(
@@ -87,11 +87,16 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  SigninScreenRouteParam reviseStatus({AFSISigninStatus status, String message}) {
+  SigninScreenRouteParam reviseStatus({
+    AFSISigninStatus? status, 
+    String? message
+  }) {
     return copyWith(status: status, statusMessage: message);
   }
 
-  factory SigninScreenRouteParam.createLoadingOncePerScreen({AFSISigninConfiguration config}) {
+  factory SigninScreenRouteParam.createLoadingOncePerScreen({
+    required AFSISigninConfiguration config
+  }) {
 
     return SigninScreenRouteParam(
       status: AFSISigninStatus.loading,
@@ -105,7 +110,9 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  factory SigninScreenRouteParam.createReadyOncePerScreen({AFSISigninConfiguration config}) {
+  factory SigninScreenRouteParam.createReadyOncePerScreen({
+    required AFSISigninConfiguration config
+  }) {
     return SigninScreenRouteParam(
       statusMessage: "",
       status: AFSISigninStatus.ready,
@@ -140,7 +147,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
  //--------------------------------------------------------------------------------------
   @override
-  AFStateView createStateView(AFAppStateArea state, SigninScreenRouteParam param) {
+  AFStateView createStateView(AFAppStateArea? state, SigninScreenRouteParam param) {
     return AFStateView();
   }
 
@@ -225,7 +232,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
         }
     )));
     final rememberSigninCheck = t.childCheckRememberSignin(
-      buildContext: context.c,
+      buildContext: context.c!,
       checked: context.p.rememberMe,
       onChanged: (newVal) {
         final revised = context.p.copyWith(rememberMe: newVal);
@@ -240,6 +247,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,
+      text: AFSIWidgetID.buttonLogin,
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
           context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
@@ -248,6 +256,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
     
     rows.add(t.childButtonSecondarySignin(
       wid: AFSIWidgetID.buttonSignup,
+      text: AFSIWidgetID.buttonSignup,
       onPressed: () {
         context.dispatchNavigate(SignupScreen.navigatePush(context.p.configuration));      
       },
@@ -255,6 +264,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonSecondarySignin( 
       wid: AFSIWidgetID.buttonForgotPassword,
+      text: AFSIWidgetID.buttonForgotPassword,
       onPressed: () {
         context.dispatchNavigate(ForgotPasswordScreen.navigatePush(context.p.configuration));
       },

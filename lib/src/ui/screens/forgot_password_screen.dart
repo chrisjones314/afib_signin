@@ -13,7 +13,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
 
   //--------------------------------------------------------------------------------------
   @override
-  AFStateView createStateView(AFAppStateArea state, SigninScreenRouteParam param) {
+  AFStateView createStateView(AFAppStateArea? state, SigninScreenRouteParam param) {
     return AFStateView();
   }
 
@@ -64,6 +64,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
     rows.add(t.childStatusMessage(context.t, context.p.status, context.p.statusMessage));
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonResetPassword,
+      text: AFSIWidgetID.buttonResetPassword,
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
           context.p.configuration.onResetPassword(context, context.p.email);

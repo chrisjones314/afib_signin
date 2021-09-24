@@ -14,7 +14,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
   //--------------------------------------------------------------------------------------
   @override
-  AFStateView createStateView(AFAppStateArea state, SigninScreenRouteParam param) {
+  AFStateView createStateView(AFAppStateArea? state, SigninScreenRouteParam param) {
     return AFStateView();
   }
 
@@ -90,6 +90,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonRegister,
+      text: AFSIWidgetID.buttonRegister,
       onPressed: () {
           updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
           context.p.configuration.onSignup(context, context.p.email, context.p.password);
