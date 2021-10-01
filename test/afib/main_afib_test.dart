@@ -16,7 +16,7 @@ void main() async {
     testWidgets('Afib Test', (tester) async {
       final paramsD = createDartParams();
       await afTestWidgetStartup(paramsD, tester, () async {
-        await afTestMainUILibrary<AFAppStateArea>(AFSILibraryID.id, extendBase, extendBaseThirdParty, extendApp, extendThirdParty, extendTest, paramsD, tester);
+        await afTestMainUILibrary<AFAppStateAreaUnused>(AFSILibraryID.id, extendBase, extendBaseThirdParty, extendApp, extendThirdParty, extendTest, paramsD, tester);
       });
     });
   });

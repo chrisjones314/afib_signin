@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// Used to supply the implementation that actually does the signin,
 /// forgot password, or signup actions.
 abstract class AFSISigninConfiguration {
-  void onSignin(AFBuildContext context, String email, String password, { @required bool rememberMe } );
+  void onSignin(AFBuildContext context, String email, String password, { required bool rememberMe } );
   void onResetPassword(AFBuildContext context, String email);
   void onSignup(AFBuildContext context, String email, String password);
 }
@@ -20,7 +20,7 @@ class AFSITestActionConfiguration extends AFSISigninConfiguration {
   String? password;
   bool? rememberMe;
   bool visited = false;
-  void onSignin(AFBuildContext context, String email, String password, { @required bool? rememberMe }) {
+  void onSignin(AFBuildContext context, String email, String password, { required bool rememberMe }) {
     context.log?.d("Signin $email/$password");
     this.email = email;
     this.password = password;
@@ -148,7 +148,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
  //--------------------------------------------------------------------------------------
   @override
   AFStateView createStateView(AFAppStateArea? state, SigninScreenRouteParam param) {
-    return AFStateView();
+    return AFStateView.unused();
   }
 
   //--------------------------------------------------------------------------------------
@@ -232,7 +232,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
         }
     )));
     final rememberSigninCheck = t.childCheckRememberSignin(
-      buildContext: context.c!,
+      buildContext: context.c,
       checked: context.p.rememberMe,
       onChanged: (newVal) {
         final revised = context.p.copyWith(rememberMe: newVal);

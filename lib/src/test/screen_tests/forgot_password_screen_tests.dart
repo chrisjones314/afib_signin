@@ -10,7 +10,7 @@ void initForgotPasswordScreenTests(AFSingleScreenTestDefinitionContext definitio
   var prototype = definitions.definePrototype(
       id: AFSIPrototypeID.forgotPassword,
       navigate: ForgotPasswordScreen.navigatePush(testAdapter),
-      stateViews: AFStateView()
+      stateViews: AFStateView.unused()
     );
 
    // a test to be sure the correct widgets are present.

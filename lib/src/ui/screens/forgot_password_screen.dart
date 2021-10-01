@@ -14,7 +14,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
   //--------------------------------------------------------------------------------------
   @override
   AFStateView createStateView(AFAppStateArea? state, SigninScreenRouteParam param) {
-    return AFStateView();
+    return AFStateView.unused();
   }
 
   //--------------------------------------------------------------------------------------

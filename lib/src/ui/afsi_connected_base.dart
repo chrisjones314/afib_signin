@@ -9,7 +9,7 @@ mixin AFSIConnectedUIMixin<TStateView extends AFStateView, TRouteParam extends A
   }
 }
 
-class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<AFAppStateArea, TStateView, TRouteParam, AFSIFunctionalTheme> {
+class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<AFAppStateAreaUnused, TStateView, TRouteParam, AFSIFunctionalTheme> {
   AFSIBuildContext(
     AFStandardBuildContextData standard,
     TStateView stateView,
@@ -18,6 +18,6 @@ class AFSIBuildContext<TStateView extends AFStateView, TRouteParam extends AFRou
   ): super(standard, stateView, routeParam, theme);
 }
 
-abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateArea, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
+abstract class AFSIConnectedScreen<TStateView extends AFStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFAppStateAreaUnused, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
   AFSIConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.functional);
 }

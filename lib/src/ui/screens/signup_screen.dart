@@ -15,7 +15,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   //--------------------------------------------------------------------------------------
   @override
   AFStateView createStateView(AFAppStateArea? state, SigninScreenRouteParam param) {
-    return AFStateView();
+    return AFStateView.unused();
   }
 
   //--------------------------------------------------------------------------------------
