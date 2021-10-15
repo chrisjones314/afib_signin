@@ -21,8 +21,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
     return AFNavigatePushAction(
-      screen: AFSIScreenID.signup,
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(config: config)
+      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signup, config: config)
     );
   }
 

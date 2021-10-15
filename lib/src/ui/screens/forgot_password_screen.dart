@@ -20,8 +20,7 @@ class ForgotPasswordScreen extends SigninScreenBase<AFStateView, SigninScreenRou
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
     return AFNavigatePushAction(
-      screen: AFSIScreenID.forgotPassword,
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(config: config)
+      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.forgotPassword, config: config)
     );
   }
 

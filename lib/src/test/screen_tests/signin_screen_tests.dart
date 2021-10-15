@@ -42,13 +42,12 @@ void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) 
 void _initErrorSigninScreen(AFSingleScreenTestDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
-  final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(config: testAdapter);
+  final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, config: testAdapter);
   final errorParam = initialParam.reviseStatus(status: AFSISigninStatus.error, message: "For example: Your username or password did not match our records.");
 
   definitions.definePrototype(
       id: AFSIPrototypeID.signinWithError,
-      screenId: AFSIScreenID.signin,
-      routeParam: errorParam,
+      navigate: AFNavigatePushAction(routeParam: errorParam),
       stateViews: AFStateView.unused()
   );
 }

@@ -56,6 +56,7 @@ class SigninScreenRouteParam extends AFRouteParam {
   final AFTextEditingControllersHolder textControllers;
 
   SigninScreenRouteParam({
+    required AFID id,
     required this.statusMessage, 
     required this.status,
     required this.configuration,
@@ -64,7 +65,7 @@ class SigninScreenRouteParam extends AFRouteParam {
     required this.textControllers,
     required this.showPassword,
     required this.rememberMe,
-  });
+  }): super(id: id);
 
   SigninScreenRouteParam copyWith({
     AFSISigninStatus? status,
@@ -76,6 +77,7 @@ class SigninScreenRouteParam extends AFRouteParam {
   }) {
 
     return SigninScreenRouteParam(
+      id: this.id,
       statusMessage: statusMessage ?? this.statusMessage,
       status: status ?? this.status,
       email: email ?? this.email,
@@ -95,10 +97,12 @@ class SigninScreenRouteParam extends AFRouteParam {
   }
 
   factory SigninScreenRouteParam.createLoadingOncePerScreen({
+    required AFID screenId,
     required AFSISigninConfiguration config
   }) {
 
     return SigninScreenRouteParam(
+      id: screenId,
       status: AFSISigninStatus.loading,
       statusMessage: "",
       email: "",
@@ -111,9 +115,11 @@ class SigninScreenRouteParam extends AFRouteParam {
   }
 
   factory SigninScreenRouteParam.createReadyOncePerScreen({
+    required AFID screenId,
     required AFSISigninConfiguration config
   }) {
     return SigninScreenRouteParam(
+      id: screenId,
       statusMessage: "",
       status: AFSISigninStatus.ready,
       email: "",
@@ -154,8 +160,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
     return AFNavigatePushAction(
-      screen: AFSIScreenID.signin,
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(config: config),
+      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, config: config),
     );
   }
 
