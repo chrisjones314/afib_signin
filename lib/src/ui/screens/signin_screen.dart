@@ -1,5 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
+import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
@@ -147,15 +148,9 @@ class SigninScreenRouteParam extends AFRouteParam {
 
 /// The primary username/password signing screen, with buttons linking to forgot password
 /// and register.
-class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam> {
+class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
 
   SigninScreen(): super(AFSIScreenID.signin);
-
- //--------------------------------------------------------------------------------------
-  @override
-  AFStateView createStateView(AFBuildStateViewContext<AFAppStateArea?, SigninScreenRouteParam> context) {
-    return AFStateView.unused();
-  }
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
@@ -165,7 +160,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   }
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(AFSIBuildContext<AFStateView, SigninScreenRouteParam>  context) {
+  Widget buildMainControls(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>  context) {
     final t = context.t;
     final widgets = t.column();
 
@@ -185,7 +180,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
 
   //--------------------------------------------------------------------------------------
   Widget _buildSignInWait(
-      AFSIBuildContext<AFStateView, SigninScreenRouteParam>  context
+      AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>  context
   ) {
     final t = context.t;
     return Center(
@@ -197,7 +192,7 @@ class SigninScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   }
 
   //--------------------------------------------------------------------------------------
-  void _loginScreen(AFSIBuildContext<AFStateView, SigninScreenRouteParam> context, List<Widget> rows) {
+  void _loginScreen(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, List<Widget> rows) {
     final t = context.t;
     final textControllers = context.p.textControllers;
 

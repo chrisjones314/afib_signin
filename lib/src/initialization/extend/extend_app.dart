@@ -10,7 +10,7 @@ import 'package:afib_signin/src/ui/themes/afsi_fundamental_theme.dart';
 void extendApp(AFUILibraryExtensionContext extend) {
     extend.initializeLibraryFundamentals(
       initScreenMap: initScreenMap, 
-      initializeAppState: () => null, 
+      initializeComponentState: () => null, 
       initFundamentalThemeArea: initFundamentalThemeArea,
       initFunctionalTheme: initFunctionalThemes,
     );

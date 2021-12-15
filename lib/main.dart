@@ -10,6 +10,6 @@ import 'package:afib_signin/src/initialization/extend/extend_test.dart';
 void main() {  
   afMainWrapper(() {
     final paramsD = createDartParams();
-    afMainUILibrary<AFAppStateAreaUnused>(AFSILibraryID.id, paramsD, extendBase, extendBaseThirdParty, extendApp, extendTest);
+    afMainUILibrary<AFComponentStateUnused>(AFSILibraryID.id, paramsD, extendBase, extendBaseThirdParty, extendApp, extendTest);
   });
 }

@@ -1,5 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
+import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
@@ -7,16 +8,10 @@ import 'package:flutter/material.dart';
 
 
 //--------------------------------------------------------------------------------------
-class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam> {
+class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
   SignupScreen(): super(AFSIScreenID.signup);
-
-  //--------------------------------------------------------------------------------------
-  @override
-  AFStateView createStateView(AFBuildStateViewContext<AFAppStateArea?, SigninScreenRouteParam> context) {
-    return AFStateView.unused();
-  }
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
@@ -26,7 +21,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   }
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(AFSIBuildContext<AFStateView, SigninScreenRouteParam>  context) {
+  Widget buildMainControls(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>  context) {
     final t = context.t;
     final rows = t.column();
 
@@ -41,7 +36,7 @@ class SignupScreen extends SigninScreenBase<AFStateView, SigninScreenRouteParam>
   }
 
   //--------------------------------------------------------------------------------------
-  void _registerScreen(AFSIBuildContext<AFStateView, SigninScreenRouteParam> context, List<Widget> rows) {
+  void _registerScreen(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, List<Widget> rows) {
     final t = context.t;
 
    final textControllers = context.p.textControllers;

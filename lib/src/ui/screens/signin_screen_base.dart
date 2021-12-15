@@ -1,5 +1,6 @@
 //--------------------------------------------------------------------------------------
 import 'package:afib/afib_flutter.dart';
+import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:flutter/material.dart';
 
@@ -10,17 +11,17 @@ enum AFSISigninStatus {
   readyEmphasis,
 }
 
-abstract class SigninScreenBase<TData extends AFStateView, TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<TData, TRouteParam> {
+abstract class SigninScreenBase<TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<TRouteParam> {
   SigninScreenBase(AFScreenID screenId): super(screenId);
 
   //--------------------------------------------------------------------------------------
   @override
-  Widget buildWithContext(AFSIBuildContext<TData, TRouteParam> context) {
+  Widget buildWithContext(AFSIBuildContext<AFSIDefaultStateView, TRouteParam> context) {
     return _buildScreen(context);
   }
 
   //--------------------------------------------------------------------------------------
-  Widget _buildScreen(AFSIBuildContext<TData, TRouteParam>  context) {
+  Widget _buildScreen(AFSIBuildContext<AFSIDefaultStateView, TRouteParam>  context) {
     final t = context.t;
     var mainControls = buildMainControls(context);
 
@@ -45,6 +46,6 @@ abstract class SigninScreenBase<TData extends AFStateView, TRouteParam extends A
   }
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(AFSIBuildContext<TData, TRouteParam>  context);
+  Widget buildMainControls(AFSIBuildContext<AFSIDefaultStateView, TRouteParam>  context);
 }
 

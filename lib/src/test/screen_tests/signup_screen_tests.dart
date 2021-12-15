@@ -10,7 +10,7 @@ void initSignupScreenTests(AFSingleScreenTestDefinitionContext definitions) {
   var prototype = definitions.definePrototype(
       id: AFSIPrototypeID.signup,
       navigate: SignupScreen.navigatePush(testAdapter),
-      stateViews: AFStateView.unused()
+      models: null,
     );
 
    // a test to be sure the correct widgets are present.
