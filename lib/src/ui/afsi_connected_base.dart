@@ -33,10 +33,10 @@ class AFSIBuildContext<TStateView extends AFFlexibleStateView, TRouteParam exten
   ): super(standard, stateView, routeParam, children, theme);
 }
 
-abstract class AFSIConnectedScreen<TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFComponentStateUnused, AFSIFunctionalTheme, AFSIBuildContext<AFSIDefaultStateView, TRouteParam>, AFSIDefaultStateView, TRouteParam> with AFSIConnectedUIMixin<AFSIDefaultStateView, TRouteParam>, AFSIDefaultStateViewMixin<TRouteParam> {
-  AFSIConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.functional, AFSIDefaultStateView.creator);
+abstract class AFSIDefaultConnectedScreen<TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFComponentStateUnused, AFSIFunctionalTheme, AFSIBuildContext<AFSIDefaultStateView, TRouteParam>, AFSIDefaultStateView, TRouteParam> with AFSIConnectedUIMixin<AFSIDefaultStateView, TRouteParam>, AFSIDefaultStateViewMixin<TRouteParam> {
+  AFSIDefaultConnectedScreen(AFScreenID screen): super(screen, AFSIThemeID.functional, AFSIDefaultStateView.creator);
 }
 
-abstract class AFSIConnectedFilteredScreen<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFComponentStateUnused, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
-  AFSIConnectedFilteredScreen(AFScreenID screen, AFCreateStateViewDelegate<TStateView> creator): super(screen, AFSIThemeID.functional, creator);
+abstract class AFSIConnectedScreen<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFComponentStateUnused, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam> with AFSIConnectedUIMixin<TStateView, TRouteParam> {
+  AFSIConnectedScreen(AFScreenID screen, AFCreateStateViewDelegate<TStateView> creator): super(screen, AFSIThemeID.functional, creator);
 }

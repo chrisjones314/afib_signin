@@ -11,7 +11,7 @@ enum AFSISigninStatus {
   readyEmphasis,
 }
 
-abstract class SigninScreenBase<TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<TRouteParam> {
+abstract class SigninScreenBase<TRouteParam extends AFRouteParam> extends AFSIDefaultConnectedScreen<TRouteParam> {
   SigninScreenBase(AFScreenID screenId): super(screenId);
 
   //--------------------------------------------------------------------------------------
