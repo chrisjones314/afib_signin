@@ -14,12 +14,13 @@ void initSignupScreenTests(AFSingleScreenTestDefinitionContext definitions) {
     );
 
    // a test to be sure the correct widgets are present.
-  definitions.defineReusableTest2(
+  definitions.defineReusableTest(
     id: AFSIScreenTestID.signupScreen, 
     prototype: prototype,
-    param1: "testuser@test.com",
-    param2: "testpass",
-    body: (e, email, pass) async {
+    params: ["testuser@test.com", "testpass"],
+    body: (e, params) async {
+      final email = params.getParam<String>(0);
+      final pass = params.getParam<String>(1);
       await e.setValue(AFSIWidgetID.editEmail, email);
       await e.setValue(AFSIWidgetID.editPassword, pass);
       

@@ -14,11 +14,13 @@ void initForgotPasswordScreenTests(AFSingleScreenTestDefinitionContext definitio
     );
 
    // a test to be sure the correct widgets are present.
-  definitions.defineReusableTest1(
+  definitions.defineReusableTest(
     id: AFSIScreenTestID.forgotPasswordSubmit, 
     prototype: prototype,
-    param1: "testuser@test.com",
-    body: (e, email) async {
+    params: ["testuser@test.com"],
+    body: (e, params) async {
+      final email = params.getParam<String>(0); 
+
       await e.setValue(AFSIWidgetID.editEmail, email);
       await e.applyTap(AFSIWidgetID.buttonResetPassword);
       e.expect(testAdapter.email, ft.equals(email));
