@@ -15,8 +15,10 @@ mixin AFSIDefaultStateViewMixin<TRouteParam extends AFRouteParam> {
   //--------------------------------------------------------------------------------------
   AFUIStateView<AFSIDefaultStateView> createStateView(AFBuildStateViewContext<AFComponentStateUnused, TRouteParam> context) {
     final state = context.stateApp;
+    final models = state.allModels.toList();
+    models.add(context.statePublic.time);
     return AFUIStateView<AFSIDefaultStateView>(
-      models: state.allModels
+      models: models
     );
   }
 

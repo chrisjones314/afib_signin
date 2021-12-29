@@ -8,4 +8,6 @@ class AFSIDefaultStateView extends AFSIFlexibleStateView {
     required Map<String, Object> models, 
     AFCreateStateViewDelegate? create
   }): super(models: models, create: create ?? creator);
+
+  AFTimeState get time { return findType<AFTimeState>(); }
 }

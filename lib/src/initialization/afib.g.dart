@@ -22,7 +22,7 @@ config.setValue("environment", AFEnvironment.prototype);
   //       [standard]     Logging for app query and ui, plus afib route and state
   //       [test]         App logging on test definition contexts and all test execution contexts
   //       [ui]           App logging on any AFBuildContext
-config.setValue("logs-enabled", []);
+config.setValue("logs-enabled", ["af:ui"]);
 
 // --force-dark-mode    Set to true if you'd like to run the app in dark mode, regardless of the device setting
   //                      [true, false]
