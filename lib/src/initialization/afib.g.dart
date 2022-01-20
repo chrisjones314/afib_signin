@@ -28,6 +28,10 @@ config.setValue("logs-enabled", ["af:ui"]);
   //                      [true, false]
 config.setValue("force-dark-mode", false);
 
+// --absolute-base-year    The earliest year which your app will have reason to reference, generally good to set it 1-2 years before you started creating the app
+  //                         [true, false]
+config.setValue("absolute-base-year", false);
+
 // --tests-enabled     
   //       [*]           Or, the full identifier of any prototype, test name, or tag
   //       [all]         All tests, not including i18n and regression

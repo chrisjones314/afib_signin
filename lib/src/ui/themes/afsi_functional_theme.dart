@@ -53,6 +53,30 @@ class AFSIFunctionalTheme extends AFFunctionalTheme {
     return Row(children: cols);
   }
 
+  Widget childStandardSigninScaffold({
+    required AFBuildContext context,
+    required Widget body,
+  }) {
+    return childScaffold(
+        context: context,
+        drawer: drawerSignIn(context),
+        bottomNavigationBar: bottomNavigationBarSignin(context),
+        body: Container(
+          decoration: decorationSigninBackground(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints.expand(),
+            child: Align(
+              alignment: Alignment.center,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidthSigninControls),
+                child: body
+              )
+            )
+          )
+        )
+    );
+  }
+
   //--------------------------------------------------------------------------------------
   BoxDecoration decorationSigninBackground() {
     return BoxDecoration(

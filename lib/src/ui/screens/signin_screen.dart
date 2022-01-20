@@ -7,150 +7,23 @@ import 'package:afib_signin/src/ui/screens/signup_screen.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
 import 'package:flutter/material.dart';
 
-/// Used to supply the implementation that actually does the signin,
-/// forgot password, or signup actions.
-abstract class AFSISigninConfiguration {
-  void onSignin(AFBuildContext context, String email, String password, { required bool rememberMe } );
-  void onResetPassword(AFBuildContext context, String email);
-  void onSignup(AFBuildContext context, String email, String password);
-}
+@immutable
+class SigninSPI extends SigninBaseSPI {
+  static final creator = (context, screen) => SigninSPI(context, screen);
+  SigninSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
 
-//
-class AFSITestActionConfiguration extends AFSISigninConfiguration {
-  String? email;
-  String? password;
-  bool? rememberMe;
-  bool visited = false;
-  void onSignin(AFBuildContext context, String email, String password, { required bool rememberMe }) {
-    context.log?.d("Signin $email/$password");
-    this.email = email;
-    this.password = password;
-    this.rememberMe = rememberMe;
-    visited = true;
-
-  }
-
-  void onResetPassword(AFBuildContext context, String email) {
-    context.log?.d("Signin $password");
-    this.email = email;
-    visited = true;
-  }
-
-  void onSignup(AFBuildContext context, String email, String password) {
-    context.log?.d("Signin $email/$password");
-    this.email = email;
-    this.password = password;
-    visited = true;
-  }
-
-}
-
-class SigninScreenRouteParam extends AFRouteParam {
-  final AFSISigninStatus status;
-  final String statusMessage; 
-  final AFSISigninConfiguration configuration;
-  final bool showPassword;
-  final bool rememberMe;
-
-  final String email;
-  final String password;
-  final AFTextEditingControllersHolder textControllers;
-
-  SigninScreenRouteParam({
-    required AFID id,
-    required this.statusMessage, 
-    required this.status,
-    required this.configuration,
-    required this.email,
-    required this.password,
-    required this.textControllers,
-    required this.showPassword,
-    required this.rememberMe,
-  }): super(id: id);
-
-  SigninScreenRouteParam copyWith({
-    AFSISigninStatus? status,
-    String? statusMessage,
-    String? email,
-    String? password,
-    bool? showPassword,
-    bool? rememberMe,
-  }) {
-
-    return SigninScreenRouteParam(
-      id: this.id,
-      statusMessage: statusMessage ?? this.statusMessage,
-      status: status ?? this.status,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      textControllers: this.textControllers,
-      configuration: this.configuration,
-      showPassword: showPassword ?? this.showPassword,
-      rememberMe: rememberMe ?? this.rememberMe,
-    );
-  }
-
-  SigninScreenRouteParam reviseStatus({
-    AFSISigninStatus? status, 
-    String? message
-  }) {
-    return copyWith(status: status, statusMessage: message);
-  }
-
-  factory SigninScreenRouteParam.createLoadingOncePerScreen({
-    required AFID screenId,
-    required AFSISigninConfiguration config
-  }) {
-
-    return SigninScreenRouteParam(
-      id: screenId,
-      status: AFSISigninStatus.loading,
-      statusMessage: "",
-      email: "",
-      password: "",
-      textControllers: _createEmptyText(),
-      configuration: config,
-      showPassword: true,
-      rememberMe: false,
-    );
-  }
-
-  factory SigninScreenRouteParam.createReadyOncePerScreen({
-    required AFID screenId,
-    required AFSISigninConfiguration config
-  }) {
-    return SigninScreenRouteParam(
-      id: screenId,
-      statusMessage: "",
-      status: AFSISigninStatus.ready,
-      email: "",
-      password: "",
-      showPassword: false,
-      textControllers: _createEmptyText(),
-      configuration: config,
-      rememberMe: false,
-    );
-  }
-
-  static AFTextEditingControllersHolder _createEmptyText() {
-    final controllers = AFTextEditingControllersHolder.createN({
-      AFSIWidgetID.editEmail: "",
-      AFSIWidgetID.editPassword: "",
-    });
-    return controllers;
-  }
-
-  @override
-  void dispose() {
-    textControllers.dispose();
+  void onClickLogin() {
+    final t = context.t;
+    context.updateRouteParam(screen, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
+    context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
   }
 }
 
 /// The primary username/password signing screen, with buttons linking to forgot password
 /// and register.
-class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
+class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
 
-  SigninScreen(): super(AFSIScreenID.signin);
+  SigninScreen(): super(AFSIScreenID.signin, SigninSPI.creator);
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
@@ -160,14 +33,23 @@ class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
   }
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>  context) {
+  @override
+  Widget buildWithContext(SigninSPI spi) {
+    final main = buildMainControls(spi);
+    return buildMainScaffold(spi.context, main);
+  }
+
+
+  //--------------------------------------------------------------------------------------
+  Widget buildMainControls(SigninSPI spi) {
+    final context = spi.context;
     final t = context.t;
     final widgets = t.column();
 
     if (context.p.status == AFSISigninStatus.loading) {
-      return _buildSignInWait(context);
+      return _buildSignInWait(spi);
     } else {
-      _loginScreen(context, widgets);
+      _loginScreen(spi, widgets);
     }
 
     return t.childMargin(
@@ -180,8 +62,9 @@ class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
   Widget _buildSignInWait(
-      AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>  context
+    SigninSPI spi
   ) {
+    final context = spi.context;
     final t = context.t;
     return Center(
       child: Container(
@@ -192,7 +75,8 @@ class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
   }
 
   //--------------------------------------------------------------------------------------
-  void _loginScreen(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, List<Widget> rows) {
+  void _loginScreen(SigninSPI spi, List<Widget> rows) {
+    final context = spi.context;
     final t = context.t;
     final textControllers = context.p.textControllers;
 
@@ -212,7 +96,7 @@ class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        updateRouteParam(context, context.p.copyWith(email: value));
+        spi.onUpdateEmail(value);
       }
     )));
     rows.add(t.childMargin(
@@ -228,7 +112,7 @@ class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
         ),
         obscureText: true,
         onChanged: (value) {
-          updateRouteParam(context, context.p.copyWith(password: value));
+          spi.onUpdatePassword(value);
         }
     )));
     final rememberSigninCheck = t.childCheckRememberSignin(
@@ -249,8 +133,7 @@ class SigninScreen extends SigninScreenBase<SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonLogin,
       text: AFSIWidgetID.buttonLogin,
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
-          context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
+        spi.onClickLogin();
       },
     ));
     

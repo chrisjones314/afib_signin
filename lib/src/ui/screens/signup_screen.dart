@@ -1,17 +1,29 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
 import 'package:flutter/material.dart';
 
+//--------------------------------------------------------------------------------------
+@immutable
+class SignupPasswordSPI extends SigninBaseSPI {
+  static final creator = (context, screen) => SignupPasswordSPI(context, screen);
+  SignupPasswordSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
+
+  void onClickRegister() {
+    final t = context.t;
+    context.updateRouteParam(screen, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
+    context.p.configuration.onSignup(context, context.p.email, context.p.password);
+  }
+}
+
 
 //--------------------------------------------------------------------------------------
-class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
+class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
-  SignupScreen(): super(AFSIScreenID.signup);
+  SignupScreen(): super(AFSIScreenID.signup, SignupPasswordSPI.creator);
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
@@ -21,11 +33,19 @@ class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
   }
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>  context) {
+  @override
+  Widget buildWithContext(SignupPasswordSPI spi) {
+    final main = buildMainControls(spi);
+    return buildMainScaffold(spi.context, main);
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget buildMainControls(SignupPasswordSPI spi) {
+    final context = spi.context;
     final t = context.t;
     final rows = t.column();
 
-    _registerScreen(context, rows);
+    _registerScreen(spi, rows);
 
     return t.childMargin(
       margin: t.marginScreen,
@@ -36,7 +56,8 @@ class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
   }
 
   //--------------------------------------------------------------------------------------
-  void _registerScreen(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, List<Widget> rows) {
+  void _registerScreen(SignupPasswordSPI spi, List<Widget> rows) {
+    final context = spi.context;
     final t = context.t;
 
    final textControllers = context.p.textControllers;
@@ -54,7 +75,7 @@ class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        updateRouteParam(context, context.p.copyWith(email: value));
+        spi.onUpdateEmail(value);
       }
     )));
     rows.add(t.childMargin(
@@ -69,7 +90,7 @@ class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
         ),
         obscureText: !context.p.showPassword,
         onChanged: (value) {
-          updateRouteParam(context, context.p.copyWith(password: value));
+          spi.onUpdatePassword(value);
         }
     )));
     rows.add(t.childShowPasswordCheck(
@@ -86,8 +107,7 @@ class SignupScreen extends SigninScreenBase<SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonRegister,
       text: AFSIWidgetID.buttonRegister,
       onPressed: () {
-          updateRouteParam(context, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
-          context.p.configuration.onSignup(context, context.p.email, context.p.password);
+        spi.onClickRegister();
       },
     ));
 
