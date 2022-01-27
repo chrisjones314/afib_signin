@@ -2,11 +2,14 @@
 import 'package:afib/afib_command.dart';
 
 void configureAfib(AFConfig config) {
-// --environment         
-  //       [debug]         For debugging
-  //       [production]    For production
-  //       [prototype]     Interact with prototype screens, and run tests against them on the simulator
-  //       [test]          Used internally when command-line tests are executing, not usually explicitly used by developers
+// --environment                
+  //       [debug]                For debugging
+  //       [production]           For production
+  //       [prototype]            Interact with prototype screens, and run tests against them on the simulator
+  //       [screenPrototype]      Startup in a specific screen prototype specified by AFConfig.setStartupScreenPrototype (specified in initialization/environments/prototype.dart)
+  //       [test]                 Used internally when command-line tests are executing, not usually explicitly used by developers
+  //       [wireframe]            Startup in a wireframe specified by AFConfig.setStartupWireframe (specified in initialization/environments/prototype.dart)
+  //       [workflowPrototype]    Startup in a specific workflow prototype specified by AFConfig.setStartupWorkflowPrototype (specified in initialization/environments/prototype.dart)
 config.setValue("environment", AFEnvironment.prototype);
 
 // --logs-enabled       

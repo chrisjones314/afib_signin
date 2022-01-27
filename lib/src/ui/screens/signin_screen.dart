@@ -14,7 +14,7 @@ class SigninSPI extends SigninBaseSPI {
 
   void onClickLogin() {
     final t = context.t;
-    context.updateRouteParam(widgetOwner, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
+    context.updateRouteParam(owner, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
     context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
   }
 }

@@ -13,12 +13,12 @@ class ForgotPasswordSPI extends AFStateProgrammingInterface<AFSIBuildContext<AFS
   ForgotPasswordSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
 
   void onUpdateEmail(String email) {
-    context.updateRouteParam(widgetOwner, context.p.copyWith(email: email));
+    context.updateRouteParam(owner, context.p.copyWith(email: email));
   }
 
   void onClickRecover() {
     final t = context.t;
-    context.updateRouteParam(widgetOwner, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
+    context.updateRouteParam(owner, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
     context.p.configuration.onResetPassword(context, context.p.email);
   }
 }

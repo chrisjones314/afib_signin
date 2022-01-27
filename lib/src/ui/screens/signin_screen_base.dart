@@ -164,11 +164,11 @@ class SigninBaseSPI extends SigninExternalSPI<AFSIDefaultStateView, SigninScreen
   SigninBaseSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
 
   void onUpdateEmail(String email) {
-    context.updateRouteParam(widgetOwner, context.p.copyWith(email: email));
+    context.updateRouteParam(owner, context.p.copyWith(email: email));
   }
 
   void onUpdatePassword(String password) {
-    context.updateRouteParam(widgetOwner, context.p.copyWith(password: password));    
+    context.updateRouteParam(owner, context.p.copyWith(password: password));    
   }
 }
 
