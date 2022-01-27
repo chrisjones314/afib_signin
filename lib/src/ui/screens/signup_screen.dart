@@ -13,7 +13,7 @@ class SignupPasswordSPI extends SigninBaseSPI {
 
   void onClickRegister() {
     final t = context.t;
-    context.updateRouteParam(screen, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
+    context.updateRouteParam(widgetOwner, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
     context.p.configuration.onSignup(context, context.p.email, context.p.password);
   }
 }
