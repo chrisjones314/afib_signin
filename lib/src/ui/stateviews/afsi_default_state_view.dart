@@ -28,6 +28,6 @@ mixin AFSIDefaultStateViewMixin<TRouteParam extends AFRouteParam> {
   }
 }
 
-abstract class AFSIDefaultConnectedScreen<TSPI extends AFStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<AFSIDefaultStateView, TRouteParam, TSPI> with AFSICreateContextMixin<AFSIDefaultStateView, TRouteParam>, AFSIDefaultStateViewMixin<TRouteParam> {
+abstract class AFSIDefaultConnectedScreen<TSPI extends AFScreenStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<AFSIDefaultStateView, TRouteParam, TSPI> with AFSICreateContextMixin<AFSIDefaultStateView, TRouteParam>, AFSIDefaultStateViewMixin<TRouteParam> {
   AFSIDefaultConnectedScreen(AFScreenID screen, AFCreateSPIDelegate<TSPI, AFSIBuildContext<AFSIDefaultStateView, TRouteParam>> spiCreator): super(screen, AFSIDefaultStateView.create, spiCreator);
 }

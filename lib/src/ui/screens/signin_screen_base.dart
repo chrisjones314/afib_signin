@@ -153,7 +153,7 @@ class SigninScreenRouteParam extends AFRouteParam {
 
 //--------------------------------------------------------------------------------------
 @immutable
-class SigninExternalSPI<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFStateProgrammingInterface<AFSIBuildContext<TStateView, TRouteParam>> {
+class SigninExternalSPI<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenStateProgrammingInterface<AFSIBuildContext<TStateView, TRouteParam>> {
   SigninExternalSPI(AFSIBuildContext<TStateView, TRouteParam> context, AFConnectedUIBase screen): super(context, screen);
 }
 
@@ -172,7 +172,7 @@ class SigninBaseSPI extends SigninExternalSPI<AFSIDefaultStateView, SigninScreen
   }
 }
 
-abstract class SigninScreenBase<TSPI extends AFStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIDefaultConnectedScreen<TSPI, TRouteParam> {
+abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIDefaultConnectedScreen<TSPI, TRouteParam> {
   SigninScreenBase(AFScreenID screenId, AFCreateSPIDelegate<TSPI, AFSIBuildContext<AFSIDefaultStateView, TRouteParam>> spiCreator): super(screenId, spiCreator);
 
   //--------------------------------------------------------------------------------------

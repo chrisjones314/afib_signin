@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 //--------------------------------------------------------------------------------------
 @immutable
-class ForgotPasswordSPI extends AFStateProgrammingInterface<AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>> {
+class ForgotPasswordSPI extends AFScreenStateProgrammingInterface<AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam>> {
   static final creator = (context, screen) => ForgotPasswordSPI(context, screen);
   ForgotPasswordSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
 
