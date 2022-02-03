@@ -3,6 +3,7 @@ import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
+import 'package:afib_signin/src/ui/themes/afsi_functional_theme.dart';
 import 'package:flutter/material.dart';
 
 enum AFSISigninStatus {
@@ -151,33 +152,41 @@ class SigninScreenRouteParam extends AFRouteParam {
   }
 }
 
-//--------------------------------------------------------------------------------------
-@immutable
-class SigninExternalSPI<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenStateProgrammingInterface<AFSIBuildContext<TStateView, TRouteParam>> {
-  SigninExternalSPI(AFSIBuildContext<TStateView, TRouteParam> context, AFConnectedUIBase screen): super(context, screen);
-}
-
 
 //--------------------------------------------------------------------------------------
 @immutable
-class SigninBaseSPI extends SigninExternalSPI<AFSIDefaultStateView, SigninScreenRouteParam> {
-  SigninBaseSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
-
-  void onUpdateEmail(String email) {
-    context.updateRouteParam(owner, context.p.copyWith(email: email));
+class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRouteParam> {
+  SigninBaseSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+  
+  factory SigninBaseSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, AFWidgetID wid) {
+    return SigninBaseSPI(context, screenId, theme,
+    );
   }
-
-  void onUpdatePassword(String password) {
-    context.updateRouteParam(owner, context.p.copyWith(password: password));    
-  }
-}
-
-abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIDefaultConnectedScreen<TSPI, TRouteParam> {
-  SigninScreenBase(AFScreenID screenId, AFCreateSPIDelegate<TSPI, AFSIBuildContext<AFSIDefaultStateView, TRouteParam>> spiCreator): super(screenId, spiCreator);
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainScaffold(AFSIBuildContext<AFSIDefaultStateView, TRouteParam>  context, Widget mainControls) {
-    final t = context.t;
+  void onUpdateEmail(String email) {
+    updateRouteParam(context.p.copyWith(email: email));
+  }
+
+  //--------------------------------------------------------------------------------------
+  void onUpdatePassword(String password) {
+    updateRouteParam(context.p.copyWith(password: password));    
+  }
+}
+
+abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<TSPI, AFSIDefaultStateView, TRouteParam> {
+  
+  //--------------------------------------------------------------------------------------
+  SigninScreenBase({
+    required AFScreenID screenId,
+    required AFConnectedUIConfig<AFComponentStateUnused, AFSIDefaultTheme, AFSIDefaultStateView, TRouteParam, TSPI>  config,
+  }): super(screenId: screenId, config: config);
+
+
+  //--------------------------------------------------------------------------------------
+  Widget buildMainScaffold(SigninBaseSPI spi, Widget mainControls) {
+    final t = spi.t;
+    final context = spi.context;
     return t.childStandardSigninScaffold(
       context: context,
       body: mainControls

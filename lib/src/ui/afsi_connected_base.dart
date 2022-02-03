@@ -13,23 +13,36 @@ class AFSIFlexibleStateView extends AFFlexibleStateView  {
 
 }
 
-mixin AFSICreateContextMixin<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> {
-  AFSIBuildContext<TStateView, TRouteParam> createContext(AFStandardBuildContextData standard, TStateView stateView, TRouteParam param, AFRouteSegmentChildren? children, AFSIFunctionalTheme theme) {
-    return AFSIBuildContext<TStateView, TRouteParam>(standard, stateView, param, children, theme);
-  }
-}
-
-
-class AFSIBuildContext<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<AFComponentStateUnused, TStateView, TRouteParam, AFSIFunctionalTheme> {
+class AFSIBuildContext<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFBuildContext<TStateView, TRouteParam> {
   AFSIBuildContext(
     AFStandardBuildContextData standard,
     TStateView stateView,
     TRouteParam routeParam,
     AFRouteSegmentChildren? children,
-    AFSIFunctionalTheme theme,
-  ): super(standard, stateView, routeParam, children, theme);
+  ): super(standard, stateView, routeParam, children);
 }
 
-abstract class AFSIConnectedScreen<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam, TSPI extends AFScreenStateProgrammingInterface> extends AFConnectedScreen<AFComponentStateUnused, AFSIFunctionalTheme, AFSIBuildContext<TStateView, TRouteParam>, TStateView, TRouteParam, TSPI> with AFSICreateContextMixin<TStateView, TRouteParam> {
-  AFSIConnectedScreen(AFScreenID screen, AFCreateStateViewDelegate<TStateView> creator, AFCreateSPIDelegate<TSPI, AFSIBuildContext<TStateView, TRouteParam>> spiCreator): super(screen, AFSIThemeID.functional, creator, spiCreator);
+class AFSIScreenSPI<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenStateProgrammingInterface<AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> {
+  AFSIScreenSPI(AFBuildContext<TStateView, TRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme);
+}
+
+abstract class AFSIConnectedScreen<TSPI extends AFScreenStateProgrammingInterface, TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFConnectedScreen<AFComponentStateUnused, AFSIDefaultTheme, TStateView, TRouteParam, TSPI> {
+  AFSIConnectedScreen({
+    required AFConnectedUIConfig<AFComponentStateUnused, AFSIDefaultTheme, TStateView, TRouteParam, TSPI>  config,
+    required AFScreenID screenId,
+    TRouteParam? launchParam,
+  }): super(config: config, screenId: screenId, launchParam: launchParam);
+}
+
+abstract class AFSIScreenConfig<TSPI extends AFScreenStateProgrammingInterface, TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenConfig<TSPI, AFComponentStateUnused, AFSIDefaultTheme, TStateView, TRouteParam> {
+  AFSIScreenConfig({
+    required AFCreateStateViewDelegate<TStateView> stateViewCreator,
+    required AFCreateSPIDelegate<TSPI, AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> spiCreator,
+    AFNavigateRoute? route,
+  }): super(
+    themeId: AFSIThemeID.defaultTheme,
+    stateViewCreator: stateViewCreator,
+    spiCreator: spiCreator,
+    route: route ?? AFNavigateRoute.routeHierarchy,
+  );
 }

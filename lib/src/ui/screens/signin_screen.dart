@@ -1,20 +1,23 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
-import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/screens/signup_screen.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
+import 'package:afib_signin/src/ui/themes/afsi_functional_theme.dart';
 import 'package:flutter/material.dart';
 
 @immutable
 class SigninSPI extends SigninBaseSPI {
-  static final creator = (context, screen) => SigninSPI(context, screen);
-  SigninSPI(AFSIBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFConnectedUIBase screen): super(context, screen);
+  SigninSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+  
+  factory SigninSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, AFWidgetID wid) {
+    return SigninSPI(context, screenId, theme,
+    );
+  }
 
   void onClickLogin() {
-    final t = context.t;
-    context.updateRouteParam(owner, context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
+    updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
     context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
   }
 }
@@ -23,7 +26,12 @@ class SigninSPI extends SigninBaseSPI {
 /// and register.
 class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
 
-  SigninScreen(): super(AFSIScreenID.signin, SigninSPI.creator);
+  //--------------------------------------------------------------------------------------
+  static final config = AFSIDefaultScreenConfig<SigninSPI, SigninScreenRouteParam> (
+    spiCreator: SigninSPI.create,
+  );
+
+  SigninScreen(): super(screenId: AFSIScreenID.signin, config: config);
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
@@ -34,16 +42,16 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
   @override
-  Widget buildWithContext(SigninSPI spi) {
+  Widget buildWithSPI(SigninSPI spi) {
     final main = buildMainControls(spi);
-    return buildMainScaffold(spi.context, main);
+    return buildMainScaffold(spi, main);
   }
 
 
   //--------------------------------------------------------------------------------------
   Widget buildMainControls(SigninSPI spi) {
     final context = spi.context;
-    final t = context.t;
+    final t = spi.t;
     final widgets = t.column();
 
     if (context.p.status == AFSISigninStatus.loading) {
@@ -65,7 +73,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
     SigninSPI spi
   ) {
     final context = spi.context;
-    final t = context.t;
+    final t = spi.t;
     return Center(
       child: Container(
         alignment: Alignment.center,
@@ -77,7 +85,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
   //--------------------------------------------------------------------------------------
   void _loginScreen(SigninSPI spi, List<Widget> rows) {
     final context = spi.context;
-    final t = context.t;
+    final t = spi.t;
     final textControllers = context.p.textControllers;
 
     rows.add(
@@ -120,14 +128,14 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       checked: context.p.rememberMe,
       onChanged: (newVal) {
         final revised = context.p.copyWith(rememberMe: newVal);
-        updateRouteParam(context, revised);
+        spi.updateRouteParam(revised);
       }
     );
     if(rememberSigninCheck != null) {
       rows.add(rememberSigninCheck);
     }
     
-    rows.add(t.childStatusMessage(context.t, context.p.status, context.p.statusMessage));
+    rows.add(t.childStatusMessage(spi.t, context.p.status, context.p.statusMessage));
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,
