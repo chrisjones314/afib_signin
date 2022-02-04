@@ -3,7 +3,7 @@ import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
-import 'package:afib_signin/src/ui/themes/afsi_functional_theme.dart';
+import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 import 'package:flutter/material.dart';
 
 enum AFSISigninStatus {
@@ -60,7 +60,7 @@ class SigninScreenRouteParam extends AFRouteParam {
 
   final String email;
   final String password;
-  final AFTextEditingControllersHolder textControllers;
+  final AFTextEditingControllers textControllers;
 
   SigninScreenRouteParam({
     required AFID id,
@@ -138,8 +138,8 @@ class SigninScreenRouteParam extends AFRouteParam {
     );
   }
 
-  static AFTextEditingControllersHolder _createEmptyText() {
-    final controllers = AFTextEditingControllersHolder.createN({
+  static AFTextEditingControllers _createEmptyText() {
+    final controllers = AFTextEditingControllers.createN({
       AFSIWidgetID.editEmail: "",
       AFSIWidgetID.editPassword: "",
     });

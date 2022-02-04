@@ -2,7 +2,7 @@ import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
-import 'package:afib_signin/src/ui/themes/afsi_functional_theme.dart';
+import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 import 'package:flutter/material.dart';
 
 //--------------------------------------------------------------------------------------
@@ -73,6 +73,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
     rows.add(t.childMargin(
       margin: t.marginEmail,
       child: t.childTextField(
+        screenId: screenId,
       wid: AFSIWidgetID.editEmail,
       style: t.styleOnPrimary.bodyText2,
       text: context.p.email,
@@ -88,6 +89,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
     rows.add(t.childMargin(
       margin: t.marginPassword,
       child: t.childTextField(
+        screenId: screenId,
         wid: AFSIWidgetID.editPassword,
         controllers: textControllers,
         text: context.p.password,
