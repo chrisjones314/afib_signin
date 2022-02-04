@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class ForgotPasswordSPI extends SigninBaseSPI {
   ForgotPasswordSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
   
-  factory ForgotPasswordSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, AFWidgetID wid) {
+  factory ForgotPasswordSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
     return ForgotPasswordSPI(context, screenId, theme,
     );
   }

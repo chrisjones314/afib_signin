@@ -3,7 +3,7 @@ import 'package:afib/afib_command.dart';
 import 'package:afib_signin/id.dart';
 
 void extendBase(AFBaseExtensionContext context) {
-  final item = AFConfigurationitemTrueFalse(
+  final item = AFConfigurationItemTrueFalse(
     libraryId: AFSILibraryID.id,
     name: "afsi_special_config",
     validContexts: AFConfigurationItem.validContextsAll,

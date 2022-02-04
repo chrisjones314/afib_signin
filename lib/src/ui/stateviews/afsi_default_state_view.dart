@@ -21,16 +21,14 @@ mixin AFSIDefaultStateViewMixin<TRouteParam extends AFRouteParam> {
   //--------------------------------------------------------------------------------------
   Iterable<Object?> createStateModels(AFBuildStateViewContext<AFComponentStateUnused, TRouteParam> context) {
     final state = context.stateApp;
-    final models = state.allModels.toList();
-    models.add(context.statePublic.time);
-    return models;
+    return state.allModels;
   }
 }
 
 //--------------------------------------------------------------------------------------
 class AFSIDefaultScreenConfig<TSPI extends AFScreenStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIScreenConfig<TSPI, AFSIDefaultStateView, TRouteParam> with AFSIDefaultStateViewMixin<TRouteParam> {
   AFSIDefaultScreenConfig({
-    required AFCreateSPIDelegate<TSPI, AFBuildContext<AFSIDefaultStateView, TRouteParam>, AFSIDefaultTheme> spiCreator,
+    required AFCreateScreenSPIDelegate<TSPI, AFBuildContext<AFSIDefaultStateView, TRouteParam>, AFSIDefaultTheme> spiCreator,
     AFNavigateRoute? route
   }): super(
     stateViewCreator: AFSIDefaultStateView.create,

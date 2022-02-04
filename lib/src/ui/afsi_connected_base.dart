@@ -37,7 +37,7 @@ abstract class AFSIConnectedScreen<TSPI extends AFScreenStateProgrammingInterfac
 abstract class AFSIScreenConfig<TSPI extends AFScreenStateProgrammingInterface, TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenConfig<TSPI, AFComponentStateUnused, AFSIDefaultTheme, TStateView, TRouteParam> {
   AFSIScreenConfig({
     required AFCreateStateViewDelegate<TStateView> stateViewCreator,
-    required AFCreateSPIDelegate<TSPI, AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> spiCreator,
+    required AFCreateScreenSPIDelegate<TSPI, AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> spiCreator,
     AFNavigateRoute? route,
   }): super(
     themeId: AFSIThemeID.defaultTheme,

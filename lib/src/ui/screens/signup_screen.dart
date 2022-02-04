@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class SignupPasswordSPI extends SigninBaseSPI {
   SignupPasswordSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
   
-  factory SignupPasswordSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, AFWidgetID wid) {
+  factory SignupPasswordSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
     return SignupPasswordSPI(context, screenId, theme,
     );
   }

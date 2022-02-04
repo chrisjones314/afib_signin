@@ -32,8 +32,7 @@ config.setValue("logs-enabled", []);
 config.setValue("force-dark-mode", false);
 
 // --absolute-base-year    The earliest year which your app will have reason to reference, generally good to set it 1-2 years before you started creating the app
-  //                         [true, false]
-config.setValue("absolute-base-year", false);
+config.setValue("absolute-base-year", 2019);
 
 // --tests-enabled     
   //       [*]           Or, the full identifier of any prototype, test name, or tag

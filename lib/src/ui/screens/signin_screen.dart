@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class SigninSPI extends SigninBaseSPI {
   SigninSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
   
-  factory SigninSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, AFWidgetID wid) {
+  factory SigninSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
     return SigninSPI(context, screenId, theme,
     );
   }
