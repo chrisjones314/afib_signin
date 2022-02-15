@@ -124,7 +124,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
       wid: AFUIWidgetID.buttonBack,
       text: AFSITranslationID.backToSignin,
       onPressed: () {
-        context.dispatchNavigatePop();
+        spi.navigatePop();
       },
     ));
 

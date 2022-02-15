@@ -186,9 +186,8 @@ abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, 
   //--------------------------------------------------------------------------------------
   Widget buildMainScaffold(SigninBaseSPI spi, Widget mainControls) {
     final t = spi.t;
-    final context = spi.context;
     return t.childStandardSigninScaffold(
-      context: context,
+      spi: spi,
       body: mainControls
     );
   }

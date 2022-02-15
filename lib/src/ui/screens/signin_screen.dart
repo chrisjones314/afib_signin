@@ -151,7 +151,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonSignup,
       text: AFSIWidgetID.buttonSignup,
       onPressed: () {
-        context.dispatchNavigate(SignupScreen.navigatePush(context.p.configuration));      
+        spi.navigatePush(SignupScreen.navigatePush(context.p.configuration));      
       },
     ));
 
@@ -159,7 +159,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonForgotPassword,
       text: AFSIWidgetID.buttonForgotPassword,
       onPressed: () {
-        context.dispatchNavigate(ForgotPasswordScreen.navigatePush(context.p.configuration));
+        spi.navigatePush(ForgotPasswordScreen.navigatePush(context.p.configuration));
       },
     ));
   }

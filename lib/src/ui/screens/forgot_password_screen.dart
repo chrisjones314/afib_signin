@@ -102,7 +102,7 @@ class ForgotPasswordScreen extends SigninScreenBase<ForgotPasswordSPI, SigninScr
       wid: AFUIWidgetID.buttonBack,
       text: AFSITranslationID.backToSignin,
       onPressed: () {
-        context.dispatchNavigatePop();
+        spi.navigatePop();
       },
     ));
 

@@ -54,11 +54,12 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 
   Widget childStandardSigninScaffold({
-    required AFBuildContext context,
+    required AFStateProgrammingInterface spi,
     required Widget body,
   }) {
+    final context = spi.context;
     return childScaffold(
-        context: context,
+        spi: spi,
         drawer: drawerSignIn(context),
         bottomNavigationBar: bottomNavigationBarSignin(context),
         body: Container(
