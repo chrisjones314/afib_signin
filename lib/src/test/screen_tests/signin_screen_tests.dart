@@ -4,16 +4,16 @@ import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter_test/flutter_test.dart' as ft;
 
-void initSigninScreenTests(AFSingleScreenTestDefinitionContext definitions) {
+void initSigninScreenTests(AFScreenTestDefinitionContext definitions) {
   _initStandardSigninScreen(definitions);
   _initErrorSigninScreen(definitions);
 
 }
 
-void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) {
+void _initStandardSigninScreen(AFScreenTestDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
-  var prototype = definitions.definePrototype(
+  var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signin,
       navigate: SigninScreen.navigatePushReady(testAdapter),
       models: null,
@@ -41,13 +41,13 @@ void _initStandardSigninScreen(AFSingleScreenTestDefinitionContext definitions) 
   });
 }
 
-void _initErrorSigninScreen(AFSingleScreenTestDefinitionContext definitions) {
+void _initErrorSigninScreen(AFScreenTestDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, config: testAdapter);
   final errorParam = initialParam.reviseStatus(status: AFSISigninStatus.error, message: "For example: Your username or password did not match our records.");
 
-  definitions.definePrototype(
+  definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signinWithError,
       navigate: AFNavigatePushAction(routeParam: errorParam),
       models: null,

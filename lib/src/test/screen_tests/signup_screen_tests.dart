@@ -4,10 +4,10 @@ import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/screens/signup_screen.dart';
 import 'package:flutter_test/flutter_test.dart' as ft;
 
-void initSignupScreenTests(AFSingleScreenTestDefinitionContext definitions) {
+void initSignupScreenTests(AFScreenTestDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
-  var prototype = definitions.definePrototype(
+  var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signup,
       navigate: SignupScreen.navigatePush(testAdapter),
       models: null,
