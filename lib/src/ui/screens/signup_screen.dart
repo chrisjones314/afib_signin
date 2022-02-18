@@ -76,7 +76,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
         screenId: screenId,
       wid: AFSIWidgetID.editEmail,
       style: t.styleOnPrimary.bodyText2,
-      text: context.p.email,
+      expectedText: context.p.email,
       controllers: textControllers,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail
@@ -92,7 +92,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
         screenId: screenId,
         wid: AFSIWidgetID.editPassword,
         controllers: textControllers,
-        text: context.p.password,
+        expectedText: context.p.password,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
           text: AFSIWidgetID.editPassword,

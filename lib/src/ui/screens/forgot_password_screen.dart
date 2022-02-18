@@ -77,7 +77,7 @@ class ForgotPasswordScreen extends SigninScreenBase<ForgotPasswordSPI, SigninScr
       child: t.childTextField(
       screenId: screenId,
       wid: AFSIWidgetID.editEmail,
-      text: context.p.email,
+      expectedText: context.p.email,
       style: t.styleOnPrimary.bodyText2,
       controllers: textControllers,
       decoration: t.decorationTextInput(
