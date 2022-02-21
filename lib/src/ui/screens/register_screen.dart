@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 
 //--------------------------------------------------------------------------------------
 @immutable
-class SignupPasswordSPI extends SigninBaseSPI {
-  SignupPasswordSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+class AFSIRegisterScreenSPI extends SigninBaseSPI {
+  AFSIRegisterScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
   
-  factory SignupPasswordSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
-    return SignupPasswordSPI(context, screenId, theme,
+  factory AFSIRegisterScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
+    return AFSIRegisterScreenSPI(context, screenId, theme,
     );
   }
 
-  void onClickRegister() {
+  void onTapRegister() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
     context.p.configuration.onSignup(context, context.p.email, context.p.password);
   }
@@ -23,15 +23,15 @@ class SignupPasswordSPI extends SigninBaseSPI {
 
 
 //--------------------------------------------------------------------------------------
-class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRouteParam> {
+class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
-  static final config = AFSIDefaultScreenConfig<SignupPasswordSPI, SigninScreenRouteParam> (
-    spiCreator: SignupPasswordSPI.create,
+  static final config = AFSIDefaultScreenConfig<AFSIRegisterScreenSPI, SigninScreenRouteParam> (
+    spiCreator: AFSIRegisterScreenSPI.create,
   );
 
   //--------------------------------------------------------------------------------------
-  SignupScreen(): super(screenId: AFSIScreenID.signup, config: config);
+  AFSIRegisterScreen(): super(screenId: AFSIScreenID.signup, config: config);
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
@@ -42,13 +42,13 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
 
   //--------------------------------------------------------------------------------------
   @override
-  Widget buildWithSPI(SignupPasswordSPI spi) {
+  Widget buildWithSPI(AFSIRegisterScreenSPI spi) {
     final main = buildMainControls(spi);
     return buildMainScaffold(spi, main);
   }
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(SignupPasswordSPI spi) {
+  Widget buildMainControls(AFSIRegisterScreenSPI spi) {
     final t = spi.t;
     final rows = t.column();
 
@@ -63,11 +63,9 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
   }
 
   //--------------------------------------------------------------------------------------
-  void _registerScreen(SignupPasswordSPI spi, List<Widget> rows) {
+  void _registerScreen(AFSIRegisterScreenSPI spi, List<Widget> rows) {
     final context = spi.context;
     final t = spi.t;
-
-   final textControllers = context.p.textControllers;
 
     rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleSignup));
     rows.add(t.childMargin(
@@ -77,13 +75,13 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
       wid: AFSIWidgetID.editEmail,
       style: t.styleOnPrimary.bodyText2,
       expectedText: context.p.email,
-      controllers: textControllers,
+      parentParam: context.p,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        spi.onUpdateEmail(value);
+        spi.onEditEmail(value);
       }
     )));
     rows.add(t.childMargin(
@@ -91,7 +89,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
       child: t.childTextField(
         screenId: screenId,
         wid: AFSIWidgetID.editPassword,
-        controllers: textControllers,
+        parentParam: context.p,
         expectedText: context.p.password,
         style: t.styleOnPrimary.bodyText2,
         decoration: t.decorationTextInput(
@@ -99,7 +97,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
         ),
         obscureText: !context.p.showPassword,
         onChanged: (value) {
-          spi.onUpdatePassword(value);
+          spi.onEditPassword(value);
         }
     )));
     rows.add(t.childShowPasswordCheck(
@@ -116,7 +114,7 @@ class SignupScreen extends SigninScreenBase<SignupPasswordSPI, SigninScreenRoute
       wid: AFSIWidgetID.buttonRegister,
       text: AFSIWidgetID.buttonRegister,
       onPressed: () {
-        spi.onClickRegister();
+        spi.onTapRegister();
       },
     ));
 

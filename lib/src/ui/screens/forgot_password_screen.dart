@@ -16,7 +16,7 @@ class ForgotPasswordSPI extends SigninBaseSPI {
     );
   }
 
-  void onUpdateEmail(String email) {
+  void onEditEmail(String email) {
     updateRouteParam(context.p.copyWith(email: email));
   }
 
@@ -69,7 +69,6 @@ class ForgotPasswordScreen extends SigninScreenBase<ForgotPasswordSPI, SigninScr
   void _forgotPasswordScreen(ForgotPasswordSPI spi, List<Widget> rows) {
     final context = spi.context;
     final t = spi.t;
-    final textControllers = context.p.textControllers;
     rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleForgotPassword));
 
     rows.add(t.childMargin(
@@ -79,13 +78,13 @@ class ForgotPasswordScreen extends SigninScreenBase<ForgotPasswordSPI, SigninScr
       wid: AFSIWidgetID.editEmail,
       expectedText: context.p.email,
       style: t.styleOnPrimary.bodyText2,
-      controllers: textControllers,
+      parentParam: spi.context.p,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail,
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        spi.onUpdateEmail(value);
+        spi.onEditEmail(value);
       }
     )));
 

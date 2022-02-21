@@ -1,7 +1,7 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
-import 'package:afib_signin/src/ui/screens/signup_screen.dart';
+import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:flutter_test/flutter_test.dart' as ft;
 
 void initSignupScreenTests(AFScreenTestDefinitionContext definitions) {
@@ -9,7 +9,7 @@ void initSignupScreenTests(AFScreenTestDefinitionContext definitions) {
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signup,
-      navigate: SignupScreen.navigatePush(testAdapter),
+      navigate: AFSIRegisterScreen.navigatePush(testAdapter),
       models: null,
     );
 

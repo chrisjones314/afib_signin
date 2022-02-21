@@ -51,7 +51,7 @@ class AFSITestActionConfiguration extends AFSISigninConfiguration {
 
 }
 
-class SigninScreenRouteParam extends AFRouteParam {
+class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
   final AFSISigninStatus status;
   final String statusMessage; 
   final AFSISigninConfiguration configuration;
@@ -60,7 +60,6 @@ class SigninScreenRouteParam extends AFRouteParam {
 
   final String email;
   final String password;
-  final AFTextEditingControllers textControllers;
 
   SigninScreenRouteParam({
     required AFID id,
@@ -69,10 +68,10 @@ class SigninScreenRouteParam extends AFRouteParam {
     required this.configuration,
     required this.email,
     required this.password,
-    required this.textControllers,
+    required AFFlutterRouteParamState flutterState,
     required this.showPassword,
     required this.rememberMe,
-  }): super(id: id);
+  }): super(id: id, flutterState: flutterState);
 
   SigninScreenRouteParam copyWith({
     AFSISigninStatus? status,
@@ -89,7 +88,7 @@ class SigninScreenRouteParam extends AFRouteParam {
       status: status ?? this.status,
       email: email ?? this.email,
       password: password ?? this.password,
-      textControllers: this.textControllers,
+      flutterState: this.flutterState,
       configuration: this.configuration,
       showPassword: showPassword ?? this.showPassword,
       rememberMe: rememberMe ?? this.rememberMe,
@@ -107,14 +106,14 @@ class SigninScreenRouteParam extends AFRouteParam {
     required AFID screenId,
     required AFSISigninConfiguration config
   }) {
-
+    final flutterState = _createInitialFlutterState();
     return SigninScreenRouteParam(
       id: screenId,
       status: AFSISigninStatus.loading,
       statusMessage: "",
       email: "",
       password: "",
-      textControllers: _createEmptyText(),
+      flutterState: flutterState,
       configuration: config,
       showPassword: true,
       rememberMe: false,
@@ -125,6 +124,7 @@ class SigninScreenRouteParam extends AFRouteParam {
     required AFID screenId,
     required AFSISigninConfiguration config
   }) {
+    final flutterState = _createInitialFlutterState();
     return SigninScreenRouteParam(
       id: screenId,
       statusMessage: "",
@@ -132,10 +132,17 @@ class SigninScreenRouteParam extends AFRouteParam {
       email: "",
       password: "",
       showPassword: false,
-      textControllers: _createEmptyText(),
+      flutterState: flutterState,
       configuration: config,
       rememberMe: false,
     );
+  }
+
+  static AFFlutterRouteParamState _createInitialFlutterState() {
+    final flutterState = AFFlutterRouteParamState(
+      textControllers: _createEmptyText()
+    );
+    return flutterState;
   }
 
   static AFTextEditingControllers _createEmptyText() {
@@ -144,11 +151,6 @@ class SigninScreenRouteParam extends AFRouteParam {
       AFSIWidgetID.editPassword: "",
     });
     return controllers;
-  }
-
-  @override
-  void dispose() {
-    textControllers.dispose();
   }
 }
 
@@ -164,12 +166,14 @@ class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRout
   }
 
   //--------------------------------------------------------------------------------------
-  void onUpdateEmail(String email) {
+  void onEditEmail(String email) {
+    updateTextField(AFSIWidgetID.editEmail, email);
     updateRouteParam(context.p.copyWith(email: email));
   }
 
   //--------------------------------------------------------------------------------------
-  void onUpdatePassword(String password) {
+  void onEditPassword(String password) {
+    updateTextField(AFSIWidgetID.editPassword, password);
     updateRouteParam(context.p.copyWith(password: password));    
   }
 }

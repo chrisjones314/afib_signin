@@ -15,7 +15,7 @@ void _initStandardSigninScreen(AFScreenTestDefinitionContext definitions) {
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signin,
-      navigate: SigninScreen.navigatePushReady(testAdapter),
+      navigate: AFSISigninScreen.navigatePushReady(testAdapter),
       models: null,
     );
 

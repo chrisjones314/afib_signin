@@ -2,36 +2,44 @@ import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/id.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
-import 'package:afib_signin/src/ui/screens/signup_screen.dart';
+import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/stateviews/afsi_default_state_view.dart';
 import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class SigninSPI extends SigninBaseSPI {
-  SigninSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+class AFSISigninScreenSPI extends SigninBaseSPI {
+  AFSISigninScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
   
-  factory SigninSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
-    return SigninSPI(context, screenId, theme,
+  factory AFSISigninScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
+    return AFSISigninScreenSPI(context, screenId, theme,
     );
   }
 
-  void onClickLogin() {
+  void onTapSignin() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
     context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
+  }
+
+  void onTapRegister() {
+    navigatePush(AFSIRegisterScreen.navigatePush(context.p.configuration));      
+  }
+
+  void onTapForgotPassword() {
+    navigatePush(ForgotPasswordScreen.navigatePush(context.p.configuration));    
   }
 }
 
 /// The primary username/password signing screen, with buttons linking to forgot password
 /// and register.
-class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
+class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
-  static final config = AFSIDefaultScreenConfig<SigninSPI, SigninScreenRouteParam> (
-    spiCreator: SigninSPI.create,
+  static final config = AFSIDefaultScreenConfig<AFSISigninScreenSPI, SigninScreenRouteParam> (
+    spiCreator: AFSISigninScreenSPI.create,
   );
 
-  SigninScreen(): super(screenId: AFSIScreenID.signin, config: config);
+  AFSISigninScreen(): super(screenId: AFSIScreenID.signin, config: config);
 
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
@@ -42,14 +50,14 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
   @override
-  Widget buildWithSPI(SigninSPI spi) {
+  Widget buildWithSPI(AFSISigninScreenSPI spi) {
     final main = buildMainControls(spi);
     return buildMainScaffold(spi, main);
   }
 
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(SigninSPI spi) {
+  Widget buildMainControls(AFSISigninScreenSPI spi) {
     final context = spi.context;
     final t = spi.t;
     final widgets = t.column();
@@ -70,7 +78,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
 
   //--------------------------------------------------------------------------------------
   Widget _buildSignInWait(
-    SigninSPI spi
+    AFSISigninScreenSPI spi
   ) {
     final context = spi.context;
     final t = spi.t;
@@ -83,10 +91,9 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
   }
 
   //--------------------------------------------------------------------------------------
-  void _loginScreen(SigninSPI spi, List<Widget> rows) {
+  void _loginScreen(AFSISigninScreenSPI spi, List<Widget> rows) {
     final context = spi.context;
     final t = spi.t;
-    final textControllers = context.p.textControllers;
 
     rows.add(
       t.childSplashScreenTitle(text: AFUITranslationID.appTitle)
@@ -99,13 +106,13 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       style: t.styleOnPrimary.bodyText2,
       expectedText: context.p.email,
       cursorColor: t.colorCursor,
-      controllers: textControllers,
+      parentParam: spi.context.p,
       decoration: t.decorationTextInput(
         text: AFSIWidgetID.editEmail,
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        spi.onUpdateEmail(value);
+        spi.onEditEmail(value);
       }
     )));
     rows.add(t.childMargin(
@@ -113,7 +120,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       child: t.childTextField(
         screenId: screenId,
         wid: AFSIWidgetID.editPassword,
-        controllers: textControllers,
+        parentParam: spi.context.p,
         expectedText: context.p.password,
         style: t.styleOnPrimary.bodyText2,
         cursorColor: t.colorCursor,
@@ -122,7 +129,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
         ),
         obscureText: true,
         onChanged: (value) {
-          spi.onUpdatePassword(value);
+          spi.onEditPassword(value);
         }
     )));
     final rememberSigninCheck = t.childCheckRememberSignin(
@@ -143,7 +150,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonLogin,
       text: AFSIWidgetID.buttonLogin,
       onPressed: () {
-        spi.onClickLogin();
+        spi.onTapSignin();
       },
     ));
     
@@ -151,7 +158,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonSignup,
       text: AFSIWidgetID.buttonSignup,
       onPressed: () {
-        spi.navigatePush(SignupScreen.navigatePush(context.p.configuration));      
+        spi.onTapRegister();
       },
     ));
 
@@ -159,7 +166,7 @@ class SigninScreen extends SigninScreenBase<SigninSPI, SigninScreenRouteParam> {
       wid: AFSIWidgetID.buttonForgotPassword,
       text: AFSIWidgetID.buttonForgotPassword,
       onPressed: () {
-        spi.navigatePush(ForgotPasswordScreen.navigatePush(context.p.configuration));
+        spi.onTapForgotPassword();
       },
     ));
   }
