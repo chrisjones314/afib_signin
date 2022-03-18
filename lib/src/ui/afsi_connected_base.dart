@@ -22,7 +22,7 @@ class AFSIBuildContext<TStateView extends AFFlexibleStateView, TRouteParam exten
   ): super(standard, stateView, routeParam, children);
 }
 
-class AFSIScreenSPI<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenStateProgrammingInterface<AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> {
+class AFSIScreenSPI<TStateView extends AFFlexibleStateView, TRouteParam extends AFRouteParam> extends AFScreenStateProgrammingInterface<AFComponentStateUnused, AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> {
   AFSIScreenSPI(AFBuildContext<TStateView, TRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme);
 }
 
