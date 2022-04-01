@@ -19,10 +19,6 @@ class AFSICustomCommand extends AFCommand {
   void execute(AFCommandContext ctx) {
     print("Executing afsi_custom command");
   }
-
-  @override Never throwUsageError(String error) {
-    throw AFCommandError(error: error, usage: "TODO");
-  }
 }
 
 // You can use this function to add your own commands, or to
