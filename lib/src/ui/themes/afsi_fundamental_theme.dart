@@ -1,9 +1,9 @@
 
 
 import 'package:afib/afib_flutter.dart';
-import 'package:afib_signin/id.dart';
+import 'package:afib_signin/afsi_id.dart';
 
-void initFundamentalThemeArea(AFFundamentalDeviceTheme device, AFComponentStates appState, AFPluginFundamentalThemeAreaBuilder primary) {
+void defineFundamentalThemeArea(AFFundamentalDeviceTheme device, AFComponentStates appState, AFPluginFundamentalThemeAreaBuilder primary) {
  
   primary.setTranslations(AFUILocaleID.englishUS, {
     AFSIWidgetID.buttonForgotPassword: "Forgot Password",

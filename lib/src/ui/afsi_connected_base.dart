@@ -1,5 +1,5 @@
 
-import 'package:afib_signin/id.dart';
+import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 import 'package:afib/afib_flutter.dart';
 

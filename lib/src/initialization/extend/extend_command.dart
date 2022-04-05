@@ -1,7 +1,6 @@
 
 
 import 'package:afib/afib_command.dart';
-import 'package:args/args.dart' as args;
 
 class AFSICustomCommand extends AFCommand {
 
@@ -11,9 +10,8 @@ class AFSICustomCommand extends AFCommand {
   @override
   final description = "AFSI Custom Command";
 
-  @override
-  void registerArguments(args.ArgParser args) {
-  }
+  @override 
+  final usage = "";
 
   @override
   void execute(AFCommandContext ctx) {

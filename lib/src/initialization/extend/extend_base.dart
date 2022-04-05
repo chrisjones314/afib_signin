@@ -1,6 +1,6 @@
 
 import 'package:afib/afib_command.dart';
-import 'package:afib_signin/id.dart';
+import 'package:afib_signin/afsi_id.dart';
 
 void extendBase(AFBaseExtensionContext context) {
   final item = AFConfigurationItemTrueFalse(

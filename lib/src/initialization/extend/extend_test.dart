@@ -10,12 +10,12 @@ import 'package:afib_signin/src/test/workflow_tests.dart';
 void extendTest(AFTestExtensionContext extend) {
 
     extend.initializeTestFundamentals(
-      initTestData: initTestData,
-      initUnitTests: initUnitTests,
-      initStateTests: initStateTests,
-      initScreenTests: initScreenTests,
-      initWorkflowStateTests: initWorkflowStateTests,
-      initWireframes: null,
+      defineTestData: initTestData,
+      defineUnitTests: initUnitTests,
+      defineStateTests: initStateTests,
+      defineScreenTests: initScreenTests,
+      defineWorkflowStateTests: initWorkflowStateTests,
+      defineWireframes: null,
     );
 
 }
