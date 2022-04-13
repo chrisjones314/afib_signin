@@ -4,7 +4,7 @@ import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter_test/flutter_test.dart' as ft;
 
-void initForgotPasswordScreenTests(AFScreenTestDefinitionContext definitions) {
+void initForgotPasswordScreenTests(AFUIPrototypeDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(

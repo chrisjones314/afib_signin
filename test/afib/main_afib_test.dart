@@ -1,6 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
-import 'package:afib_signin/src/initialization/create_dart_params.g.dart';
+import 'package:afib_signin/src/initialization/create_dart_params.dart';
 import 'package:afib_signin/src/initialization/extend/extend_app.dart';
 import 'package:afib_signin/src/initialization/extend/extend_base.dart';
 import 'package:afib_signin/src/initialization/extend/extend_base_third_party.dart';

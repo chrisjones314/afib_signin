@@ -4,13 +4,13 @@ import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter_test/flutter_test.dart' as ft;
 
-void initSigninScreenTests(AFScreenTestDefinitionContext definitions) {
+void initSigninScreenTests(AFUIPrototypeDefinitionContext definitions) {
   _initStandardSigninScreen(definitions);
   _initErrorSigninScreen(definitions);
 
 }
 
-void _initStandardSigninScreen(AFScreenTestDefinitionContext definitions) {
+void _initStandardSigninScreen(AFUIPrototypeDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
@@ -41,7 +41,7 @@ void _initStandardSigninScreen(AFScreenTestDefinitionContext definitions) {
   });
 }
 
-void _initErrorSigninScreen(AFScreenTestDefinitionContext definitions) {
+void _initErrorSigninScreen(AFUIPrototypeDefinitionContext definitions) {
   final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, config: testAdapter);

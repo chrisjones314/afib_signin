@@ -1,5 +1,5 @@
 import 'package:afib/afib_command.dart';
-import 'package:afib_signin/src/initialization/create_dart_params.g.dart';
+import 'package:afib_signin/src/initialization/create_dart_params.dart';
 import 'package:afib_signin/src/initialization/extend/extend_base.dart';
 import 'package:afib_signin/src/initialization/extend/extend_base_third_party.dart';
 import 'package:afib_signin/src/initialization/extend/extend_command.dart';
