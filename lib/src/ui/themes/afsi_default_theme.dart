@@ -5,7 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AFSIDefaultTheme extends AFFunctionalTheme {
-  AFSIDefaultTheme(AFFundamentalThemeState fundamentals): super(fundamentals: fundamentals, id: AFSIThemeID.defaultTheme);
+  AFSIDefaultTheme(AFThemeID id, AFFundamentalThemeState fundamentals): super(id, fundamentals);
+
+  //--------------------------------------------------------------------------------------
+  factory AFSIDefaultTheme.create(AFThemeID id, AFFundamentalThemeState fundamentals) {
+    return AFSIDefaultTheme(id, fundamentals);
+  }
 
   //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({dynamic text}) {
@@ -258,6 +263,3 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 }
 
-void defineFunctionalThemes(AFFunctionalThemeDefinitionContext context) {
-  context.initUnlessPresent(AFSIThemeID.defaultTheme, createTheme: (f) => AFSIDefaultTheme(f));
-}

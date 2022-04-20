@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class AFSISigninScreenSPI extends SigninBaseSPI {
-  AFSISigninScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+  AFSISigninScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme);
   
   factory AFSISigninScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
     return AFSISigninScreenSPI(context, screenId, theme,

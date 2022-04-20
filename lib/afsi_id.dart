@@ -2,7 +2,7 @@
 import 'package:afib/afib_command.dart';
 
 class AFSILibraryID {
-  static const id = AFLibraryID(code: "afsi", name: "AFib Signin");
+  static const id = AFLibraryID(code: "afsi", name: "afib_signin");
 }
 
 class AFSIScreenID extends AFScreenID {

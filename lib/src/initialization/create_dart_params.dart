@@ -1,5 +1,5 @@
 import 'package:afib/afib_command.dart';
-import 'package:afib_signin/src/initialization/afsi_afib_config.dart';
+import 'package:afib_signin/src/initialization/afsi_config.g.dart';
 import 'package:afib_signin/src/initialization/application.dart';
 import 'package:afib_signin/src/initialization/environments/debug.dart';
 import 'package:afib_signin/src/initialization/environments/production.dart';
