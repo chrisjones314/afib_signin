@@ -23,11 +23,11 @@ void defineSPIOverrides(AFUIDefinitionContext context) {
 
 void defineScreens(AFUIDefinitionContext context) {
   context.defineScreen(AFSIScreenID.signin,           (_) => AFSISigninScreen());
-  context.defineScreen(AFSIScreenID.forgotPassword, (_) => ForgotPasswordScreen());
+  context.defineScreen(AFSIScreenID.forgotPassword, (_) => AFSIForgotPasswordScreen());
   context.defineScreen(AFSIScreenID.signup, (_) => AFSIRegisterScreen());
 }  
 
-void defineFundamentalThemeArea(AFFundamentalDeviceTheme device, AFComponentStates appState, AFPluginFundamentalThemeAreaBuilder primary) {
+void defineFundamentalThemeArea(AFFundamentalDeviceTheme device, AFComponentStates appState, AFUILibraryFundamentalThemeAreaBuilder primary) {
  
   primary.setTranslations(AFUILocaleID.englishUS, {
     AFSIWidgetID.buttonForgotPassword: "Forgot Password",

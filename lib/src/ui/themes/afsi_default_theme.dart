@@ -1,5 +1,8 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
+import 'package:afib_signin/src/ui/screens/register_screen.dart';
+import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +10,22 @@ import 'package:flutter/material.dart';
 class AFSIDefaultTheme extends AFFunctionalTheme {
   AFSIDefaultTheme(AFThemeID id, AFFundamentalThemeState fundamentals): super(id, fundamentals);
 
-  //--------------------------------------------------------------------------------------
   factory AFSIDefaultTheme.create(AFThemeID id, AFFundamentalThemeState fundamentals) {
     return AFSIDefaultTheme(id, fundamentals);
   }
+
+  AFAsyncQuery createSigninQuery(AFSISigninScreenSPI spi, String email, String password, { required bool rememberMe }) {
+    return AFNavigateUnimplementedQuery("You must override AFSIDefaultTheme.createSigninQuery");
+  }
+  
+  AFAsyncQuery createResetPasswordQuery(AFSIForgotPasswordScreenSPI spi, String email) {
+    return AFNavigateUnimplementedQuery("You must override AFSIDefaultTheme.createResetPasswordQuery");
+  }
+
+  AFAsyncQuery createSignupQuery(AFSIRegisterScreenSPI spi, String email, String password) {
+    return AFNavigateUnimplementedQuery("You must override AFSIDefaultTheme.createSignupQuery");
+  }
+
 
   //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({dynamic text}) {

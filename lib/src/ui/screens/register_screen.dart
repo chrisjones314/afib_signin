@@ -17,7 +17,8 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
 
   void onTapRegister() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
-    context.p.configuration.onSignup(context, context.p.email, context.p.password);
+    final query = t.createSignupQuery(this, context.p.email, context.p.password);
+    executeQuery(query);
   }
 }
 
@@ -34,9 +35,9 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
   AFSIRegisterScreen(): super(screenId: AFSIScreenID.signup, config: config);
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
+  static AFNavigatePushAction navigatePush() {
     return AFNavigatePushAction(
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signup, config: config)
+      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signup)
     );
   }
 

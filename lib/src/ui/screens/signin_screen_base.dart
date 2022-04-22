@@ -13,48 +13,9 @@ enum AFSISigninStatus {
   readyEmphasis,
 }
 
-/// Used to supply the implementation that actually does the signin,
-/// forgot password, or signup actions.
-abstract class AFSISigninConfiguration {
-  void onSignin(AFBuildContext context, String email, String password, { required bool rememberMe } );
-  void onResetPassword(AFBuildContext context, String email);
-  void onSignup(AFBuildContext context, String email, String password);
-}
-
-//
-class AFSITestActionConfiguration extends AFSISigninConfiguration {
-  String? email;
-  String? password;
-  bool? rememberMe;
-  bool visited = false;
-  void onSignin(AFBuildContext context, String email, String password, { required bool rememberMe }) {
-    context.log?.d("Signin $email/$password");
-    this.email = email;
-    this.password = password;
-    this.rememberMe = rememberMe;
-    visited = true;
-
-  }
-
-  void onResetPassword(AFBuildContext context, String email) {
-    context.log?.d("Signin $password");
-    this.email = email;
-    visited = true;
-  }
-
-  void onSignup(AFBuildContext context, String email, String password) {
-    context.log?.d("Signin $email/$password");
-    this.email = email;
-    this.password = password;
-    visited = true;
-  }
-
-}
-
 class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
   final AFSISigninStatus status;
   final String statusMessage; 
-  final AFSISigninConfiguration configuration;
   final bool showPassword;
   final bool rememberMe;
 
@@ -65,7 +26,6 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
     required AFID id,
     required this.statusMessage, 
     required this.status,
-    required this.configuration,
     required this.email,
     required this.password,
     required AFFlutterRouteParamState flutterState,
@@ -89,7 +49,6 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
       email: email ?? this.email,
       password: password ?? this.password,
       flutterState: this.flutterState,
-      configuration: this.configuration,
       showPassword: showPassword ?? this.showPassword,
       rememberMe: rememberMe ?? this.rememberMe,
     );
@@ -104,7 +63,6 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
 
   factory SigninScreenRouteParam.createLoadingOncePerScreen({
     required AFID screenId,
-    required AFSISigninConfiguration config
   }) {
     final flutterState = _createInitialFlutterState();
     return SigninScreenRouteParam(
@@ -114,7 +72,6 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
       email: "",
       password: "",
       flutterState: flutterState,
-      configuration: config,
       showPassword: true,
       rememberMe: false,
     );
@@ -122,32 +79,36 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
 
   factory SigninScreenRouteParam.createReadyOncePerScreen({
     required AFID screenId,
-    required AFSISigninConfiguration config
+    String? email
   }) {
-    final flutterState = _createInitialFlutterState();
+    final flutterState = _createInitialFlutterState(email: email);
+    
     return SigninScreenRouteParam(
       id: screenId,
       statusMessage: "",
       status: AFSISigninStatus.ready,
-      email: "",
+      email: email ?? "",
       password: "",
       showPassword: false,
       flutterState: flutterState,
-      configuration: config,
       rememberMe: false,
     );
   }
 
-  static AFFlutterRouteParamState _createInitialFlutterState() {
+  static AFFlutterRouteParamState _createInitialFlutterState({
+    String? email
+  }) {
     final flutterState = AFFlutterRouteParamState(
-      textControllers: _createEmptyText()
+      textControllers: _createTextControllers(email: email)
     );
     return flutterState;
   }
 
-  static AFTextEditingControllers _createEmptyText() {
+  static AFTextEditingControllers _createTextControllers({
+    String? email
+  }) {
     final controllers = AFTextEditingControllers.createN({
-      AFSIWidgetID.editEmail: "",
+      AFSIWidgetID.editEmail: email ?? "",
       AFSIWidgetID.editPassword: "",
     });
     return controllers;

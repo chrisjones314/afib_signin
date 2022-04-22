@@ -1,15 +1,12 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
-import 'package:flutter_test/flutter_test.dart' as ft;
 
 void initSignupScreenTests(AFUIPrototypeDefinitionContext definitions) {
-  final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signup,
-      navigate: AFSIRegisterScreen.navigatePush(testAdapter),
+      navigate: AFSIRegisterScreen.navigatePush(),
       models: null,
     );
 
@@ -27,8 +24,6 @@ void initSignupScreenTests(AFUIPrototypeDefinitionContext definitions) {
       await e.matchTextEquals(AFSIWidgetID.editEmail, email);
       await e.matchTextEquals(AFSIWidgetID.editPassword, pass);
       await e.applyTap(AFSIWidgetID.buttonRegister);
-      e.expect(testAdapter.email, ft.equals(email));
-      e.expect(testAdapter.password, ft.equals(pass));
   });
 
 }

@@ -2,7 +2,6 @@ import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
-import 'package:flutter_test/flutter_test.dart' as ft;
 
 void initSigninScreenTests(AFUIPrototypeDefinitionContext definitions) {
   _initStandardSigninScreen(definitions);
@@ -11,11 +10,10 @@ void initSigninScreenTests(AFUIPrototypeDefinitionContext definitions) {
 }
 
 void _initStandardSigninScreen(AFUIPrototypeDefinitionContext definitions) {
-  final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signin,
-      navigate: AFSISigninScreen.navigatePushReady(testAdapter),
+      navigate: AFSISigninScreen.navigatePushReady(),
       models: null,
     );
 
@@ -34,17 +32,12 @@ void _initStandardSigninScreen(AFUIPrototypeDefinitionContext definitions) {
       await e.matchTextEquals(AFSIWidgetID.editEmail, email);
       await e.matchTextEquals(AFSIWidgetID.editPassword, pass);
       await e.applyTap(AFSIWidgetID.buttonLogin);
-      if(testAdapter.visited) {
-        e.expect(testAdapter.email, ft.equals(email));
-        e.expect(testAdapter.password, ft.equals(pass));
-      }
   });
 }
 
 void _initErrorSigninScreen(AFUIPrototypeDefinitionContext definitions) {
-  final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
-  final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, config: testAdapter);
+  final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin);
   final errorParam = initialParam.reviseStatus(status: AFSISigninStatus.error, message: "For example: Your username or password did not match our records.");
 
   definitions.defineScreenPrototype(

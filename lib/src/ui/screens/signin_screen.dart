@@ -18,15 +18,17 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
 
   void onTapSignin() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
-    context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
+    //context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
+    final query = t.createSigninQuery(this, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
+    executeQuery(query);
   }
 
   void onTapRegister() {
-    navigatePush(AFSIRegisterScreen.navigatePush(context.p.configuration));      
+    navigatePush(AFSIRegisterScreen.navigatePush());      
   }
 
   void onTapForgotPassword() {
-    navigatePush(ForgotPasswordScreen.navigatePush(context.p.configuration));    
+    navigatePush(AFSIForgotPasswordScreen.navigatePush());    
   }
 }
 
@@ -42,11 +44,21 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
   AFSISigninScreen(): super(screenId: AFSIScreenID.signin, config: config);
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePushReady(AFSISigninConfiguration config) {
+  static AFNavigatePushAction navigatePushReady() {
     return AFNavigatePushAction(
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, config: config),
+      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin),
     );
   }
+
+  //--------------------------------------------------------------------------------------
+  static AFNavigateReplaceAllAction navigateAfterSignout({
+    required String email,
+  }) {
+    return AFNavigateReplaceAllAction(
+      param: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, email: email),
+    );
+  }
+
 
   //--------------------------------------------------------------------------------------
   @override

@@ -1,15 +1,12 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
-import 'package:flutter_test/flutter_test.dart' as ft;
 
 void initForgotPasswordScreenTests(AFUIPrototypeDefinitionContext definitions) {
-  final testAdapter = AFSITestActionConfiguration();
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.forgotPassword,
-      navigate: ForgotPasswordScreen.navigatePush(testAdapter),
+      navigate: AFSIForgotPasswordScreen.navigatePush(),
       models: null
     );
 
@@ -23,7 +20,6 @@ void initForgotPasswordScreenTests(AFUIPrototypeDefinitionContext definitions) {
 
       await e.setValue(AFSIWidgetID.editEmail, email);
       await e.applyTap(AFSIWidgetID.buttonResetPassword);
-      e.expect(testAdapter.email, ft.equals(email));
   });
 
 }

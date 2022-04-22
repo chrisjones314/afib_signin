@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 
 //--------------------------------------------------------------------------------------
 @immutable
-class ForgotPasswordSPI extends SigninBaseSPI {
-  ForgotPasswordSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+class AFSIForgotPasswordScreenSPI extends SigninBaseSPI {
+  AFSIForgotPasswordScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
   
-  factory ForgotPasswordSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
-    return ForgotPasswordSPI(context, screenId, theme,
+  factory AFSIForgotPasswordScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
+    return AFSIForgotPasswordScreenSPI(context, screenId, theme,
     );
   }
 
@@ -22,37 +22,38 @@ class ForgotPasswordSPI extends SigninBaseSPI {
 
   void onClickRecover() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
-    context.p.configuration.onResetPassword(context, context.p.email);
+    final query = t.createResetPasswordQuery(this, context.p.email);
+    executeQuery(query);
   }
 }
 
 //--------------------------------------------------------------------------------------
-class ForgotPasswordScreen extends SigninScreenBase<ForgotPasswordSPI, SigninScreenRouteParam> {
+class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreenSPI, SigninScreenRouteParam> {
 
-  ForgotPasswordScreen(): super(screenId: AFSIScreenID.forgotPassword, config: config);
+  AFSIForgotPasswordScreen(): super(screenId: AFSIScreenID.forgotPassword, config: config);
 
   //--------------------------------------------------------------------------------------
-  static final config = AFSIDefaultScreenConfig<ForgotPasswordSPI, SigninScreenRouteParam> (
-    spiCreator: ForgotPasswordSPI.create,
+  static final config = AFSIDefaultScreenConfig<AFSIForgotPasswordScreenSPI, SigninScreenRouteParam> (
+    spiCreator: AFSIForgotPasswordScreenSPI.create,
   );
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush(AFSISigninConfiguration config) {
+  static AFNavigatePushAction navigatePush() {
     return AFNavigatePushAction(
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.forgotPassword, config: config)
+      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.forgotPassword)
     );
   }
 
   //--------------------------------------------------------------------------------------
   @override
-  Widget buildWithSPI(ForgotPasswordSPI spi) {
+  Widget buildWithSPI(AFSIForgotPasswordScreenSPI spi) {
     final main = buildMainControls(spi);
     return buildMainScaffold(spi, main);
   }
 
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainControls(ForgotPasswordSPI spi) {
+  Widget buildMainControls(AFSIForgotPasswordScreenSPI spi) {
     final t = spi.t;
     final rows = t.column();
 
@@ -66,7 +67,7 @@ class ForgotPasswordScreen extends SigninScreenBase<ForgotPasswordSPI, SigninScr
   }
 
   //--------------------------------------------------------------------------------------
-  void _forgotPasswordScreen(ForgotPasswordSPI spi, List<Widget> rows) {
+  void _forgotPasswordScreen(AFSIForgotPasswordScreenSPI spi, List<Widget> rows) {
     final context = spi.context;
     final t = spi.t;
     rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleForgotPassword));
