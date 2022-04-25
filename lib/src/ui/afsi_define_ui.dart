@@ -1,6 +1,7 @@
 
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/state/lpis/afsi_signin_actions_lpi.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
@@ -9,12 +10,17 @@ import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 
 void defineUI(AFUIDefinitionContext context) {
   defineFunctionalThemes(context);
-  defineSPIOverrides(context);
+  defineLibraryProgrammingInterfaces(context);
   defineScreens(context);
+  defineSPIOverrides(context);
 }
 
 void defineFunctionalThemes(AFUIDefinitionContext context) {
   context.defineTheme(AFSIThemeID.defaultTheme, createTheme: AFSIDefaultTheme.create);
+}
+
+void defineLibraryProgrammingInterfaces(AFUIDefinitionContext context) {
+  context.defineLPI(AFSILibraryProgrammingInterfaceID.signinActions, createLPI: AFSISigninActionsLPI.create);
 }
 
 void defineSPIOverrides(AFUIDefinitionContext context) {

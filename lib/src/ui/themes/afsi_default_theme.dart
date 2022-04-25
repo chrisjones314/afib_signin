@@ -14,19 +14,6 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     return AFSIDefaultTheme(id, fundamentals);
   }
 
-  AFAsyncQuery createSigninQuery(AFSISigninScreenSPI spi, String email, String password, { required bool rememberMe }) {
-    return AFNavigateUnimplementedQuery("You must override AFSIDefaultTheme.createSigninQuery");
-  }
-  
-  AFAsyncQuery createResetPasswordQuery(AFSIForgotPasswordScreenSPI spi, String email) {
-    return AFNavigateUnimplementedQuery("You must override AFSIDefaultTheme.createResetPasswordQuery");
-  }
-
-  AFAsyncQuery createSignupQuery(AFSIRegisterScreenSPI spi, String email, String password) {
-    return AFNavigateUnimplementedQuery("You must override AFSIDefaultTheme.createSignupQuery");
-  }
-
-
   //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({dynamic text}) {
     return childText(text, style: styleOnPrimary.headline4, textAlign: TextAlign.center);

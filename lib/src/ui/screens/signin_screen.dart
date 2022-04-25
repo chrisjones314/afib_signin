@@ -1,5 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/state/lpis/afsi_signin_actions_lpi.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
@@ -18,9 +19,9 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
 
   void onTapSignin() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
-    //context.p.configuration.onSignin(context, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
-    final query = t.createSigninQuery(this, context.p.email, context.p.password, rememberMe: context.p.rememberMe);
-    executeQuery(query);
+    final lpi = createLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    lpi.onSignin(context.p.email, context.p.password, rememberMe: context.p.rememberMe);
+    
   }
 
   void onTapRegister() {

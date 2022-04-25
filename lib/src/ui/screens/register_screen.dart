@@ -1,8 +1,6 @@
 import 'package:afib/afib_flutter.dart';
-import 'package:afib_signin/afsi_id.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
-import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
-import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
+import 'package:afib_signin/afsi_flutter.dart';
+import 'package:afib_signin/src/state/lpis/afsi_signin_actions_lpi.dart';
 import 'package:flutter/material.dart';
 
 //--------------------------------------------------------------------------------------
@@ -17,8 +15,8 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
 
   void onTapRegister() {
     updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
-    final query = t.createSignupQuery(this, context.p.email, context.p.password);
-    executeQuery(query);
+    final lpi = createLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    lpi.onSignup(context.p.email, context.p.password);
   }
 }
 

@@ -55,6 +55,12 @@ class AFSIScreenTestID extends AFScreenTestID {
   static const signinScreenLogin = AFSIScreenTestID("signin_screen_login");
 }
 
+class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID {
+  const AFSILibraryProgrammingInterfaceID(String code): super(code, AFSILibraryID.id); 
+  static const signinActions = AFSILibraryProgrammingInterfaceID("signin_actions");
+}
+
+
 class AFSIPrototypeID extends AFPrototypeID {
   const AFSIPrototypeID(String code, { List<String>? tags }): super(code, AFSILibraryID.id, tags: tags); 
 
