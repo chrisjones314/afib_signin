@@ -17,13 +17,13 @@ class AFSIForgotPasswordScreenSPI extends SigninBaseSPI {
     );
   }
 
-  void onEditEmail(String email) {
-    updateRouteParam(context.p.copyWith(email: email));
+  void onChangedEmail(String email) {
+    context.updateRouteParam(context.p.copyWith(email: email));
   }
 
   void onClickRecover() {
-    updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
-    final lpi = createLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
+    final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onResetPassword(context.p.email);
   }
 }
@@ -86,7 +86,7 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        spi.onEditEmail(value);
+        spi.onChangedEmail(value);
       }
     )));
 
@@ -103,7 +103,7 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
       wid: AFUIWidgetID.buttonBack,
       text: AFSITranslationID.backToSignin,
       onPressed: () {
-        spi.navigatePop();
+        spi.onPressedStandardBackButton();
       },
     ));
 

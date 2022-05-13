@@ -17,19 +17,24 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
     );
   }
 
-  void onTapSignin() {
-    updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
-    final lpi = createLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+  void onChangedRememberMe({ required bool checked }) {
+    final revised = context.p.copyWith(rememberMe: checked);
+    context.updateRouteParam(revised);
+  }
+
+  void onPressedSignin() {
+    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
+    final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onSignin(context.p.email, context.p.password, rememberMe: context.p.rememberMe);
     
   }
 
-  void onTapRegister() {
-    navigatePush(AFSIRegisterScreen.navigatePush());      
+  void onPressedRegister() {
+    context.navigatePush(AFSIRegisterScreen.navigatePush());      
   }
 
-  void onTapForgotPassword() {
-    navigatePush(AFSIForgotPasswordScreen.navigatePush());    
+  void onPressedForgotPassword() {
+    context.navigatePush(AFSIForgotPasswordScreen.navigatePush());    
   }
 }
 
@@ -124,9 +129,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
         text: AFSIWidgetID.editEmail,
       ),
       keyboardType: TextInputType.emailAddress,
-      onChanged: (value) {
-        spi.onEditEmail(value);
-      }
+      onChanged: spi.onChangedEmail
     )));
     rows.add(t.childMargin(
       margin: t.marginPassword,
@@ -141,16 +144,15 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
           text: AFSIWidgetID.editPassword,
         ),
         obscureText: true,
-        onChanged: (value) {
-          spi.onEditPassword(value);
-        }
+        onChanged: spi.onChangedPassword
     )));
     final rememberSigninCheck = t.childCheckRememberSignin(
       buildContext: context.c,
       checked: context.p.rememberMe,
       onChanged: (newVal) {
-        final revised = context.p.copyWith(rememberMe: newVal);
-        spi.updateRouteParam(revised);
+        if(newVal != null) {
+          spi.onChangedRememberMe(checked: newVal);
+        }
       }
     );
     if(rememberSigninCheck != null) {
@@ -162,25 +164,19 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,
       text: AFSIWidgetID.buttonLogin,
-      onPressed: () {
-        spi.onTapSignin();
-      },
+      onPressed: spi.onPressedSignin
     ));
     
     rows.add(t.childButtonSecondarySignin(
       wid: AFSIWidgetID.buttonSignup,
       text: AFSIWidgetID.buttonSignup,
-      onPressed: () {
-        spi.onTapRegister();
-      },
+      onPressed: spi.onPressedRegister
     ));
 
     rows.add(t.childButtonSecondarySignin( 
       wid: AFSIWidgetID.buttonForgotPassword,
       text: AFSIWidgetID.buttonForgotPassword,
-      onPressed: () {
-        spi.onTapForgotPassword();
-      },
+      onPressed: spi.onPressedForgotPassword
     ));
   }
 }

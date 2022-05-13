@@ -12,10 +12,14 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
     );
   }
 
-  void onTapRegister() {
-    updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
-    final lpi = createLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+  void onPressedRegister() {
+    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
+    final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onSignup(context.p.email, context.p.password);
+  }
+
+  void onChangedShowPassword({ required bool show }) {
+     context.updateRouteParam(context.p.copyWith(showPassword: show));
   }
 }
 
@@ -79,7 +83,7 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       ),
       keyboardType: TextInputType.emailAddress,
       onChanged: (value) {
-        spi.onEditEmail(value);
+        spi.onChangedEmail(value);
       }
     )));
     rows.add(t.childMargin(
@@ -95,14 +99,14 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
         ),
         obscureText: !context.p.showPassword,
         onChanged: (value) {
-          spi.onEditPassword(value);
+          spi.onChangedPassword(value);
         }
     )));
     rows.add(t.childShowPasswordCheck(
       context,
       showPassword: context.p.showPassword,
       onChanged: (val) {
-        spi.updateRouteParam(context.p.copyWith(showPassword: val));
+        spi.onChangedShowPassword(show: val);
       }
     ));
 
@@ -112,7 +116,7 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       wid: AFSIWidgetID.buttonRegister,
       text: AFSIWidgetID.buttonRegister,
       onPressed: () {
-        spi.onTapRegister();
+        spi.onPressedRegister();
       },
     ));
 
@@ -120,7 +124,7 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       wid: AFUIWidgetID.buttonBack,
       text: AFSITranslationID.backToSignin,
       onPressed: () {
-        spi.navigatePop();
+        spi.onPressedStandardBackButton();
       },
     ));
 

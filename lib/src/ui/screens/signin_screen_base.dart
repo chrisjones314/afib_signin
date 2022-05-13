@@ -127,15 +127,15 @@ class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRout
   }
 
   //--------------------------------------------------------------------------------------
-  void onEditEmail(String email) {
-    updateTextField(AFSIWidgetID.editEmail, email);
-    updateRouteParam(context.p.copyWith(email: email));
+  void onChangedEmail(String email) {
+    context.updateTextField(AFSIWidgetID.editEmail, email);
+    context.updateRouteParam(context.p.copyWith(email: email));
   }
 
   //--------------------------------------------------------------------------------------
-  void onEditPassword(String password) {
-    updateTextField(AFSIWidgetID.editPassword, password);
-    updateRouteParam(context.p.copyWith(password: password));    
+  void onChangedPassword(String password) {
+    context.updateTextField(AFSIWidgetID.editPassword, password);
+    context.updateRouteParam(context.p.copyWith(password: password));    
   }
 }
 
