@@ -44,7 +44,7 @@ class AFSITranslationID extends AFTranslationID {
 }
 
 class AFSIScreenTestID extends AFScreenTestID {
-  const AFSIScreenTestID(String code, { List<String>? tags }): super(code, AFSILibraryID.id, tags: tags); 
+  const AFSIScreenTestID(String code, { List<String>? tags }): super(code, AFSILibraryID.id); 
 
   /// Fills in the username and password, and clicks "Sign In"
   /// 
@@ -62,7 +62,7 @@ class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID 
 
 
 class AFSIPrototypeID extends AFPrototypeID {
-  const AFSIPrototypeID(String code, { List<String>? tags }): super(code, AFSILibraryID.id, tags: tags); 
+  const AFSIPrototypeID(String code, { List<String>? tags }): super(code, AFSILibraryID.id); 
 
   static const signinWithError = AFSIPrototypeID("signin_with_error", tags: signinTag);
   static const signup = AFSIPrototypeID("signup", tags: signinTag);
@@ -74,8 +74,7 @@ class AFSITestDataID {
 }
 
 class AFSIThemeID extends AFThemeID {
- const AFSIThemeID(String code, String tag): super(code, AFSILibraryID.id, tag);   
+ const AFSIThemeID(String code): super(code, AFSILibraryID.id);   
 
-  static const tagAFSITheme = "afsi";
-  static const defaultTheme = AFSIThemeID("default", tagAFSITheme);
+  static const defaultTheme = AFSIThemeID("default");
 }
