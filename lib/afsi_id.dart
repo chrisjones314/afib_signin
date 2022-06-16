@@ -8,22 +8,22 @@ class AFSILibraryID {
 class AFSIScreenID extends AFScreenID {
   const AFSIScreenID(String code) : super(code, AFSILibraryID.id);
   static const signup = AFSIScreenID("signup");
-  static const forgotPassword = AFSIScreenID("forgot_password");
+  static const forgotPassword = AFSIScreenID("forgotPassword");
   static const signin = AFSIScreenID("signin");
 }
 
 class AFSIWidgetID extends AFWidgetID {
   const AFSIWidgetID(String code) : super(code, AFSILibraryID.id);
 
-  static const showPasswordCheck = AFSIWidgetID("show_password_check");
-  static const buttonRegister = AFSIWidgetID("button_register");
-  static const buttonResetPassword = AFSIWidgetID("button_reset_password");
-  static const buttonLogin = AFSIWidgetID("button_login");
-  static const buttonForgotPassword = AFSIWidgetID("button_forgot_password");
-  static const buttonSignup = AFSIWidgetID("button_signup");
-  static const editEmail = AFSIWidgetID("edit_email");
-  static const editPassword = AFSIWidgetID("edit_password");
-  static const loginErrorText = AFSIWidgetID("login_error_text");
+  static const showPasswordCheck = AFSIWidgetID("showPasswordCheck");
+  static const buttonRegister = AFSIWidgetID("buttonRegister");
+  static const buttonResetPassword = AFSIWidgetID("buttonResetPassword");
+  static const buttonLogin = AFSIWidgetID("buttonLogin");
+  static const buttonForgotPassword = AFSIWidgetID("buttonForgotPassword");
+  static const buttonSignup = AFSIWidgetID("buttonSignup");
+  static const editEmail = AFSIWidgetID("editEmail");
+  static const editPassword = AFSIWidgetID("editPassword");
+  static const loginErrorText = AFSIWidgetID("loginErrorText");
 }
 
 const signinTag = ["signin"];
@@ -35,12 +35,12 @@ class AFSIStateTestID {
 class AFSITranslationID extends AFTranslationID {
   const AFSITranslationID(String code) : super(code, AFSILibraryID.id);
 
-  static const titleForgotPassword = AFSITranslationID("title_forgot_password");
-  static const titleSignup = AFSITranslationID("title_signup");
-  static const backToSignin = AFSITranslationID("back_to_signin");
-  static const messageSigningIn = AFSITranslationID("message_signing_in");
-  static const messageResettingPassword = AFSITranslationID("message_resetting_password");
-  static const messageSigningUp = AFSITranslationID("message_signing_up");
+  static const titleForgotPassword = AFSITranslationID("titleForgotPassword");
+  static const titleSignup = AFSITranslationID("titleSignup");
+  static const backToSignin = AFSITranslationID("backToSignin");
+  static const messageSigningIn = AFSITranslationID("messageSigningIn");
+  static const messageResettingPassword = AFSITranslationID("messageResettingPassword");
+  static const messageSigningUp = AFSITranslationID("messageSigningUp");
 }
 
 class AFSIScreenTestID extends AFScreenTestID {
@@ -50,24 +50,24 @@ class AFSIScreenTestID extends AFScreenTestID {
   /// 
   /// The username and password should be supplied as param1 and param2 to 
   /// [AFWorkflowTestExecute.runScreenTest].
-  static const signupScreen = AFSIScreenTestID("signup_screen");
-  static const forgotPasswordSubmit = AFSIScreenTestID("forgot_password_submit");
-  static const signinScreenLogin = AFSIScreenTestID("signin_screen_login");
+  static const signupScreen = AFSIScreenTestID("signupScreen");
+  static const forgotPasswordSubmit = AFSIScreenTestID("forgotPasswordSubmit");
+  static const signinScreenLogin = AFSIScreenTestID("signinScreenLogin");
 }
 
 class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID {
   const AFSILibraryProgrammingInterfaceID(String code): super(code, AFSILibraryID.id); 
-  static const signinActions = AFSILibraryProgrammingInterfaceID("signin_actions");
+  static const signinActions = AFSILibraryProgrammingInterfaceID("signinActions");
 }
 
 
 class AFSIPrototypeID extends AFPrototypeID {
-  const AFSIPrototypeID(String code, { List<String>? tags }): super(code, AFSILibraryID.id); 
+  const AFSIPrototypeID(String code): super(code, AFSILibraryID.id); 
 
-  static const signinWithError = AFSIPrototypeID("signin_with_error", tags: signinTag);
-  static const signup = AFSIPrototypeID("signup", tags: signinTag);
-  static const signin = AFSIPrototypeID("signin", tags: signinTag);
-  static const forgotPassword = AFSIPrototypeID("forgot_password", tags: signinTag);
+  static const signinWithError = AFSIPrototypeID("signinWithError");
+  static const signup = AFSIPrototypeID("signup");
+  static const signin = AFSIPrototypeID("signin");
+  static const forgotPassword = AFSIPrototypeID("forgotPassword");
 }
 
 class AFSITestDataID {  
@@ -76,5 +76,5 @@ class AFSITestDataID {
 class AFSIThemeID extends AFThemeID {
  const AFSIThemeID(String code): super(code, AFSILibraryID.id);   
 
-  static const defaultTheme = AFSIThemeID("default");
+  static const defaultTheme = AFSIThemeID("defaultTheme");
 }
