@@ -16,7 +16,7 @@ void main() async {
     testWidgets('Afib Test', (tester) async {
       final paramsD = createDartParams();
       await afTestWidgetStartup(paramsD, tester, () async {
-        await afTestMainUILibrary<AFComponentStateUnused>(
+        await afTestMainUILibrary(
           id: AFSILibraryID.id, 
           extendBase: extendBase, 
           extendBaseLibrary: extendBaseLibrary, 
