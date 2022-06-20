@@ -52,7 +52,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady() {
     return AFNavigatePushAction(
-      routeParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin),
+      param: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin),
     );
   }
 

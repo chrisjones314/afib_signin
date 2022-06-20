@@ -21,4 +21,8 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
   void onSignup(String email, String password) {
     context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.onSignup");
   }
+
+  void on2Fa(String token) {
+    context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.on2Fa");
+  }
 }

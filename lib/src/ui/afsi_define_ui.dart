@@ -7,6 +7,7 @@ import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 
+import 'package:afib_signin/src/state/lpis/afsi_manipulate_state_lpi.dart';
 
 void defineUI(AFUIDefinitionContext context) {
   defineFunctionalThemes(context);
@@ -20,6 +21,7 @@ void defineFunctionalThemes(AFUIDefinitionContext context) {
 }
 
 void defineLibraryProgrammingInterfaces(AFUIDefinitionContext context) {
+  context.defineLPI(AFSILibraryProgrammingInterfaceID.manipulateState, createLPI: AFSIManipulateStateLPI.create);
   context.defineLPI(AFSILibraryProgrammingInterfaceID.signinActions, createLPI: AFSISigninActionsLPI.create);
 }
 

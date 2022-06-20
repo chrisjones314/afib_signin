@@ -56,6 +56,7 @@ class AFSIScreenTestID extends AFScreenTestID {
 }
 
 class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID {
+  static const manipulateState = AFSILibraryProgrammingInterfaceID("manipulateState");
   const AFSILibraryProgrammingInterfaceID(String code): super(code, AFSILibraryID.id); 
   static const signinActions = AFSILibraryProgrammingInterfaceID("signinActions");
 }
