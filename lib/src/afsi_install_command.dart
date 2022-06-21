@@ -5,7 +5,7 @@ import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/initialization/install/install_base.dart';
 import 'package:afib_signin/src/initialization/install/install_command.dart';
 
-void afsiInstallCommand(AFCommandUILibraryExtensionContext definitions) {
+void afsiInstallCommand(AFCommandLibraryExtensionContext definitions) {
   installCommand(definitions);
 }
 

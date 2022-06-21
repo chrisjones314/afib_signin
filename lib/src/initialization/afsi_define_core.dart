@@ -35,7 +35,7 @@ void defineScreens(AFCoreDefinitionContext context) {
   context.defineScreen(AFSIScreenID.signup, (_) => AFSIRegisterScreen());
 }  
 
-void defineFundamentalThemeArea(AFFundamentalDeviceTheme device, AFComponentStates appState, AFUILibraryFundamentalThemeAreaBuilder primary) {
+void defineFundamentalTheme(AFFundamentalDeviceTheme device, AFComponentStates appState, AFUILibraryFundamentalThemeAreaBuilder primary) {
  
   primary.setTranslations(AFUILocaleID.englishUS, {
     AFSIWidgetID.buttonForgotPassword: "Forgot Password",

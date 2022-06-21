@@ -13,7 +13,7 @@ void main(List<String> args) {
     final argsFull = AFArgs(args);
 
   // execute the command.
-    await afUILibraryCommandMain(
+    await afLibraryCommandMain(
       paramsDart: paramsD, 
       args: argsFull, 
       installBase: installBase, 
