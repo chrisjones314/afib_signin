@@ -9,27 +9,27 @@ import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 
 import 'package:afib_signin/src/state/lpis/afsi_manipulate_state_lpi.dart';
 
-void defineUI(AFUIDefinitionContext context) {
+void defineCore(AFCoreDefinitionContext context) {
   defineFunctionalThemes(context);
   defineLibraryProgrammingInterfaces(context);
   defineScreens(context);
   defineSPIOverrides(context);
 }
 
-void defineFunctionalThemes(AFUIDefinitionContext context) {
+void defineFunctionalThemes(AFCoreDefinitionContext context) {
   context.defineTheme(AFSIThemeID.defaultTheme, createTheme: AFSIDefaultTheme.create);
 }
 
-void defineLibraryProgrammingInterfaces(AFUIDefinitionContext context) {
+void defineLibraryProgrammingInterfaces(AFCoreDefinitionContext context) {
   context.defineLPI(AFSILibraryProgrammingInterfaceID.manipulateState, createLPI: AFSIManipulateStateLPI.create);
   context.defineLPI(AFSILibraryProgrammingInterfaceID.signinActions, createLPI: AFSISigninActionsLPI.create);
 }
 
-void defineSPIOverrides(AFUIDefinitionContext context) {
+void defineSPIOverrides(AFCoreDefinitionContext context) {
 
 }
 
-void defineScreens(AFUIDefinitionContext context) {
+void defineScreens(AFCoreDefinitionContext context) {
   context.defineScreen(AFSIScreenID.signin,           (_) => AFSISigninScreen());
   context.defineScreen(AFSIScreenID.forgotPassword, (_) => AFSIForgotPasswordScreen());
   context.defineScreen(AFSIScreenID.signup, (_) => AFSIRegisterScreen());

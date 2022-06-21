@@ -7,9 +7,9 @@ import 'package:afib_signin/src/test/test_data.dart';
 import 'package:afib_signin/src/test/unit_tests.dart';
 import 'package:afib_signin/src/test/workflow_tests.dart';
 
-void extendTest(AFTestExtensionContext extend) {
+void installTest(AFTestExtensionContext extend) {
 
-    extend.initializeTestFundamentals(
+    extend.installTests(
       defineTestData: initTestData,
       defineUnitTests: initUnitTests,
       defineStateTests: initStateTests,

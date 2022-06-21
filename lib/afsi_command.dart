@@ -1,3 +1,3 @@
 library afib_afsi;
 
-export 'src/af_install_afsi_command.dart';
+export 'src/afsi_install_command.dart';

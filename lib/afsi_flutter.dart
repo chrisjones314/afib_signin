@@ -1,7 +1,7 @@
 library afib_afsi;
 
 export 'afsi_id.dart';
-export 'src/af_install_afsi.dart';
+export 'src/afsi_install_core.dart';
 export 'src/ui/themes/afsi_default_theme.dart';
 export 'src/ui/screens/signin_screen.dart';
 export 'src/ui/screens/register_screen.dart';
