@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AFSIDefaultTheme extends AFFunctionalTheme {
-  AFSIDefaultTheme(AFThemeID id, AFFundamentalThemeState fundamentals): super(id, fundamentals);
+  AFSIDefaultTheme(AFThemeID id, AFFundamentalThemeState fundamentals, AFBuildContext context): super(id, fundamentals, context);
 
-  factory AFSIDefaultTheme.create(AFThemeID id, AFFundamentalThemeState fundamentals) {
-    return AFSIDefaultTheme(id, fundamentals);
+  factory AFSIDefaultTheme.create(AFThemeID id, AFFundamentalThemeState fundamentals, AFBuildContext context) {
+    return AFSIDefaultTheme(id, fundamentals, context);
   }
 
   //--------------------------------------------------------------------------------------
