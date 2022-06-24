@@ -25,4 +25,9 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
   void on2Fa(String token) {
     context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.on2Fa");
   }
+
+  void onSignout() {
+    context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.on2Fa");
+  }
+  
 }
