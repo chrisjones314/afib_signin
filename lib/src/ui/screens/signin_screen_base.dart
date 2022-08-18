@@ -13,7 +13,7 @@ enum AFSISigninStatus {
   readyEmphasis,
 }
 
-class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
+class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
   final AFSISigninStatus status;
   final String statusMessage; 
   final bool showPassword;
@@ -31,7 +31,7 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
     required AFFlutterRouteParamState flutterState,
     required this.showPassword,
     required this.rememberMe,
-  }): super(id: id, flutterState: flutterState);
+  }): super(screenId: id, flutterState: flutterState);
 
   SigninScreenRouteParam copyWith({
     AFSISigninStatus? status,
@@ -43,12 +43,12 @@ class SigninScreenRouteParam extends AFRouteParamWithFlutterState {
   }) {
 
     return SigninScreenRouteParam(
-      id: this.id,
+      id: this.screenId,
       statusMessage: statusMessage ?? this.statusMessage,
       status: status ?? this.status,
       email: email ?? this.email,
       password: password ?? this.password,
-      flutterState: this.flutterState,
+      flutterState: this.flutterStateGuaranteed,
       showPassword: showPassword ?? this.showPassword,
       rememberMe: rememberMe ?? this.rememberMe,
     );

@@ -38,11 +38,11 @@ abstract class AFSIScreenConfig<TSPI extends AFScreenStateProgrammingInterface, 
   AFSIScreenConfig({
     required AFCreateStateViewDelegate<TStateView> stateViewCreator,
     required AFCreateScreenSPIDelegate<TSPI, AFBuildContext<TStateView, TRouteParam>, AFSIDefaultTheme> spiCreator,
-    AFNavigateRoute? route,
+    AFRouteLocation? route,
   }): super(
     themeId: AFSIThemeID.defaultTheme,
     stateViewCreator: stateViewCreator,
     spiCreator: spiCreator,
-    route: route ?? AFNavigateRoute.routeHierarchy,
+    route: route ?? AFRouteLocation.routeHierarchy,
   );
 }
