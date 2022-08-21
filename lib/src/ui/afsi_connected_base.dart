@@ -43,6 +43,6 @@ abstract class AFSIScreenConfig<TSPI extends AFScreenStateProgrammingInterface, 
     themeId: AFSIThemeID.defaultTheme,
     stateViewCreator: stateViewCreator,
     spiCreator: spiCreator,
-    route: route ?? AFRouteLocation.routeHierarchy,
+    route: route ?? AFRouteLocation.screenHierarchy,
   );
 }
