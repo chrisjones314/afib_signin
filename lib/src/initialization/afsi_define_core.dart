@@ -30,9 +30,9 @@ void defineSPIOverrides(AFCoreDefinitionContext context) {
 }
 
 void defineScreens(AFCoreDefinitionContext context) {
-  context.defineScreen(AFSIScreenID.signin,           (_) => AFSISigninScreen());
-  context.defineScreen(AFSIScreenID.forgotPassword, (_) => AFSIForgotPasswordScreen());
-  context.defineScreen(AFSIScreenID.signup, (_) => AFSIRegisterScreen());
+  context.defineScreen(AFSIScreenID.signin,           (_) => AFSISigninScreen(), AFSISigninScreen.config);
+  context.defineScreen(AFSIScreenID.forgotPassword, (_) => AFSIForgotPasswordScreen(), AFSIForgotPasswordScreen.config);
+  context.defineScreen(AFSIScreenID.signup, (_) => AFSIRegisterScreen(), AFSIRegisterScreen.config);
 }  
 
 void defineFundamentalTheme(AFFundamentalDeviceTheme device, AFComponentStates appState, AFUILibraryFundamentalThemeAreaBuilder primary) {

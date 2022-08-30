@@ -19,9 +19,9 @@ class AFSIDefaultStateView extends AFSIFlexibleStateView {
 mixin AFSIDefaultStateViewMixin<TRouteParam extends AFRouteParam> {
 
   //--------------------------------------------------------------------------------------
-  Iterable<Object?> createStateModels(AFBuildStateViewContext<AFComponentStateUnused, TRouteParam> context) {
+  List<Object?> createStateModels(AFBuildStateViewContext<AFComponentStateUnused, TRouteParam> context) {
     final state = context.stateApp;
-    return state.allModels;
+    return state.allModels.toList();
   }
 }
 
