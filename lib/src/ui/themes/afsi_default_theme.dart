@@ -60,6 +60,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   Widget childStandardSigninScaffold({
     required AFStateProgrammingInterface spi,
     required Widget body,
+    required bool isLoading,
   }) {
     final context = spi.context;
     return childScaffold(
@@ -67,7 +68,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         drawer: drawerSignIn(context),
         bottomNavigationBar: bottomNavigationBarSignin(context),
         body: Container(
-          decoration: decorationSigninBackground(),
+          decoration: isLoading ? decorationSplashBackground() : decorationSigninBackground(),
           child: ConstrainedBox(
             constraints: BoxConstraints.expand(),
             child: Align(
@@ -81,6 +82,14 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         )
     );
   }
+
+  //--------------------------------------------------------------------------------------
+  BoxDecoration decorationSplashBackground() {
+    return BoxDecoration(
+      color: colorPrimary,
+    );
+  }
+
 
   //--------------------------------------------------------------------------------------
   BoxDecoration decorationSigninBackground() {

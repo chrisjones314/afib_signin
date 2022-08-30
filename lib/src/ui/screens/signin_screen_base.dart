@@ -54,6 +54,10 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     );
   }
 
+  bool get isLoading {
+    return status == AFSISigninStatus.loading;
+  }
+
   SigninScreenRouteParam reviseStatus({
     AFSISigninStatus? status, 
     String? message
@@ -127,6 +131,11 @@ class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRout
   }
 
   //--------------------------------------------------------------------------------------
+  bool get isLoading {
+    return context.p.isLoading;
+  }
+
+  //--------------------------------------------------------------------------------------
   void onChangedEmail(String email) {
     context.updateTextField(AFSIWidgetID.editEmail, email);
     context.updateRouteParam(context.p.copyWith(email: email));
@@ -153,7 +162,8 @@ abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, 
     final t = spi.t;
     return t.childStandardSigninScaffold(
       spi: spi,
-      body: mainControls
+      body: mainControls,
+      isLoading: spi.isLoading
     );
   }
 }

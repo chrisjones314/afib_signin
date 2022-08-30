@@ -76,11 +76,10 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
 
   //--------------------------------------------------------------------------------------
   Widget buildMainControls(AFSISigninScreenSPI spi) {
-    final context = spi.context;
     final t = spi.t;
     final widgets = t.column();
 
-    if (context.p.status == AFSISigninStatus.loading) {
+    if (spi.isLoading) {
       return _buildSignInWait(spi);
     } else {
       _loginScreen(spi, widgets);
