@@ -7,7 +7,7 @@ void initSignupScreenTests(AFUIPrototypeDefinitionContext definitions) {
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signup,
       navigate: AFSIRegisterScreen.navigatePush(),
-      models: null,
+      stateView: null,
     );
 
    // a test to be sure the correct widgets are present.
