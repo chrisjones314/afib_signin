@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 //--------------------------------------------------------------------------------------
 @immutable
 class AFSIRegisterScreenSPI extends SigninBaseSPI {
-  AFSIRegisterScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+  AFSIRegisterScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFStandardSPIData standard): super(context, standard);
   
-  factory AFSIRegisterScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
-    return AFSIRegisterScreenSPI(context, screenId, theme,
+  factory AFSIRegisterScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFStandardSPIData standard) {
+    return AFSIRegisterScreenSPI(context, standard,
     );
   }
 
@@ -38,7 +38,7 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush() {
     return AFNavigatePushAction(
-      param: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signup)
+      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signup)
     );
   }
 

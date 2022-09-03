@@ -3,17 +3,16 @@ import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/state/lpis/afsi_signin_actions_lpi.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
-import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 import 'package:flutter/material.dart';
 
 
 //--------------------------------------------------------------------------------------
 @immutable
 class AFSIForgotPasswordScreenSPI extends SigninBaseSPI {
-  AFSIForgotPasswordScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme, );
+  AFSIForgotPasswordScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFStandardSPIData standard): super(context, standard);
   
-  factory AFSIForgotPasswordScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
-    return AFSIForgotPasswordScreenSPI(context, screenId, theme,
+  factory AFSIForgotPasswordScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFStandardSPIData standard) {
+    return AFSIForgotPasswordScreenSPI(context, standard,
     );
   }
 
@@ -41,7 +40,7 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePush() {
     return AFNavigatePushAction(
-      param: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.forgotPassword)
+      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.forgotPassword)
     );
   }
 

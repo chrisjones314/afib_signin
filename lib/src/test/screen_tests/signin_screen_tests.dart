@@ -42,7 +42,7 @@ void _initErrorSigninScreen(AFUIPrototypeDefinitionContext definitions) {
 
   definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signinWithError,
-      navigate: AFNavigatePushAction(param: errorParam),
+      navigate: AFNavigatePushAction(launchParam: errorParam),
       models: null,
   );
 }

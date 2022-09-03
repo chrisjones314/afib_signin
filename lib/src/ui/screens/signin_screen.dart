@@ -5,15 +5,14 @@ import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
-import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
 import 'package:flutter/material.dart';
 
 @immutable
 class AFSISigninScreenSPI extends SigninBaseSPI {
-  AFSISigninScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFScreenID screenId, AFSIDefaultTheme theme): super(context, screenId, theme);
+  AFSISigninScreenSPI(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFStandardSPIData standard): super(context, standard);
   
-  factory AFSISigninScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFSIDefaultTheme theme, AFScreenID screenId, ) {
-    return AFSISigninScreenSPI(context, screenId, theme,
+  factory AFSISigninScreenSPI.create(AFBuildContext<AFSIDefaultStateView, SigninScreenRouteParam> context, AFStandardSPIData standard) {
+    return AFSISigninScreenSPI(context, standard,
     );
   }
 
@@ -52,7 +51,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady() {
     return AFNavigatePushAction(
-      param: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin),
+      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin),
     );
   }
 
@@ -61,7 +60,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
     required String email,
   }) {
     return AFNavigateReplaceAllAction(
-      param: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, email: email),
+      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, email: email),
     );
   }
 
