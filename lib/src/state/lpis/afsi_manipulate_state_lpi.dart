@@ -14,7 +14,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     required AFSISigninStatus status,
     String? message,
   }) {
-      final param = context.accessScreenRouteParam<SigninScreenRouteParam>(AFSIScreenID.signin);
+      final param = context.accessRouteParam<SigninScreenRouteParam>(AFRouteParamRef.forScreen(AFSIScreenID.signin));
       if(param != null) {
         final revised = param.reviseStatus(status: status, message: message);
         context.updateHierarchyRouteParam(revised);

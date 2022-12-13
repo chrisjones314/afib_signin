@@ -13,7 +13,7 @@ class CustomCommand extends AFCommand {
   final usage = "";
 
   @override
-  void execute(AFCommandContext ctx) {
+  Future<void> execute(AFCommandContext ctx) async {
     print("Executing afsi_custom command");
   }
 }
