@@ -1,9 +1,7 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/state/lpis/afsi_signin_actions_lpi.dart';
-import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
-import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
 import 'package:flutter/material.dart';
 
@@ -29,11 +27,14 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
   }
 
   void onPressedRegister() {
-    context.navigatePush(AFSIRegisterScreen.navigatePush());      
+    final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    lpi.onPressedSigninRegister(email: context.p.email);
   }
 
   void onPressedForgotPassword() {
-    context.navigatePush(AFSIForgotPasswordScreen.navigatePush());    
+    final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    lpi.onPressedSigninForgotPassword(email: context.p.email);
+
   }
 }
 
@@ -51,7 +52,14 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
   //--------------------------------------------------------------------------------------
   static AFNavigatePushAction navigatePushReady() {
     return AFNavigatePushAction(
-      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin),
+      launchParam: SigninScreenRouteParam.createReady(screenId: AFSIScreenID.signin),
+    );
+  }
+
+  //--------------------------------------------------------------------------------------
+  static AFNavigatePushAction navigatePushLoading() {
+    return AFNavigatePushAction(
+      launchParam: SigninScreenRouteParam.createLoading(screenId: AFSIScreenID.signin),
     );
   }
 
@@ -60,7 +68,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
     required String email,
   }) {
     return AFNavigateReplaceAllAction(
-      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin, email: email),
+      launchParam: SigninScreenRouteParam.createReady(screenId: AFSIScreenID.signin, email: email),
     );
   }
 

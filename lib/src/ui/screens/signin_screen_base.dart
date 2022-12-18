@@ -60,12 +60,17 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
 
   SigninScreenRouteParam reviseStatus({
     AFSISigninStatus? status, 
-    String? message
+    String? message,
+    String? email,
   }) {
-    return copyWith(status: status, statusMessage: message);
+    return copyWith(status: status, statusMessage: message, email: email);
   }
 
-  factory SigninScreenRouteParam.createLoadingOncePerScreen({
+  factory SigninScreenRouteParam.createSigninLoading() {
+    return SigninScreenRouteParam.createLoading(screenId: AFSIScreenID.signin);
+  }
+ 
+  factory SigninScreenRouteParam.createLoading({
     required AFScreenID screenId,
   }) {
     final flutterState = _createInitialFlutterState();
@@ -81,7 +86,7 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     );
   }
 
-  factory SigninScreenRouteParam.createReadyOncePerScreen({
+  factory SigninScreenRouteParam.createReady({
     required AFScreenID screenId,
     String? email
   }) {

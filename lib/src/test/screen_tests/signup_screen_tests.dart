@@ -6,7 +6,7 @@ void initSignupScreenTests(AFUIPrototypeDefinitionContext definitions) {
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.signup,
-      navigate: AFSIRegisterScreen.navigatePush(),
+      navigate: AFSIRegisterScreen.navigatePush(email: ""),
       stateView: null,
     );
 

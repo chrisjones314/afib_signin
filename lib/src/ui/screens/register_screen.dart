@@ -36,9 +36,9 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
   AFSIRegisterScreen(): super(screenId: AFSIScreenID.signup, config: config);
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush() {
+  static AFNavigatePushAction navigatePush({ required String email }) {
     return AFNavigatePushAction(
-      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signup)
+      launchParam: SigninScreenRouteParam.createReady(screenId: AFSIScreenID.signup, email: email)
     );
   }
 

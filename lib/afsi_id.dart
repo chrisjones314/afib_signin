@@ -65,6 +65,7 @@ class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID 
 class AFSIPrototypeID extends AFPrototypeID {
   const AFSIPrototypeID(String code): super(code, AFSILibraryID.id); 
 
+  static const signinLoading = AFSIPrototypeID("signinLoading");
   static const signinWithError = AFSIPrototypeID("signinWithError");
   static const signup = AFSIPrototypeID("signup");
   static const signin = AFSIPrototypeID("signin");

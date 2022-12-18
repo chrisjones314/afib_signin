@@ -1,6 +1,8 @@
 
 
 import 'package:afib/afib_flutter.dart';
+import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
+import 'package:afib_signin/src/ui/screens/register_screen.dart';
 
 class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
 
@@ -8,6 +10,14 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
 
   factory AFSISigninActionsLPI.create(AFLibraryProgrammingInterfaceID id, AFLibraryProgrammingInterfaceContext context) {
     return AFSISigninActionsLPI(id, context);
+  }
+
+  void onPressedSigninRegister({ required String email }) {
+    context.navigatePush(AFSIRegisterScreen.navigatePush(email: email));          
+  }
+
+  void onPressedSigninForgotPassword({ required String email }) {
+    context.navigatePush(AFSIForgotPasswordScreen.navigatePush(email: email));    
   }
   
   void onSignin(String email, String password, { required bool rememberMe }) {

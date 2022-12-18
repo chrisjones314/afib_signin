@@ -6,7 +6,7 @@ void initForgotPasswordScreenTests(AFUIPrototypeDefinitionContext definitions) {
   // the welcome screen with login choice.
   var prototype = definitions.defineScreenPrototype(
       id: AFSIPrototypeID.forgotPassword,
-      navigate: AFSIForgotPasswordScreen.navigatePush(),
+      navigate: AFSIForgotPasswordScreen.navigatePush(email: ""),
       stateView: null
     );
 

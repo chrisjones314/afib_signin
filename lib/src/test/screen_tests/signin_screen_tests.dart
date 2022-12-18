@@ -6,7 +6,7 @@ import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 void initSigninScreenTests(AFUIPrototypeDefinitionContext definitions) {
   _initStandardSigninScreen(definitions);
   _initErrorSigninScreen(definitions);
-
+  _initStandardSigninScreenLoading(definitions);
 }
 
 void _initStandardSigninScreen(AFUIPrototypeDefinitionContext definitions) {
@@ -37,7 +37,7 @@ void _initStandardSigninScreen(AFUIPrototypeDefinitionContext definitions) {
 
 void _initErrorSigninScreen(AFUIPrototypeDefinitionContext definitions) {
   // the welcome screen with login choice.
-  final initialParam = SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.signin);
+  final initialParam = SigninScreenRouteParam.createReady(screenId: AFSIScreenID.signin);
   final errorParam = initialParam.reviseStatus(status: AFSISigninStatus.error, message: "For example: Your username or password did not match our records.");
 
   definitions.defineScreenPrototype(
@@ -45,4 +45,14 @@ void _initErrorSigninScreen(AFUIPrototypeDefinitionContext definitions) {
       navigate: AFNavigatePushAction(launchParam: errorParam),
       stateView: null,
   );
+}
+
+void _initStandardSigninScreenLoading(AFUIPrototypeDefinitionContext definitions) {
+
+  definitions.defineScreenPrototype(
+    id: AFSIPrototypeID.signinLoading,
+    navigate: AFSISigninScreen.navigatePushLoading(),
+    stateView: null,
+  );
+
 }

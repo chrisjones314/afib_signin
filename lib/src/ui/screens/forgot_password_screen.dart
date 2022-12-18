@@ -38,9 +38,9 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
   );
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush() {
+  static AFNavigatePushAction navigatePush({ required String email }) {
     return AFNavigatePushAction(
-      launchParam: SigninScreenRouteParam.createReadyOncePerScreen(screenId: AFSIScreenID.forgotPassword)
+      launchParam: SigninScreenRouteParam.createReady(screenId: AFSIScreenID.forgotPassword, email: email)
     );
   }
 
