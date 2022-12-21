@@ -41,6 +41,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         style: styleOnPrimary.bodyText2,
         expectedText: email,
         parentParam: parentParam,
+        autocorrect: false,
         decoration: decorationTextInput(
           text: wid,
         ),
@@ -69,6 +70,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
           text: wid,
         ),
         obscureText: !showPassword,
+        autocorrect: false,
         onChanged: onChangedPassword
       )
     );

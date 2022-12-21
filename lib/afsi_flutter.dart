@@ -11,3 +11,4 @@ export 'src/ui/afsi_connected_base.dart';
 export 'src/state/stateviews/afsi_default_state_view.dart';
 export 'src/state/lpis/afsi_signin_actions_lpi.dart';
 export 'src/state/lpis/afsi_manipulate_state_lpi.dart';
+export 'src/test/afsi_state_test_shortcuts.dart';

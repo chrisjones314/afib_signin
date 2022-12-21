@@ -7,7 +7,7 @@ class AFSILibraryID {
 
 class AFSIScreenID extends AFScreenID {
   const AFSIScreenID(String code) : super(code, AFSILibraryID.id);
-  static const signup = AFSIScreenID("signup");
+  static const register = AFSIScreenID("register");
   static const forgotPassword = AFSIScreenID("forgotPassword");
   static const signin = AFSIScreenID("signin");
 }
