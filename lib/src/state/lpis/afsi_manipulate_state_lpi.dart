@@ -1,5 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 
 class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
@@ -21,5 +22,11 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
         context.updateHierarchyRouteParam(revised);
       }
 
+  }
+
+  void navigateToSigninScreen({
+    required String? initialEmail,
+  }) {
+    context.dispatch(AFSISigninScreen.navigateAfterSignout(email: initialEmail ?? ""));
   }
 }

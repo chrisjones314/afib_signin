@@ -11,18 +11,14 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     return AFSIDefaultTheme(id, fundamentals, context);
   }
 
-  //--------------------------------------------------------------------------------------
   Widget childSplashScreenTitle({dynamic text}) {
     return childText(text, style: styleOnPrimary.headline4, textAlign: TextAlign.center);
   }
 
-  //--------------------------------------------------------------------------------------
   EdgeInsets get marginScreen {
     return EdgeInsets.only(top: 30);
   }
 
-
-  //--------------------------------------------------------------------------------------
   double get maxWidthSigninControls {
     return 350.0;
   }
@@ -31,7 +27,60 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     return colorOnPrimary;
   }
 
-  //--------------------------------------------------------------------------------------
+  Widget childEditEmailField({
+    required AFWidgetID wid,
+    required String email,
+    required SigninScreenRouteParam parentParam,
+    required ValueChanged<String> onChangedEmail,
+  }) {
+    return childMargin(
+      margin: marginEmail,
+      child: childTextField(
+        screenId: context.screenId,
+        wid: wid,
+        style: styleOnPrimary.bodyText2,
+        expectedText: email,
+        parentParam: parentParam,
+        decoration: decorationTextInput(
+          text: wid,
+        ),
+        keyboardType: TextInputType.emailAddress,
+        onChanged: onChangedEmail
+      )
+    );
+  }
+
+  Widget childEditPasswordField({
+    required AFWidgetID wid,
+    required String password,
+    required bool showPassword,
+    required SigninScreenRouteParam parentParam,
+    required ValueChanged<String> onChangedPassword,
+  }) {
+    return childMargin(
+      margin: marginPassword,
+      child: childTextField(
+        screenId: context.screenId,
+        wid: wid,
+        parentParam: parentParam,
+        expectedText: password,
+        style: styleOnPrimary.bodyText2,
+        decoration: decorationTextInput(
+          text: wid,
+        ),
+        obscureText: !showPassword,
+        onChanged: onChangedPassword
+      )
+    );
+  }
+
+  Widget? childExtraInputs({
+    required SigninScreenRouteParam parentParam,
+  }) {
+    return null;
+  }
+
+
   Widget? childCheckRememberSignin({ 
     required BuildContext buildContext, 
     required bool checked, 

@@ -70,38 +70,24 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
     final t = spi.t;
 
     rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleSignup));
-    rows.add(t.childMargin(
-      margin: t.marginEmail,
-      child: t.childTextField(
-        screenId: screenId,
-      wid: AFSIWidgetID.editEmail,
-      style: t.styleOnPrimary.bodyText2,
-      expectedText: context.p.email,
-      parentParam: context.p,
-      decoration: t.decorationTextInput(
-        text: AFSIWidgetID.editEmail
-      ),
-      keyboardType: TextInputType.emailAddress,
-      onChanged: (value) {
-        spi.onChangedEmail(value);
-      }
-    )));
-    rows.add(t.childMargin(
-      margin: t.marginPassword,
-      child: t.childTextField(
-        screenId: screenId,
+
+    rows.add(t.childEditEmailField(
+        wid: AFSIWidgetID.editEmail,
+        parentParam: context.p,
+        email: context.p.email,
+        onChangedEmail: spi.onChangedEmail
+      )
+    );
+
+    rows.add(t.childEditPasswordField(
         wid: AFSIWidgetID.editPassword,
         parentParam: context.p,
-        expectedText: context.p.password,
-        style: t.styleOnPrimary.bodyText2,
-        decoration: t.decorationTextInput(
-          text: AFSIWidgetID.editPassword,
-        ),
-        obscureText: !context.p.showPassword,
-        onChanged: (value) {
-          spi.onChangedPassword(value);
-        }
-    )));
+        password: context.p.password,
+        showPassword: context.p.showPassword,
+        onChangedPassword: spi.onChangedPassword
+      )
+    );
+    
     rows.add(t.childShowPasswordCheck(
       context,
       showPassword: context.p.showPassword,
@@ -110,24 +96,26 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       }
     ));
 
+    final extraInputs = t.childExtraInputs(
+      parentParam: context.p
+    );
+    if(extraInputs != null) {
+      rows.add(extraInputs);
+    }
+
     rows.add(t.childStatusMessage(spi.t, context.p.status, context.p.statusMessage));
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonRegister,
       text: AFSIWidgetID.buttonRegister,
-      onPressed: () {
-        spi.onPressedRegister();
-      },
+      onPressed: spi.onPressedRegister
     ));
 
     rows.add(t.childButtonSecondarySignin(
       wid: AFUIWidgetID.buttonBack,
       text: AFSITranslationID.backToSignin,
-      onPressed: () {
-        spi.onPressedStandardBackButton();
-      },
+      onPressed: spi.onPressedStandardBackButton
     ));
-
   }
 }
 

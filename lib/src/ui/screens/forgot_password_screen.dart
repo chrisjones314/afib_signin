@@ -74,20 +74,20 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
 
     rows.add(t.childMargin(
       margin: t.marginEmail,
-      child: t.childTextField(
-      screenId: screenId,
-      wid: AFSIWidgetID.editEmail,
-      expectedText: context.p.email,
-      style: t.styleOnPrimary.bodyText2,
-      parentParam: spi.context.p,
-      decoration: t.decorationTextInput(
-        text: AFSIWidgetID.editEmail,
-      ),
-      keyboardType: TextInputType.emailAddress,
-      onChanged: (value) {
-        spi.onChangedEmail(value);
-      }
-    )));
+      child: t.childEditEmailField(
+        wid: AFSIWidgetID.editEmail,
+        parentParam: context.p,
+        email: context.p.email,
+        onChangedEmail: spi.onChangedEmail
+      )
+    ));
+
+    final extraInputs = t.childExtraInputs(
+      parentParam: context.p
+    );
+    if(extraInputs != null) {
+      rows.add(extraInputs);
+    }
 
     rows.add(t.childStatusMessage(spi.t, context.p.status, context.p.statusMessage));
     rows.add(t.childButtonPrimarySignin(

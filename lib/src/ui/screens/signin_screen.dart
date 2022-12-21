@@ -122,38 +122,27 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
     rows.add(
       t.childSplashScreenTitle(text: AFUITranslationID.appTitle)
     );
-    rows.add(t.childMargin(
-      margin: t.marginEmail,
-      child: t.childTextField(
-        screenId: screenId,
-      wid: AFSIWidgetID.editEmail,
-      style: t.styleOnPrimary.bodyText2,
-      expectedText: context.p.email,
-      cursorColor: t.colorCursor,
-      parentParam: spi.context.p,
-      decoration: t.decorationTextInput(
-        text: AFSIWidgetID.editEmail,
-      ),
-      keyboardType: TextInputType.emailAddress,
-      onChanged: spi.onChangedEmail
-    )));
-    rows.add(t.childMargin(
-      margin: t.marginPassword,
-      child: t.childTextField(
-        screenId: screenId,
+
+    rows.add(t.childEditEmailField(
+        wid: AFSIWidgetID.editEmail,
+        parentParam: context.p,
+        email: context.p.email,
+        onChangedEmail: spi.onChangedEmail
+      )
+    );
+
+    rows.add(t.childEditPasswordField(
         wid: AFSIWidgetID.editPassword,
-        parentParam: spi.context.p,
-        expectedText: context.p.password,
-        style: t.styleOnPrimary.bodyText2,
-        cursorColor: t.colorCursor,
-        decoration: t.decorationTextInput(
-          text: AFSIWidgetID.editPassword,
-        ),
-        obscureText: true,
-        onChanged: spi.onChangedPassword
-    )));
+        parentParam: context.p,
+        password: context.p.password,
+        showPassword: context.p.showPassword,
+        onChangedPassword: spi.onChangedPassword
+      )
+    );
+
     final rememberSigninCheck = t.childCheckRememberSignin(
       buildContext: context.c,
+    
       checked: context.p.rememberMe,
       onChanged: (newVal) {
         if(newVal != null) {
@@ -161,10 +150,18 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
         }
       }
     );
+
     if(rememberSigninCheck != null) {
       rows.add(rememberSigninCheck);
     }
     
+    final extraInputs = t.childExtraInputs(
+      parentParam: context.p
+    );
+    if(extraInputs != null) {
+      rows.add(extraInputs);
+    }
+
     rows.add(t.childStatusMessage(spi.t, context.p.status, context.p.statusMessage));
 
     rows.add(t.childButtonPrimarySignin(
