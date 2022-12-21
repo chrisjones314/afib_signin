@@ -1,6 +1,7 @@
 
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 
@@ -16,4 +17,7 @@ class AFSIStateTestShortcuts {
     return testContext.createScreenShortcut<AFSIRegisterScreenSPI>(AFSIScreenID.register);
   }
 
+  AFStateTestScreenShortcut<AFSIForgotPasswordScreenSPI> createForgotPasswordScreen() {
+    return testContext.createScreenShortcut<AFSIForgotPasswordScreenSPI>(AFSIScreenID.forgotPassword);
+  }
 }
