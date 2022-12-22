@@ -200,7 +200,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     }
     
     final ButtonStyle outlineButtonStyle = OutlinedButton.styleFrom(
-      primary: cop,
+      foregroundColor: cop,
       side: BorderSide(color: cop),
       //highlightedBorderColor: cop,
       shape: RoundedRectangleBorder(
