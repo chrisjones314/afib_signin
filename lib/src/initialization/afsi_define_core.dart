@@ -43,6 +43,7 @@ void defineFundamentalTheme(AFFundamentalDeviceTheme device, AFComponentStates a
     AFSIWidgetID.buttonSignup: "Sign Up",
     AFSIWidgetID.editEmail: "Email",
     AFSIWidgetID.editPassword: "Password",
+    AFSIWidgetID.editPasswordConfirm: "Confirm Password",
     AFSIWidgetID.buttonResetPassword: "RESET PASSWORD",
     AFSITranslationID.backToSignin: "Back to Sign In",
     AFSITranslationID.titleSignup: "Signup",

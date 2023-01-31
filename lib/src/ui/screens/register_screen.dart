@@ -15,6 +15,12 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
   void onPressedRegister() {
     context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    if(!lpi.isPasswordConfirmMatch(context.p.password, context.p.passwordConfirm)) {
+      final lpiManipulate = context.accessLPI<AFSIManipulateStateLPI>(AFSILibraryProgrammingInterfaceID.manipulateState);
+      lpiManipulate.updateRegisterScreenStatus(status: AFSISigninStatus.error, message: "Passwords do not match.");
+      return;
+    }
+
     lpi.onSignup(context.p.email, context.p.password);
   }
 
@@ -36,9 +42,9 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
   AFSIRegisterScreen(): super(screenId: AFSIScreenID.register, config: config);
 
   //--------------------------------------------------------------------------------------
-  static AFNavigatePushAction navigatePush({ required String email }) {
+  static AFNavigatePushAction navigatePush({ required String email, bool showPassword = false }) {
     return AFNavigatePushAction(
-      launchParam: SigninScreenRouteParam.createReady(screenId: AFSIScreenID.register, email: email)
+      launchParam: SigninScreenRouteParam.createReady(screenId: AFSIScreenID.register, email: email, showPassword: showPassword)
     );
   }
 
@@ -87,14 +93,15 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
         onChangedPassword: spi.onChangedPassword
       )
     );
-    
-    rows.add(t.childShowPasswordCheck(
-      context,
-      showPassword: context.p.showPassword,
-      onChanged: (val) {
-        spi.onChangedShowPassword(show: val);
-      }
-    ));
+
+    rows.add(t.childEditPasswordConfirmField(
+        wid: AFSIWidgetID.editPasswordConfirm,
+        parentParam: context.p,
+        password: context.p.passwordConfirm,
+        showPassword: context.p.showPassword,
+        onChangedPassword: spi.onChangedPasswordConfirm
+      )
+    );
 
     final extraInputs = t.childExtraInputs(
       parentParam: context.p

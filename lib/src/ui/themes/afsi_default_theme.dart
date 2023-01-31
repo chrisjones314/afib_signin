@@ -76,6 +76,31 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     );
   }
 
+  Widget childEditPasswordConfirmField({
+    required AFWidgetID wid,
+    required String password,
+    required bool showPassword,
+    required SigninScreenRouteParam parentParam,
+    required ValueChanged<String> onChangedPassword,
+  }) {
+    return childMargin(
+      margin: marginPassword,
+      child: childTextField(
+        screenId: context.screenId,
+        wid: wid,
+        parentParam: parentParam,
+        expectedText: password,
+        style: styleOnPrimary.bodyText2,
+        decoration: decorationTextInput(
+          text: wid,
+        ),
+        obscureText: !showPassword,
+        autocorrect: false,
+        onChanged: onChangedPassword
+      )
+    );
+  }
+
   Widget? childExtraInputs({
     required SigninScreenRouteParam parentParam,
   }) {

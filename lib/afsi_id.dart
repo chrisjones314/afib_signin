@@ -23,6 +23,7 @@ class AFSIWidgetID extends AFWidgetID {
   static const buttonSignup = AFSIWidgetID("buttonSignup");
   static const editEmail = AFSIWidgetID("editEmail");
   static const editPassword = AFSIWidgetID("editPassword");
+  static const editPasswordConfirm = AFSIWidgetID("editPasswordConfirm");
   static const loginErrorText = AFSIWidgetID("loginErrorText");
 }
 

@@ -40,4 +40,8 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
     context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.on2Fa");
   }
   
+  bool isPasswordConfirmMatch(String password, String confirm) {
+    return password.compareTo(confirm) == 0;
+  }
+
 }

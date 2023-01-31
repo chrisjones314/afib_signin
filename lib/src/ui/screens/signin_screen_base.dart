@@ -21,6 +21,7 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
 
   final String email;
   final String password;
+  final String passwordConfirm;
 
   SigninScreenRouteParam({
     required AFScreenID screenId,
@@ -28,6 +29,7 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     required this.status,
     required this.email,
     required this.password,
+    required this.passwordConfirm,
     required AFFlutterRouteParamState flutterState,
     required this.showPassword,
     required this.rememberMe,
@@ -38,6 +40,7 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     String? statusMessage,
     String? email,
     String? password,
+    String? passwordConfirm,
     bool? showPassword,
     bool? rememberMe,
   }) {
@@ -48,6 +51,7 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
       status: status ?? this.status,
       email: email ?? this.email,
       password: password ?? this.password,
+      passwordConfirm: passwordConfirm ?? this.passwordConfirm,
       flutterState: this.flutterStateGuaranteed,
       showPassword: showPassword ?? this.showPassword,
       rememberMe: rememberMe ?? this.rememberMe,
@@ -80,15 +84,17 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
       statusMessage: "",
       email: "",
       password: "",
+      passwordConfirm: "",
       flutterState: flutterState,
-      showPassword: true,
+      showPassword: false,
       rememberMe: false,
     );
   }
 
   factory SigninScreenRouteParam.createReady({
     required AFScreenID screenId,
-    String? email
+    String? email,
+    bool showPassword = false,
   }) {
     final flutterState = _createInitialFlutterState(email: email);
     
@@ -98,7 +104,8 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
       status: AFSISigninStatus.ready,
       email: email ?? "",
       password: "",
-      showPassword: false,
+      passwordConfirm: "",
+      showPassword: showPassword,
       flutterState: flutterState,
       rememberMe: false,
     );
@@ -119,6 +126,7 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     final controllers = AFTextEditingControllers.createN({
       AFSIWidgetID.editEmail: email ?? "",
       AFSIWidgetID.editPassword: "",
+      AFSIWidgetID.editPasswordConfirm: "",
     });
     return controllers;
   }
@@ -151,6 +159,13 @@ class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRout
     context.updateTextField(AFSIWidgetID.editPassword, password);
     context.updateRouteParam(context.p.copyWith(password: password));    
   }
+
+  //--------------------------------------------------------------------------------------
+  void onChangedPasswordConfirm(String password) {
+    context.updateTextField(AFSIWidgetID.editPasswordConfirm, password);
+    context.updateRouteParam(context.p.copyWith(passwordConfirm: password));    
+  }
+
 }
 
 abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, TRouteParam extends AFRouteParam> extends AFSIConnectedScreen<TSPI, AFSIDefaultStateView, TRouteParam> {

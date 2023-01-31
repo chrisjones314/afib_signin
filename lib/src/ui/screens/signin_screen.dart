@@ -14,6 +14,10 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
     );
   }
 
+  bool get showPassword {
+    return context.p.showPassword;
+  }
+
   void onChangedRememberMe({ required bool checked }) {
     final revised = context.p.copyWith(rememberMe: checked);
     context.updateRouteParam(revised);
@@ -35,6 +39,11 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onPressedSigninForgotPassword(email: context.p.email);
 
+  }
+
+  void onChangedShowPassword(bool checked) {
+    final revised = context.p.copyWith(showPassword: checked);
+    context.updateRouteParam(revised);
   }
 }
 
@@ -139,6 +148,16 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
         onChangedPassword: spi.onChangedPassword
       )
     );
+
+    final showPasswordCheck = t.childShowPasswordCheck(context, 
+      showPassword: spi.showPassword, 
+      onChanged: spi.onChangedShowPassword
+    );
+
+    if(showPasswordCheck != null) {
+      rows.add(showPasswordCheck);
+    }
+
 
     final rememberSigninCheck = t.childCheckRememberSignin(
       buildContext: context.c,
