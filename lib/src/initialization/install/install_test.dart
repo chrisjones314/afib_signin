@@ -13,7 +13,7 @@ void installTest(AFTestExtensionContext extend) {
       defineTestData: initTestData,
       defineUnitTests: initUnitTests,
       defineStateTests: initStateTests,
-      defineUIPrototypes: defineUIProtoypes,
+      defineUIPrototypes: defineUIPrototypes,
       defineWorkflowStateTests: initWorkflowStateTests,
       defineWireframes: null,
     );
