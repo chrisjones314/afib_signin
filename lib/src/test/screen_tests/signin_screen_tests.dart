@@ -3,7 +3,7 @@ import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 
-void initSigninScreenTests(AFUIPrototypeDefinitionContext definitions) {
+void defineSigninScreenTests(AFUIPrototypeDefinitionContext definitions) {
   _initStandardSigninScreen(definitions);
   _initErrorSigninScreen(definitions);
   _initStandardSigninScreenLoading(definitions);
