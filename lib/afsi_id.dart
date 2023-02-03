@@ -1,4 +1,3 @@
-
 import 'package:afib/afib_command.dart';
 
 class AFSILibraryID {
@@ -6,6 +5,9 @@ class AFSILibraryID {
 }
 
 class AFSIScreenID extends AFScreenID {
+  static const accountSettings = AFSIScreenID("accountSettings");
+  static const processAccountDeletion = AFSIScreenID("processAccountDeletion");
+  static const startDeleteAccount = AFSIScreenID("startDeleteAccount");
   const AFSIScreenID(String code) : super(code, AFSILibraryID.id);
   static const register = AFSIScreenID("register");
   static const forgotPassword = AFSIScreenID("forgotPassword");
@@ -13,8 +15,16 @@ class AFSIScreenID extends AFScreenID {
 }
 
 class AFSIWidgetID extends AFWidgetID {
+  static const buttonChangeEmail = AFSIWidgetID("buttonChangeEmail");
+  static const editNewEmail = AFSIWidgetID("editNewEmail");
+  static const editCurrentPasswordForEmail = AFSIWidgetID("editCurrentPasswordForEmail");
+  static const buttonChangePassword = AFSIWidgetID("buttonChangePassword");
+  static const editNewPasswordConfirm = AFSIWidgetID("editNewPasswordConfirm");
+  static const editNewPassword = AFSIWidgetID("editNewPassword");
+  static const editCurrentPassword = AFSIWidgetID("editCurrentPassword");
   const AFSIWidgetID(String code) : super(code, AFSILibraryID.id);
 
+  static const buttonDeleteAccountNow = AFSIWidgetID("buttonDeleteAccountNow");
   static const showPasswordCheck = AFSIWidgetID("showPasswordCheck");
   static const buttonRegister = AFSIWidgetID("buttonRegister");
   static const buttonResetPassword = AFSIWidgetID("buttonResetPassword");
@@ -25,6 +35,8 @@ class AFSIWidgetID extends AFWidgetID {
   static const editPassword = AFSIWidgetID("editPassword");
   static const editPasswordConfirm = AFSIWidgetID("editPasswordConfirm");
   static const loginErrorText = AFSIWidgetID("loginErrorText");
+  static const buttonCancelDeleteAccount = AFSIWidgetID("buttonCancelDeleteAccount");
+  static const buttonCancelCompleteReturnToSignin = AFSIWidgetID("buttonCancelCompleteReturnToSignin");
 }
 
 const signinTag = ["signin"];
@@ -34,6 +46,9 @@ class AFSIStateTestID {
 
 
 class AFSITranslationID extends AFTranslationID {
+  static const titleChangeEmailSection = AFSITranslationID("titleChangeEmailSection");
+  static const titleChangePasswordSection = AFSITranslationID("titleChangePasswordSection");
+  static const titleAccountSettings = AFSITranslationID("titleAccountSettings");
   const AFSITranslationID(String code) : super(code, AFSILibraryID.id);
 
   static const titleForgotPassword = AFSITranslationID("titleForgotPassword");
@@ -42,6 +57,13 @@ class AFSITranslationID extends AFTranslationID {
   static const messageSigningIn = AFSITranslationID("messageSigningIn");
   static const messageResettingPassword = AFSITranslationID("messageResettingPassword");
   static const messageSigningUp = AFSITranslationID("messageSigningUp");
+  static const titleAccountDeletionWarning = AFSITranslationID("titleAccountTranslationWarning");
+  static const messageAccountDeletionWarning = AFSITranslationID("messageAccountDeletionWarning");
+  static const editConfirmText = AFSITranslationID("editConfirmText");
+  static const titleDeletingAccount = AFSITranslationID("titleDeletingAccount");
+  static const titleDeletedAccount = AFSITranslationID("titleDeletedAccount");
+  static const messageDeletingAccount = AFSITranslationID("messageDeletingAccount");
+  static const messageDeletedAccount = AFSITranslationID("messageDeletedAccount");
 }
 
 class AFSIScreenTestID extends AFScreenTestID {
@@ -64,6 +86,9 @@ class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID 
 
 
 class AFSIPrototypeID extends AFPrototypeID {
+  static const accountSettingsScreenInitial = AFSIPrototypeID("accountSettingsScreenInitial");
+  static const processAccountDeletionScreenInitial = AFSIPrototypeID("processAccountDeletionScreenInitial");
+  static const startDeleteAccountScreenInitial = AFSIPrototypeID("startDeleteAccountScreenInitial");
   const AFSIPrototypeID(String code): super(code, AFSILibraryID.id); 
 
   static const signinLoading = AFSIPrototypeID("signinLoading");
@@ -74,6 +99,7 @@ class AFSIPrototypeID extends AFPrototypeID {
 }
 
 class AFSITestDataID {  
+  static const afsiStateFullLogin = "afsiStateFullLogin";
 }
 
 class AFSIThemeID extends AFThemeID {

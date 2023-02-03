@@ -4,6 +4,7 @@ import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
 import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 enum AFSISigninStatus {
@@ -58,9 +59,9 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     );
   }
 
-  bool get isLoading {
-    return status == AFSISigninStatus.loading;
-  }
+  bool get isLoading => status == AFSISigninStatus.loading;
+  bool get isReady => status == AFSISigninStatus.ready;
+
 
   SigninScreenRouteParam reviseStatus({
     AFSISigninStatus? status, 
@@ -144,9 +145,11 @@ class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRout
   }
 
   //--------------------------------------------------------------------------------------
-  bool get isLoading {
-    return context.p.isLoading;
-  }
+  bool get isLoading => context.p.isLoading;
+  bool get isReady => context.p.isReady;
+  AFSISigninStatus get status => context.p.status;
+  String get statusMessage => context.p.statusMessage;
+  
 
   //--------------------------------------------------------------------------------------
   void onChangedEmail(String email) {

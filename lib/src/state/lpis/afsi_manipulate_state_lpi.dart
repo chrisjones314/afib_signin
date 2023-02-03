@@ -1,5 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/ui/screens/account_settings_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 
@@ -50,6 +51,28 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     );
   }
 
+  void updateAccountSettingsChangePasswordStatus({
+    required AFSISigninStatus status,
+    required String message
+  }) {
+    final param = context.accessRouteParam<AccountSettingsScreenRouteParam>(AFRouteParamRef.forScreen(AFSIScreenID.accountSettings));
+    if(param != null) {
+      final revised = param.reviseChangePasswordStatus(status, message);
+      context.updateHierarchyRouteParam(revised);
+    }
+  }
+
+  void updateAccountSettingsChangeEmailStatus({
+    required AFSISigninStatus status,
+    required String message
+  }) {
+    final param = context.accessRouteParam<AccountSettingsScreenRouteParam>(AFRouteParamRef.forScreen(AFSIScreenID.accountSettings));
+    if(param != null) {
+      final revised = param.reviseChangeEmailStatus(status, message);
+      context.updateHierarchyRouteParam(revised);
+    }
+  }
+
   void _updateScreenStatus({
     required AFScreenID screenId,
     required AFSISigninStatus status,
@@ -63,6 +86,27 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     }
   }
 
+  void updateStartDeleteAcountScreenStatus({
+    required AFSISigninStatus status,
+    String? message,
+  }) {
+    _updateScreenStatus(
+      screenId: AFSIScreenID.startDeleteAccount, 
+      status: status,
+      message: message,
+    );
+  }
+
+  void updateProcessDeleteAcountScreenStatus({
+    required AFSISigninStatus status,
+    String? message,
+  }) {
+    _updateScreenStatus(
+      screenId: AFSIScreenID.processAccountDeletion, 
+      status: status,
+      message: message,
+    );
+  }
 
   void navigateToSigninScreen({
     required String? initialEmail,

@@ -1,13 +1,14 @@
-
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
+import 'package:afib_signin/src/state/lpis/afsi_manipulate_state_lpi.dart';
 import 'package:afib_signin/src/state/lpis/afsi_signin_actions_lpi.dart';
+import 'package:afib_signin/src/ui/screens/account_settings_screen.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
+import 'package:afib_signin/src/ui/screens/process_account_deletion_screen.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
+import 'package:afib_signin/src/ui/screens/start_delete_account_screen.dart';
 import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
-
-import 'package:afib_signin/src/state/lpis/afsi_manipulate_state_lpi.dart';
 
 void defineCore(AFCoreDefinitionContext context) {
   defineFunctionalThemes(context);
@@ -30,6 +31,9 @@ void defineSPIOverrides(AFCoreDefinitionContext context) {
 }
 
 void defineScreens(AFCoreDefinitionContext context) {
+  context.defineScreen(AFSIScreenID.accountSettings, (_) => AccountSettingsScreen(), AccountSettingsScreen.config);
+  context.defineScreen(AFSIScreenID.processAccountDeletion, (_) => ProcessAccountDeletionScreen(), ProcessAccountDeletionScreen.config);
+  context.defineScreen(AFSIScreenID.startDeleteAccount, (_) => StartDeleteAccountScreen(), StartDeleteAccountScreen.config);
   context.defineScreen(AFSIScreenID.signin,           (_) => AFSISigninScreen(), AFSISigninScreen.config);
   context.defineScreen(AFSIScreenID.forgotPassword, (_) => AFSIForgotPasswordScreen(), AFSIForgotPasswordScreen.config);
   context.defineScreen(AFSIScreenID.register, (_) => AFSIRegisterScreen(), AFSIRegisterScreen.config);
@@ -53,7 +57,26 @@ void defineFundamentalTheme(AFFundamentalDeviceTheme device, AFComponentStates a
     AFSITranslationID.messageSigningIn: "Signing in...",
     AFSITranslationID.messageResettingPassword: "Resetting password...",
     AFSITranslationID.messageSigningUp: "Signing up...",
-
+    AFSITranslationID.editConfirmText: "Enter Your Account Password",
+    AFSIWidgetID.buttonDeleteAccountNow: "DELETE YOUR ACCOUNT NOW",
+    AFSITranslationID.titleAccountDeletionWarning: "Account Deletion Warning",
+    AFSITranslationID.messageAccountDeletionWarning: "We cannot recover your account after you delete it.  It is gone forever.",
+    AFSIWidgetID.buttonCancelDeleteAccount: "Cancel and Return to App",
+    AFSITranslationID.titleDeletingAccount: "Deleting Account",
+    AFSITranslationID.titleDeletedAccount: "Account Deletion Complete",
+    AFSITranslationID.messageDeletingAccount: "We are deleting your account, please wait...",
+    AFSITranslationID.messageDeletedAccount: "We successfully deleted your account, please click the button below to return to the signin screen.",
+    AFSIWidgetID.buttonCancelCompleteReturnToSignin: "Return to Signin Screen",
+    AFSIWidgetID.editCurrentPassword: "Current Password",
+    AFSIWidgetID.editNewPassword: "New Password",
+    AFSIWidgetID.editNewPasswordConfirm: "Confirm New Password",
+    AFSIWidgetID.buttonChangePassword: "Change Password",
+    AFSIWidgetID.editCurrentPasswordForEmail: "Current Password",
+    AFSIWidgetID.editNewEmail: "New Email",
+    AFSIWidgetID.buttonChangeEmail: "Change Email",
+    AFSITranslationID.titleAccountSettings: "Account Settings",
+    AFSITranslationID.titleChangePasswordSection: "Change Password",
+    AFSITranslationID.titleChangeEmailSection: "Change Email",
   });
 
   primary.setTranslations(AFUILocaleID.spanish, {

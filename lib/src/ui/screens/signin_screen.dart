@@ -174,14 +174,14 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
       rows.add(rememberSigninCheck);
     }
     
-    final extraInputs = t.childExtraInputs(
+    final extraInputs = t.childExtraInputsRegister(
       parentParam: context.p
     );
     if(extraInputs != null) {
       rows.add(extraInputs);
     }
 
-    rows.add(t.childStatusMessage(spi.t, context.p.status, context.p.statusMessage));
+    rows.add(t.childStatusMessage(context.p.status, context.p.statusMessage));
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,

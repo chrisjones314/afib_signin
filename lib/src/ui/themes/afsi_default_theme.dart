@@ -101,8 +101,14 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     );
   }
 
-  Widget? childExtraInputs({
-    required SigninScreenRouteParam parentParam,
+  Widget? childExtraInputsRegister({
+    required AFScreenRouteParamWithFlutterState parentParam,
+  }) {
+    return null;
+  }
+
+  Widget? childExtraSectionsAccountSettings({
+    required AFScreenRouteParamWithFlutterState parentParam,
   }) {
     return null;
   }
@@ -265,42 +271,45 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 
   EdgeInsets get marginEmail {
-    return marginCustom(top: 5, bottom: 2);
+    return marginCustom(top: 5, bottom: 3);
   }
 
   EdgeInsets get marginPassword {
-    return marginCustom(top: 1, bottom: 4);
+    return marginCustom(vertical: 3);
   }
 
   InputDecoration decorationTextInput({
     dynamic text,
+    Color colorForeground = Colors.white,
   }) {
     final border = OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.white, 
+          color: colorForeground, 
           width: 1.0, 
           style: BorderStyle.solid 
         ));
     return InputDecoration(
-      hintStyle: TextStyle(color: Colors.white),
-      focusColor: Colors.white,
-      labelStyle: TextStyle(color: Colors.white),
-      helperStyle: TextStyle(color: Colors.white),
+      hintStyle: TextStyle(color: colorForeground),
+      focusColor: colorForeground,
+      labelStyle: TextStyle(color: colorForeground),
+      helperStyle: TextStyle(color: colorForeground),
       focusedBorder: border,
       enabledBorder: border,
       labelText: translate(text)
     );
   }
 
-  Widget childStatusMessage(AFSIDefaultTheme t, AFSISigninStatus status, String statusMessage) {
+  Widget childStatusMessage(AFSISigninStatus status, String statusMessage, {
+    Color? colorBackground,
+    TextTheme? textTheme,
+  }) {
     var messageColor;
-    var style;
+    final textThemeActual = textTheme ?? styleOnPrimary;
+    final style = textThemeActual.bodyText2;
     if(status == AFSISigninStatus.error) {
-      messageColor = t.colorError;
-      style = t.styleOnPrimary.bodyText2;
+      messageColor = colorError;
     } else {
-      messageColor = null;
-      style = t.styleOnPrimary.bodyText2;
+      messageColor = colorBackground;
     }
     return Container(
       padding: EdgeInsets.all(8.0),
@@ -312,7 +321,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       alignment: Alignment.center,
       child: Text(
         statusMessage,
-        key: t.keyForWID(AFSIWidgetID.loginErrorText),
+        key: keyForWID(AFSIWidgetID.loginErrorText),
         style: style
     ));    
   }
@@ -345,5 +354,113 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         onChanged: onChanged
       )); 
   }
+
+  //--------------------------------------------------------------------------------------
+  Widget childDeleteAccountPreamble({
+    required VoidCallback onPressedCancel,
+  }) {
+
+    final rows = column();
+
+    final header = Container(
+      child: childMarginStandard(
+        child: childText(AFSITranslationID.titleAccountDeletionWarning, textAlign: TextAlign.center, textColor: colorOnError),
+      ),
+      decoration: BoxDecoration(
+        color: colorError,
+        borderRadius: borderRadius.t.standard,
+      ),
+    );
+
+    rows.add(header);
+
+    final warningText = childRichTextBuilderOnCard();
+    warningText.writeNormal(AFSITranslationID.messageAccountDeletionWarning);
+    rows.add(childMargin(
+      child: warningText.toRichText(),
+      margin: margin.standard
+    ));
+
+    rows.add(childButtonPrimary(
+      wid: AFSIWidgetID.buttonCancelDeleteAccount,
+      child: childText(AFSIWidgetID.buttonCancelDeleteAccount, textColor: colorOnPrimary), 
+      onPressed: onPressedCancel
+    ));
+
+    return Card(
+      child: childMarginStandard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: rows
+        )
+      )
+    );
+  }  
+
+  //--------------------------------------------------------------------------------------
+  Widget childDeleteAccountAction({
+    required AFWidgetID widConfirmText,
+    required VoidCallback onPressedDeleteNow,
+    required AFScreenRouteParamWithFlutterState routeParam,
+    required String confirmText,
+    required ValueChanged<String> onChangedConfirmText,
+    required Widget statusMessage,
+  }) {
+    final rows = column();
+
+    rows.add(childMargin(
+      margin: margin.v.standard,
+      child: childTextField(
+        screenId: context.screenId, 
+        wid: widConfirmText, 
+        onChanged: onChangedConfirmText,
+        parentParam: routeParam,
+        expectedText: confirmText,
+        obscureText: true,
+        decoration: decorationTextInput(
+          text: AFSITranslationID.editConfirmText,
+          colorForeground: colorOnSurface,
+        ),      
+      )
+    ));
+
+    final buttonStyle = TextButton.styleFrom(
+      backgroundColor: Colors.red,
+      foregroundColor: Colors.white,
+    );
+
+    rows.add(statusMessage);
+
+
+    rows.add(TextButton(
+      key: this.keyForWID(AFSIWidgetID.buttonDeleteAccountNow),
+      child: childText(AFSIWidgetID.buttonDeleteAccountNow),
+      style: buttonStyle,
+      onPressed: onPressedDeleteNow,
+    ));
+
+    return Card(
+      child: childMarginStandard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: rows
+        )
+      )
+    );
+  }
+
+  Widget childSectionTitle(Object title) {
+    return Container(
+      margin: margin.none,
+      child: childMarginStandard(
+        child: childText(title, textColor: colorOnSecondary),
+      ),
+      decoration: BoxDecoration(
+        color: colorSecondary,
+        borderRadius: borderRadius.t.standard,    
+      ),
+    );
+  }
+
 }
 
