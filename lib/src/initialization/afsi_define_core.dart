@@ -77,6 +77,8 @@ void defineFundamentalTheme(AFFundamentalDeviceTheme device, AFComponentStates a
     AFSITranslationID.titleAccountSettings: "Account Settings",
     AFSITranslationID.titleChangePasswordSection: "Change Password",
     AFSITranslationID.titleChangeEmailSection: "Change Email",
+    AFSITranslationID.titleStartDeleteAccount: "Delete Account",
+    AFSIWidgetID.buttonStartDeleteAccount: "Consider Deleting Your Account"
   });
 
   primary.setTranslations(AFUILocaleID.spanish, {

@@ -158,6 +158,11 @@ class AccountSettingsScreenSPI extends AFSIScreenSPI<AFSIDefaultStateView, Accou
     context.updateRouteParam(revised);
   }
 
+  void onPressedStartDeleteAccount() {
+    // navigate to the default delete page, which is where the user actually does the deletion.
+    context.navigatePush(StartDeleteAccountScreen.navigatePush(confirmText: ""));
+  }
+
   void onPressedChangePassword() {
     if(newPassword != newPasswordConfirm) {
       final revised = context.p.reviseChangePasswordStatus(AFSISigninStatus.error, "The new password does not match the confirmation password.");
@@ -386,6 +391,23 @@ class AccountSettingsScreen extends AFSIConnectedScreen<AccountSettingsScreenSPI
 
   }
 
+  Widget _buildStartDeleteAccount(AccountSettingsScreenSPI spi) {
+    final t = spi.t;
+    final rows = t.column();
+    rows.add(t.childSectionTitle(AFSITranslationID.titleStartDeleteAccount));
+    rows.add(t.childMargin(
+      margin: t.margin.standard,
+      child: t.childButtonPrimaryText(
+        wid: AFSIWidgetID.buttonStartDeleteAccount,
+        text: AFSIWidgetID.buttonStartDeleteAccount, 
+        onPressed: spi.onPressedStartDeleteAccount
+      )
+    ));
+
+    return _buildStretchedCard(spi, rows);
+  }
+
+
   Widget _buildBody(AccountSettingsScreenSPI spi) {
     final t = spi.t;
     final rows = t.column();
@@ -397,6 +419,8 @@ class AccountSettingsScreen extends AFSIConnectedScreen<AccountSettingsScreenSPI
     }
     rows.add(_buildChangePasswordCard(spi));
     rows.add(_buildChangeEmailCard(spi));
+    rows.add(_buildStartDeleteAccount(spi));
+    rows.add(t.childExtraScrollSpacer());
     return ListView(
       children: rows
     );

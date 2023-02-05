@@ -22,6 +22,7 @@ class AFSIWidgetID extends AFWidgetID {
   static const editNewPasswordConfirm = AFSIWidgetID("editNewPasswordConfirm");
   static const editNewPassword = AFSIWidgetID("editNewPassword");
   static const editCurrentPassword = AFSIWidgetID("editCurrentPassword");
+  static const buttonStartDeleteAccount = AFSIWidgetID("buttonStartDeleteAccount");
   const AFSIWidgetID(String code) : super(code, AFSILibraryID.id);
 
   static const buttonDeleteAccountNow = AFSIWidgetID("buttonDeleteAccountNow");
@@ -64,6 +65,7 @@ class AFSITranslationID extends AFTranslationID {
   static const titleDeletedAccount = AFSITranslationID("titleDeletedAccount");
   static const messageDeletingAccount = AFSITranslationID("messageDeletingAccount");
   static const messageDeletedAccount = AFSITranslationID("messageDeletedAccount");
+  static const titleStartDeleteAccount = AFSITranslationID("titleStartDeleteAccount");
 }
 
 class AFSIScreenTestID extends AFScreenTestID {
