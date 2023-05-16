@@ -12,7 +12,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 
   Widget childSplashScreenTitle({dynamic text}) {
-    return childText(text, style: styleOnPrimary.headline4, textAlign: TextAlign.center);
+    return childText(text: text, style: styleOnPrimary.headline4, textAlign: TextAlign.center);
   }
 
   EdgeInsets get marginScreen {
@@ -135,7 +135,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       onChanged: onChanged,
     )));
 
-    cols.add(childText("Stay signed in on this computer", textColor: colorOnPrimary));
+    cols.add(childText(text: "Stay signed in on this computer", textColor: colorOnPrimary));
     return Row(children: cols);
   }
 
@@ -206,7 +206,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
             children: <Widget>[
               Expanded(
                 child: childText(
-                  text,
+                  text: text,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: colorPrimary,
@@ -255,7 +255,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
             children: <Widget>[
               Expanded(
                 child: childText(
-                  text,
+                  text: text,
                   textAlign: TextAlign.center,
                   style: styleOnPrimary.bodyText2,
                 ),
@@ -295,7 +295,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       helperStyle: TextStyle(color: colorForeground),
       focusedBorder: border,
       enabledBorder: border,
-      labelText: translate(text)
+      labelText: translate(text: text)
     );
   }
 
@@ -346,7 +346,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       margin: EdgeInsets.only(left: 8.0),
       child: SwitchListTile(
         key: keyForWID(wid),
-        title: childText(wid, style: styleOnPrimary.bodyText2),
+        title: childText(wid: wid, style: styleOnPrimary.bodyText2),
         activeColor: Colors.white,
         inactiveTrackColor: Colors.red,
         controlAffinity: ListTileControlAffinity.leading,
@@ -364,7 +364,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
 
     final header = Container(
       child: childMarginStandard(
-        child: childText(AFSITranslationID.titleAccountDeletionWarning, textAlign: TextAlign.center, textColor: colorOnError),
+        child: childText(text: AFSITranslationID.titleAccountDeletionWarning, textAlign: TextAlign.center, textColor: colorOnError),
       ),
       decoration: BoxDecoration(
         color: colorError,
@@ -383,7 +383,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
 
     rows.add(childButtonPrimary(
       wid: AFSIWidgetID.buttonCancelDeleteAccount,
-      child: childText(AFSIWidgetID.buttonCancelDeleteAccount, textColor: colorOnPrimary), 
+      child: childText(text: AFSIWidgetID.buttonCancelDeleteAccount, textColor: colorOnPrimary), 
       onPressed: onPressedCancel
     ));
 
@@ -434,7 +434,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
 
     rows.add(TextButton(
       key: this.keyForWID(AFSIWidgetID.buttonDeleteAccountNow),
-      child: childText(AFSIWidgetID.buttonDeleteAccountNow),
+      child: childText(text: AFSIWidgetID.buttonDeleteAccountNow),
       style: buttonStyle,
       onPressed: onPressedDeleteNow,
     ));
@@ -453,7 +453,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     return Container(
       margin: margin.none,
       child: childMarginStandard(
-        child: childText(title, textColor: colorOnSecondary),
+        child: childText(text: title, textColor: colorOnSecondary),
       ),
       decoration: BoxDecoration(
         color: colorSecondary,

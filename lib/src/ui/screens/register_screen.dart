@@ -13,7 +13,7 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
   }
 
   void onPressedRegister() {
-    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningUp)));
+    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(text: AFSITranslationID.messageSigningUp)));
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     if(!lpi.isPasswordConfirmMatch(context.p.password, context.p.passwordConfirm)) {
       final lpiManipulate = context.accessLPI<AFSIManipulateStateLPI>(AFSILibraryProgrammingInterfaceID.manipulateState);

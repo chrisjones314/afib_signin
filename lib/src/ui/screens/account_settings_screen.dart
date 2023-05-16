@@ -241,7 +241,7 @@ class AccountSettingsScreen extends AFSIConnectedScreen<AccountSettingsScreenSPI
           spi: spi,
           body: body,
           appBar: AppBar(
-            title: t.childText(AFSITranslationID.titleAccountSettings),
+            title: t.childText(text: AFSITranslationID.titleAccountSettings),
             leading: t.leadingButtonStandardBack(spi, screen: screenId),
             automaticallyImplyLeading: false,
           ),

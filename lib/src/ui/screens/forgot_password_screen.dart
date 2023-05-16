@@ -21,7 +21,7 @@ class AFSIForgotPasswordScreenSPI extends SigninBaseSPI {
   }
 
   void onClickRecover() {
-    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageResettingPassword)));
+    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(text: AFSITranslationID.messageResettingPassword)));
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onResetPassword(context.p.email);
   }

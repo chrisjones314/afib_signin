@@ -66,7 +66,7 @@ class StartDeleteAccountScreen extends AFSIConnectedScreen<StartDeleteAccountScr
           spi: spi,
           body: body,
           appBar: AppBar(
-            title: t.childText("Delete Account"),
+            title: t.childText(text: "Delete Account"),
             leading: t.leadingButtonStandardBack(spi, screen: screenId),
             automaticallyImplyLeading: false,
           ),

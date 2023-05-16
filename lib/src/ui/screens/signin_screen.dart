@@ -24,21 +24,23 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
   }
 
   void onPressedSignin() {
-    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(AFSITranslationID.messageSigningIn)));
+    context.updateRouteParam(context.p.copyWith(status: AFSISigninStatus.ready, statusMessage: t.translate(text: AFSITranslationID.messageSigningIn)));
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onSignin(context.p.email, context.p.password, rememberMe: context.p.rememberMe);
-    
+    context.executeWireframeEvent(AFSIWidgetID.buttonLogin, context.p);
+        
   }
 
   void onPressedRegister() {
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onPressedSigninRegister(email: context.p.email);
+    context.executeWireframeEvent(AFSIWidgetID.buttonRegister, context.p);
   }
 
   void onPressedForgotPassword() {
     final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
     lpi.onPressedSigninForgotPassword(email: context.p.email);
-
+    context.executeWireframeEvent(AFSIWidgetID.buttonResetPassword, context.p);
   }
 
   void onChangedShowPassword(bool checked) {
@@ -118,7 +120,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
     return Center(
       child: Container(
         alignment: Alignment.center,
-        child: t.childText(context.p.statusMessage, textColor: t.colorOnError)
+        child: t.childText(text: context.p.statusMessage, textColor: t.colorOnError)
       )
     );
   }
