@@ -12,7 +12,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 
   Widget childSplashScreenTitle({dynamic text}) {
-    return childText(text: text, style: styleOnPrimary.headline4, textAlign: TextAlign.center);
+    return childText(text: text, style: styleOnPrimary.headlineMedium, textAlign: TextAlign.center);
   }
 
   EdgeInsets get marginScreen {
@@ -38,7 +38,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       child: childTextField(
         screenId: context.screenId,
         wid: wid,
-        style: styleOnPrimary.bodyText2,
+        style: styleOnPrimary.bodyMedium,
         expectedText: email,
         parentParam: parentParam,
         autocorrect: false,
@@ -65,7 +65,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         wid: wid,
         parentParam: parentParam,
         expectedText: password,
-        style: styleOnPrimary.bodyText2,
+        style: styleOnPrimary.bodyMedium,
         decoration: decorationTextInput(
           text: wid,
         ),
@@ -90,7 +90,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         wid: wid,
         parentParam: parentParam,
         expectedText: password,
-        style: styleOnPrimary.bodyText2,
+        style: styleOnPrimary.bodyMedium,
         decoration: decorationTextInput(
           text: wid,
         ),
@@ -257,7 +257,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
                 child: childText(
                   text: text,
                   textAlign: TextAlign.center,
-                  style: styleOnPrimary.bodyText2,
+                  style: styleOnPrimary.bodyMedium,
                 ),
               ),
             ],
@@ -305,7 +305,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }) {
     var messageColor;
     final textThemeActual = textTheme ?? styleOnPrimary;
-    final style = textThemeActual.bodyText2;
+    final style = textThemeActual.bodyMedium;
     if(status == AFSISigninStatus.error) {
       messageColor = colorError;
     } else {
@@ -346,7 +346,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       margin: EdgeInsets.only(left: 8.0),
       child: SwitchListTile(
         key: keyForWID(wid),
-        title: childText(wid: wid, style: styleOnPrimary.bodyText2),
+        title: childText(wid: wid, style: styleOnPrimary.bodyMedium),
         activeColor: Colors.white,
         inactiveTrackColor: Colors.red,
         controlAffinity: ListTileControlAffinity.leading,

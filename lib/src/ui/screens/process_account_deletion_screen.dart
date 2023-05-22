@@ -73,7 +73,7 @@ class ProcessAccountDeletionScreen extends AFSIConnectedScreen<ProcessAccountDel
 
     rowsCard.add(t.childMargin(
       margin: t.margin.v.biggest,
-      child: t.childText(text: titleId, style: t.styleOnCard.headline5, textAlign: TextAlign.center)
+      child: t.childText(text: titleId, style: t.styleOnCard.headlineSmall, textAlign: TextAlign.center)
     ));
     rowsCard.add(t.childText(text: messageId, textAlign: TextAlign.center));
 

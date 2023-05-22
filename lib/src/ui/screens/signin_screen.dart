@@ -156,9 +156,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
       onChanged: spi.onChangedShowPassword
     );
 
-    if(showPasswordCheck != null) {
-      rows.add(showPasswordCheck);
-    }
+    rows.add(showPasswordCheck);
 
 
     final rememberSigninCheck = t.childCheckRememberSignin(

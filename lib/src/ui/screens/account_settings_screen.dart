@@ -1,8 +1,5 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_flutter.dart';
-import 'package:afib_signin/afsi_id.dart';
-import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
-import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:flutter/material.dart';
 
 //!af_extra_imports
@@ -249,7 +246,6 @@ class AccountSettingsScreen extends AFSIConnectedScreen<AccountSettingsScreenSPI
   }
 
   Widget _buildStretchedCard(AccountSettingsScreenSPI spi, List<Widget> rows) {
-    final t = spi.t;
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

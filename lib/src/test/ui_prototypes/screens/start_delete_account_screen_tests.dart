@@ -1,7 +1,6 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/screens/start_delete_account_screen.dart';
-import 'package:flutter_test/flutter_test.dart' as ft;
 
 void defineStartDeleteAccountScreenPrototypes(AFUIPrototypeDefinitionContext context) {
   _defineStartDeleteAccountScreenPrototypeInitial(context);

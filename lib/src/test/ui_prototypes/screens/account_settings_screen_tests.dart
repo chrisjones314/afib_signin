@@ -1,8 +1,5 @@
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_flutter.dart';
-import 'package:afib_signin/afsi_id.dart';
-import 'package:afib_signin/src/ui/screens/account_settings_screen.dart';
-import 'package:flutter_test/flutter_test.dart' as ft;
 
 void defineAccountSettingsScreenPrototypes(AFUIPrototypeDefinitionContext context) {
   _defineAccountSettingsScreenPrototypeInitial(context);
