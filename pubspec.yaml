@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+# publish_to: none
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.0.10
+version: 0.5.0
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -23,16 +23,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  afib:
+  afib: #^0.5.0
     path: /Users/chrisjones/projects/afib/afib
-    version: ^0.0.10 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  args: ^2.3.0
-  pubspec_parse: ^1.2.0
-  flutter_lints: ^2.0.1
+  args: ^2.4.2
+  pubspec_parse: ^1.2.3
+  flutter_lints: ^2.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
