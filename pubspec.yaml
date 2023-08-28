@@ -1,5 +1,10 @@
 name: afib_signin
-description: A new Flutter project.
+description: An AFib-aware library that provides signin pages.
+homepage: https://www.afibframework.io
+documentation: https://docs.afibframework.io/v0.5/afib_signin/startup/start_here/
+repository: https://github.com/chrisjones314/afib_signin
+issue_tracker: https://github.com/chrisjones314/afib_signin/issues
+version: 0.5.0
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -15,16 +20,15 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.5.0
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.18.5 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  afib: #^0.5.0
-    path: /Users/chrisjones/projects/afib/afib
+  afib: ^0.5.1
+    #path: /Users/chrisjones/projects/afib/afib
 
 dev_dependencies:
   flutter_test:
