@@ -5,9 +5,14 @@
 [![License](https://img.shields.io/github/license/chrisjones314/afib_signin
 )](https://github.com/chrisjones314/afib_signin/blob/master/LICENSE)
 
+## What is AFib Signin?
 
-An AFib UI library that provides basic signin pages.
+AFib Signin is an AFib UI library that provides basic signin pages.
 
 ## Getting Started
 
-This package is not yet ready for release.
+If you are not familiar with AFib, you should start by reviewing the [YouTube trailer](https://www.youtube.com/watch?v=VWJyNueiwRc) and [YouTube tutorial](https://www.youtube.com/watch?v=pCprhGAAdME) found on [www.afibframework.io](https://www.afibframework.io).
+
+AFib Signin itself has a [brief written guide](https://docs.afibframework.io/v0.5/afib_signin/startup/start_here/), and as it states, you are best off starting with one of AFib's standard signin-related project styles, either `app-starter-signin` or `app-starter-signin-firebase`.   
+
+Creating a new AFib project is covered in [AFib's overall written guide.](https://docs.afibframework.io/v0.5/afib/startup/start_here/).
