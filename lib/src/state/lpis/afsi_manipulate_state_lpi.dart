@@ -18,7 +18,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     String? message,
     String? storedEmail,
   }) {
-    _updateScreenStatus(
+    updateScreenStatus(
       screenId: AFSIScreenID.signin, 
       status: status,
       message: message,
@@ -31,7 +31,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     String? message,
     String? storedEmail,
   }) {
-    _updateScreenStatus(
+    updateScreenStatus(
       screenId: AFSIScreenID.forgotPassword, 
       status: status,
       message: message,
@@ -44,7 +44,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     String? message,
     String? storedEmail,
   }) {
-    _updateScreenStatus(
+    updateScreenStatus(
       screenId: AFSIScreenID.register, 
       status: status,
       message: message,
@@ -74,7 +74,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     }
   }
 
-  void _updateScreenStatus({
+  void updateScreenStatus({
     required AFScreenID screenId,
     required AFSISigninStatus status,
     String? message,
@@ -91,7 +91,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     required AFSISigninStatus status,
     String? message,
   }) {
-    _updateScreenStatus(
+    updateScreenStatus(
       screenId: AFSIScreenID.startDeleteAccount, 
       status: status,
       message: message,
@@ -102,7 +102,7 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
     required AFSISigninStatus status,
     String? message,
   }) {
-    _updateScreenStatus(
+    updateScreenStatus(
       screenId: AFSIScreenID.processAccountDeletion, 
       status: status,
       message: message,
