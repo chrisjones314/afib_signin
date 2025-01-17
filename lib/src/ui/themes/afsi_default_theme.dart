@@ -313,12 +313,12 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       messageColor = colorBackground;
     }
     return Container(
-      padding: EdgeInsets.all(8.0),
+      padding: padding.standard,
       decoration: BoxDecoration(
         color: messageColor,
-        borderRadius: BorderRadius.circular(4.0)
+        borderRadius: borderRadius.standard,
       ),
-      margin: EdgeInsets.fromLTRB(40,0,40,0),
+      margin: margin.standard,
       alignment: Alignment.center,
       child: Text(
         statusMessage,
