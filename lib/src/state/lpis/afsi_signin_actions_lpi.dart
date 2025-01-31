@@ -2,6 +2,7 @@
 
 import 'package:afib/afib_command.dart';
 import 'package:afib/afib_flutter.dart';
+import 'package:afib_signin/afsi_flutter.dart';
 import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
@@ -42,6 +43,22 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
     context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.onSignup");
   }
 
+  void onPressedGoogleSignin() {
+    context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.onSignup");
+  }
+
+  void onPressedFacebookSignin() {
+    context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.onSignup");
+  }
+
+  void onPressedAppleSignin() {
+    context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.onSignup");
+  }
+
+  void onPressedEmailSignin() {
+    context.navigatePush(AFSISigninScreen.navigatePushReady());
+  }
+
   void on2Fa(String token) {
     context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.on2Fa");
   }
@@ -55,7 +72,7 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
   }
 
   void onReturnToSigninAfterDelete() {
-    context.navigateReplaceAll(AFSISigninScreen.navigateAfterSignout(email: ""));
+    context.navigateReplaceAll(SocialSigninChoiceScreen.navigateAfterSignout().castToReplaceAll());
   }
  
   

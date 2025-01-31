@@ -7,6 +7,7 @@ export 'src/ui/screens/signin_screen.dart';
 export 'src/ui/screens/register_screen.dart';
 export 'src/ui/screens/forgot_password_screen.dart';
 export 'src/ui/screens/signin_screen_base.dart';
+export 'src/ui/screens/social_signin_choice_screen.dart';
 export 'src/ui/screens/start_delete_account_screen.dart';
 export 'src/ui/screens/process_account_deletion_screen.dart';
 export 'src/ui/screens/account_settings_screen.dart';

@@ -58,6 +58,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     required bool showPassword,
     required SigninScreenRouteParam parentParam,
     required ValueChanged<String> onChangedPassword,
+    required ValueChanged<bool> onChangedShowPassword,
   }) {
     return childMargin(
       margin: marginPassword,
@@ -69,6 +70,8 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         style: styleOnPrimary.bodyMedium,
         decoration: decorationTextInput(
           text: wid,
+          showPassword: showPassword,
+          onPressedShowHidePassword: onChangedShowPassword,
         ),
         obscureText: !showPassword,
         autocorrect: false,
@@ -144,12 +147,13 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     required AFStateProgrammingInterface spi,
     required Widget body,
     required bool isLoading,
+    required bool showBackButton,
   }) {
     final context = spi.context;
     return childScaffold(
         spi: spi,
         drawer: drawerSignIn(context),
-        bottomNavigationBar: bottomNavigationBarSignin(context),
+        bottomNavigationBar: bottomNavigationBarSignin(context, showBackButton: showBackButton),
         body: Container(
           decoration: isLoading ? decorationSplashBackground() : decorationSigninBackground(),
           child: ConstrainedBox(
@@ -181,6 +185,37 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     );
   }
 
+  //--------------------------------------------------------------------------------------
+  Widget iconShowPassword({ Color? color, double? size}) {
+    return Icon(Icons.visibility, size: size, color: color);
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget iconHidePassword({ Color? color, double? size}) {
+    return Icon(Icons.visibility, size: size, color: color);
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget iconGoogle({ Color? color, double? size}) {
+    return Icon(Icons.android, size: size, color: color);
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget iconFacebook({ Color? color, double? size}) {
+    return Icon(Icons.android, size: size, color: color);
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget iconEmail({ Color? color, double? size}) {
+    return Icon(Icons.email, size: size, color: color);
+  }
+
+  //--------------------------------------------------------------------------------------
+  Widget iconApple({ Color? color, double? size}) {
+    return Icon(Icons.android, size: size, color: color);
+  }
+
+
   /// Create a button that the user is most likely to click.
   Widget childButtonPrimarySignin({
     required AFWidgetID wid,
@@ -189,9 +224,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }) {
     final ButtonStyle flatButtonStyle = TextButton.styleFrom(
       backgroundColor: colorOnPrimary,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
+      shape: shapeBorder(),
     );
 
     return childMargin(
@@ -220,11 +253,18 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       ));
   }
 
+  OutlinedBorder? shapeBorder() {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30.0),
+    );
+  }
+
   /// Create a button that the user is most likely to click.
   Widget childButtonSecondarySignin({
     required AFWidgetID wid,
     required dynamic text,
     required AFPressedDelegate onPressed,
+    Widget? leading,
   }) {
     final cop = colorOnPrimary;
     if(text == null) {
@@ -235,10 +275,24 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       foregroundColor: cop,
       side: BorderSide(color: cop),
       //highlightedBorderColor: cop,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
+      shape: shapeBorder()
     );
+
+    final children = row();
+    if(leading != null) {
+      children.add(childMargin(
+        margin: margin.r.biggest,  
+        child: leading
+      ));
+    }
+
+    children.add(Expanded(
+      child: childText(
+        text: text,
+        textAlign: leading != null ? TextAlign.left : TextAlign.center,
+        style: styleOnPrimary.bodyMedium,
+      ),
+    ));
 
     return childMargin(
       margin: marginButtonsSignin,
@@ -247,22 +301,11 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         style: outlineButtonStyle,
         onPressed: onPressed,
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 20.0,
-            horizontal: 20.0,
-          ),
+          padding: padding.biggest,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: childText(
-                  text: text,
-                  textAlign: TextAlign.center,
-                  style: styleOnPrimary.bodyMedium,
-                ),
-              ),
-            ],
-          ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: children,
+          )
         ),
       ));  
   }
@@ -282,6 +325,8 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   InputDecoration decorationTextInput({
     dynamic text,
     Color colorForeground = Colors.white,
+    bool? showPassword,
+    ValueChanged<bool>? onPressedShowHidePassword,
   }) {
     final border = OutlineInputBorder(
         borderSide: BorderSide(
@@ -289,6 +334,22 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
           width: 1.0, 
           style: BorderStyle.solid 
         ));
+    Widget? suffixIcon;
+    if(showPassword != null && onPressedShowHidePassword != null) {
+      if(showPassword) {
+        suffixIcon = IconButton(
+          icon: iconShowPassword(color: colorForeground),
+          onPressed: () => onPressedShowHidePassword(false),
+        );
+
+      } else {
+        suffixIcon = IconButton(
+          icon: iconHidePassword(color: colorForeground),
+          onPressed: () => onPressedShowHidePassword(true)
+        );
+      }
+    }
+
     return InputDecoration(
       hintStyle: TextStyle(color: colorForeground),
       focusColor: colorForeground,
@@ -296,8 +357,13 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       helperStyle: TextStyle(color: colorForeground),
       focusedBorder: border,
       enabledBorder: border,
-      labelText: translate(text: text)
+      labelText: translate(text: text),
+      suffixIcon: suffixIcon,
     );
+  }
+
+  Widget? childAppSubheading() {
+    return null;
   }
 
   Widget childStatusMessage(AFSISigninStatus status, String statusMessage, {
@@ -310,7 +376,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     if(status == AFSISigninStatus.error) {
       messageColor = colorError;
     } else {
-      messageColor = colorBackground;
+      messageColor = Colors.green;
     }
     return Container(
       padding: padding.standard,
@@ -333,7 +399,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 
   //--------------------------------------------------------------------------------------
-  Widget? bottomNavigationBarSignin(AFBuildContext context) {
+  Widget? bottomNavigationBarSignin(AFBuildContext context, { required bool showBackButton }) {
     return null;
   }
 

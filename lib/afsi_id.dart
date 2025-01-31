@@ -1,10 +1,12 @@
 import 'package:afib/afib_command.dart';
 
+
 class AFSILibraryID {
   static const id = AFLibraryID(code: "afsi", name: "afib_signin");
 }
 
 class AFSIScreenID extends AFScreenID {
+  static const socialSigninChoice = AFSIScreenID("socialSigninChoice");
   static const accountSettings = AFSIScreenID("accountSettings");
   static const processAccountDeletion = AFSIScreenID("processAccountDeletion");
   static const startDeleteAccount = AFSIScreenID("startDeleteAccount");
@@ -15,6 +17,10 @@ class AFSIScreenID extends AFScreenID {
 }
 
 class AFSIWidgetID extends AFWidgetID {
+  static const buttonSigninEmail = AFSIWidgetID("buttonSigninEmail");
+  static const buttonSigninFacebook = AFSIWidgetID("buttonSigninFacebook");
+  static const buttonSigninApple = AFSIWidgetID("buttonSigninApple");
+  static const buttonGoogleSignin = AFSIWidgetID("buttonGoogleSignin");
   static const buttonChangeEmail = AFSIWidgetID("buttonChangeEmail");
   static const editNewEmail = AFSIWidgetID("editNewEmail");
   static const editCurrentPasswordForEmail = AFSIWidgetID("editCurrentPasswordForEmail");
@@ -88,6 +94,7 @@ class AFSILibraryProgrammingInterfaceID extends AFLibraryProgrammingInterfaceID 
 
 
 class AFSIPrototypeID extends AFPrototypeID {
+  static const socialSigninChoiceScreenInitial = AFSIPrototypeID("socialSigninChoiceScreenInitial");
   static const accountSettingsScreenInitial = AFSIPrototypeID("accountSettingsScreenInitial");
   static const processAccountDeletionScreenInitial = AFSIPrototypeID("processAccountDeletionScreenInitial");
   static const startDeleteAccountScreenInitial = AFSIPrototypeID("startDeleteAccountScreenInitial");

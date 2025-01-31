@@ -1,5 +1,6 @@
 import 'package:afib/afib_command.dart';
 import 'package:afib/afib_flutter.dart';
+import 'package:afib_signin/afsi_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/screens/account_settings_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
@@ -20,6 +21,19 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
   }) {
     updateScreenStatus(
       screenId: AFSIScreenID.signin, 
+      status: status,
+      message: message,
+      storedEmail: storedEmail
+    );
+  }
+
+  void updateSocialScreenStatus({
+    required AFSISigninStatus status,
+    String? message,
+    String? storedEmail,
+  }) {
+    updateScreenStatus(
+      screenId: AFSIScreenID.socialSigninChoice, 
       status: status,
       message: message,
       storedEmail: storedEmail
@@ -112,6 +126,6 @@ class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
   void navigateToSigninScreen({
     required String? initialEmail,
   }) {
-    context.dispatch(AFSISigninScreen.navigateAfterSignout(email: initialEmail ?? ""));
+    context.navigateReplaceAll(SocialSigninChoiceScreen.navigateAfterSignout().castToReplaceAll());
   }
 }

@@ -5,9 +5,14 @@ import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/process_account_deletion_screen.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
+import 'package:afib_signin/src/ui/screens/social_signin_choice_screen.dart';
 import 'package:afib_signin/src/ui/screens/start_delete_account_screen.dart';
 
+
 class AFSIStateTestShortcuts {
+  AFStateTestScreenShortcut<SocialSigninChoiceScreenSPI> createSocialSigninChoiceScreen() {
+    return testContext.createScreenShortcut<SocialSigninChoiceScreenSPI>(AFSIScreenID.socialSigninChoice);
+  }
   AFStateTestScreenShortcut<AccountSettingsScreenSPI> createAccountSettingsScreen() {
     return testContext.createScreenShortcut<AccountSettingsScreenSPI>(AFSIScreenID.accountSettings);
   }

@@ -7,8 +7,10 @@ import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
 import 'package:afib_signin/src/ui/screens/process_account_deletion_screen.dart';
 import 'package:afib_signin/src/ui/screens/register_screen.dart';
 import 'package:afib_signin/src/ui/screens/signin_screen.dart';
+import 'package:afib_signin/src/ui/screens/social_signin_choice_screen.dart';
 import 'package:afib_signin/src/ui/screens/start_delete_account_screen.dart';
 import 'package:afib_signin/src/ui/themes/afsi_default_theme.dart';
+
 
 void defineCore(AFCoreDefinitionContext context) {
   defineFunctionalThemes(context);
@@ -31,6 +33,7 @@ void defineSPIOverrides(AFCoreDefinitionContext context) {
 }
 
 void defineScreens(AFCoreDefinitionContext context) {
+  context.defineScreen(AFSIScreenID.socialSigninChoice, (_) => SocialSigninChoiceScreen(), SocialSigninChoiceScreen.config);
   context.defineScreen(AFSIScreenID.accountSettings, (_) => AccountSettingsScreen(), AccountSettingsScreen.config);
   context.defineScreen(AFSIScreenID.processAccountDeletion, (_) => ProcessAccountDeletionScreen(), ProcessAccountDeletionScreen.config);
   context.defineScreen(AFSIScreenID.startDeleteAccount, (_) => StartDeleteAccountScreen(), StartDeleteAccountScreen.config);

@@ -89,20 +89,16 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
       rows.add(extraInputs);
     }
 
-    rows.add(t.childStatusMessage(context.p.status, context.p.statusMessage));
+    final statusMessage = context.p.statusMessage;
+    if(statusMessage.isNotEmpty) {
+      rows.add(t.childStatusMessage(context.p.status, statusMessage));
+    }
+    
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonResetPassword,
       text: AFSIWidgetID.buttonResetPassword,
       onPressed: () {
         spi.onClickRecover();
-      },
-    ));
-
-    rows.add(t.childButtonSecondarySignin(
-      wid: AFUIWidgetID.buttonBack,
-      text: AFSITranslationID.backToSignin,
-      onPressed: () {
-        spi.onPressedStandardBackButton();
       },
     ));
 

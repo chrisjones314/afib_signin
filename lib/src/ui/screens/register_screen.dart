@@ -24,7 +24,7 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
     lpi.onSignup(context.p.email, context.p.password);
   }
 
-  void onChangedShowPassword({ required bool show }) {
+  void onChangedShowPassword(bool show) {
      context.updateRouteParam(context.p.copyWith(showPassword: show));
   }
 }
@@ -90,7 +90,8 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
         parentParam: context.p,
         password: context.p.password,
         showPassword: context.p.showPassword,
-        onChangedPassword: spi.onChangedPassword
+        onChangedPassword: spi.onChangedPassword,
+        onChangedShowPassword: spi.onChangedShowPassword,
       )
     );
 
@@ -110,7 +111,10 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       rows.add(extraInputs);
     }
 
-    rows.add(t.childStatusMessage(context.p.status, context.p.statusMessage));
+    final statusMessage = context.p.statusMessage;
+    if(statusMessage.isNotEmpty) {
+      rows.add(t.childStatusMessage(context.p.status, statusMessage));
+    }
 
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonRegister,
@@ -118,11 +122,6 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       onPressed: spi.onPressedRegister
     ));
 
-    rows.add(t.childButtonSecondarySignin(
-      wid: AFUIWidgetID.buttonBack,
-      text: AFSITranslationID.backToSignin,
-      onPressed: spi.onPressedStandardBackButton
-    ));
   }
 }
 

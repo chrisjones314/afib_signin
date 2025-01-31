@@ -181,13 +181,29 @@ abstract class SigninScreenBase<TSPI extends AFScreenStateProgrammingInterface, 
 
 
   //--------------------------------------------------------------------------------------
-  Widget buildMainScaffold(SigninBaseSPI spi, Widget mainControls) {
+  Widget buildMainScaffold(SigninBaseSPI spi, Widget mainControls, { bool showBackButton = true }) {
     final t = spi.t;
     return t.childStandardSigninScaffold(
       spi: spi,
       body: mainControls,
-      isLoading: spi.isLoading
+      isLoading: spi.isLoading,
+      showBackButton: showBackButton
     );
   }
+
+  //--------------------------------------------------------------------------------------
+  Widget buildSignInWait(
+    SigninBaseSPI spi
+  ) {
+    final context = spi.context;
+    final t = spi.t;
+    return Center(
+      child: Container(
+        alignment: Alignment.center,
+        child: t.childText(text: context.p.statusMessage, textColor: t.colorOnError)
+      )
+    );
+  }
+
 }
 
