@@ -133,7 +133,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       child: Checkbox(
       focusColor: colorOnPrimary,
       hoverColor: colorOnPrimary,
-      overlayColor: MaterialStateProperty.all(colorOnPrimary),
+      overlayColor: WidgetStateProperty.all(colorOnPrimary),
       checkColor: colorOnPrimary,
       value: checked,
       onChanged: onChanged,
