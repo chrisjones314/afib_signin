@@ -3,9 +3,6 @@
 import 'package:afib/afib_command.dart';
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_flutter.dart';
-import 'package:afib_signin/src/ui/screens/forgot_password_screen.dart';
-import 'package:afib_signin/src/ui/screens/register_screen.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen.dart';
 
 class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
 

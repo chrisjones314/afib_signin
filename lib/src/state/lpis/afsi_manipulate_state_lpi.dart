@@ -1,10 +1,6 @@
 import 'package:afib/afib_command.dart';
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_flutter.dart';
-import 'package:afib_signin/afsi_id.dart';
-import 'package:afib_signin/src/ui/screens/account_settings_screen.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen.dart';
-import 'package:afib_signin/src/ui/screens/signin_screen_base.dart';
 
 class AFSIManipulateStateLPI extends AFLibraryProgrammingInterface {
 
