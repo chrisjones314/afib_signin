@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:afib/afib_flutter.dart';
 import 'package:afib_signin/afsi_flutter.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
@@ -102,12 +104,14 @@ class SocialSigninChoiceScreen extends SigninScreenBase<SocialSigninChoiceScreen
       onPressed: spi.onPressedGoogleSignin
     ));
 
-    rows.add(t.childButtonSecondarySignin(
-      wid: AFSIWidgetID.buttonSigninApple,
-      leading: t.iconApple(size: iconSize, color: iconColor),
-      text: "Continue with Apple",
-      onPressed: spi.onPressedAppleSignin
-    ));
+    if(Platform.isIOS) {
+      rows.add(t.childButtonSecondarySignin(
+        wid: AFSIWidgetID.buttonSigninApple,
+        leading: t.iconApple(size: iconSize, color: iconColor),
+        text: "Continue with Apple",
+        onPressed: spi.onPressedAppleSignin
+      ));
+    }
 
     /*
     rows.add(t.childButtonSecondarySignin(
