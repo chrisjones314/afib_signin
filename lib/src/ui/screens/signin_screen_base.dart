@@ -1,6 +1,7 @@
 //--------------------------------------------------------------------------------------
 import 'package:afib/afib_command.dart';
 import 'package:afib/afib_flutter.dart';
+import 'package:afib_signin/afsi_flutter.dart';
 import 'package:afib_signin/afsi_id.dart';
 import 'package:afib_signin/src/ui/afsi_connected_base.dart';
 import 'package:afib_signin/src/state/stateviews/afsi_default_state_view.dart';
@@ -167,6 +168,12 @@ class SigninBaseSPI extends AFSIScreenSPI<AFSIDefaultStateView, SigninScreenRout
   void onChangedPasswordConfirm(String password) {
     context.updateTextField(AFSIWidgetID.editPasswordConfirm, password);
     context.updateRouteParam(context.p.copyWith(passwordConfirm: password));    
+  }
+
+  void onPressedSupportLink() {
+    final lpi = context.accessLPI<AFSISigninActionsLPI>(AFSILibraryProgrammingInterfaceID.signinActions);
+    lpi.onPressedSupportLink();
+    context.executeWireframeEvent(AFSIWidgetID.linkSupport, context.p);
   }
 
 }

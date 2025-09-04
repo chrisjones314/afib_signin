@@ -129,6 +129,11 @@ class SocialSigninChoiceScreen extends SigninScreenBase<SocialSigninChoiceScreen
       onPressed: spi.onPressedEmailSignin
     ));
 
+    rows.add(t.childSupportLink(
+      wid: AFSIWidgetID.linkSupport,
+      onPressed: spi.onPressedSupportLink
+    ));
+
     final statusMessage = spi.statusMessage;
     if(statusMessage.isNotEmpty) {
       rows.add(t.childStatusMessage(spi.status, statusMessage));

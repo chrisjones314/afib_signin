@@ -196,6 +196,12 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
       text: AFSIWidgetID.buttonForgotPassword,
       onPressed: spi.onPressedForgotPassword
     ));
+
+    rows.add(t.childSupportLink(
+      wid: AFSIWidgetID.linkSupport,
+      onPressed: spi.onPressedSupportLink
+    ));
   }
+
 }
 

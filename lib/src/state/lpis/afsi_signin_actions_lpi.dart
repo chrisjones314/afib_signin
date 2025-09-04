@@ -19,7 +19,11 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
   void onPressedSigninForgotPassword({ required String email }) {
     context.navigatePush(AFSIForgotPasswordScreen.navigatePush(email: email));    
   }
-  
+
+  void onPressedSupportLink() {
+  }
+
+
   void onSignin(String email, String password, { required bool rememberMe }) {
     context.navigateToUnimplementedScreen("You must override AFSISigninActionsLPI.onSignin");
   }

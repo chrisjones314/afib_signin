@@ -17,6 +17,7 @@ class AFSIScreenID extends AFScreenID {
 }
 
 class AFSIWidgetID extends AFWidgetID {
+  static const linkSupport = AFSIWidgetID("linkSupport");
   static const buttonSigninEmail = AFSIWidgetID("buttonSigninEmail");
   static const buttonSigninFacebook = AFSIWidgetID("buttonSigninFacebook");
   static const buttonSigninApple = AFSIWidgetID("buttonSigninApple");

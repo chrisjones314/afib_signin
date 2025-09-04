@@ -122,6 +122,11 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       onPressed: spi.onPressedRegister
     ));
 
+    rows.add(t.childSupportLink(
+      wid: AFSIWidgetID.linkSupport,
+      onPressed: spi.onPressedSupportLink
+    ));
+
   }
 }
 

@@ -259,6 +259,13 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     );
   }
 
+  Widget childSupportLink({
+    required AFWidgetID wid,
+    required AFPressedDelegate onPressed,
+  }) {
+    return Spacer();
+  }
+
   /// Create a button that the user is most likely to click.
   Widget childButtonSecondarySignin({
     required AFWidgetID wid,
