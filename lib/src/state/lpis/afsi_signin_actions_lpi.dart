@@ -73,7 +73,8 @@ class AFSISigninActionsLPI extends AFLibraryProgrammingInterface {
   }
 
   void onReturnToSigninAfterDelete() {
-    context.navigateReplaceAll(SocialSigninChoiceScreen.navigateAfterSignout().castToReplaceAll());
+    //context.navigateReplaceAll(SocialSigninChoiceScreen.navigateAfterSignout().castToReplaceAll());
+    context.navigateReplaceAll(AFSISigninScreen.navigateAfterSignout(email: ""));
   }
  
   

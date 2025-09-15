@@ -100,7 +100,7 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
   @override
   Widget buildWithSPI(AFSISigninScreenSPI spi) {
     final main = buildMainControls(spi);
-    return buildMainScaffold(spi, main);
+    return buildMainScaffold(spi, main, showBackButton: false);
   }
 
 
