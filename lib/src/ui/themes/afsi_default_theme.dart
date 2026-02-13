@@ -43,6 +43,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         expectedText: email,
         parentParam: parentParam,
         autocorrect: false,
+        cursorColor: Colors.white,
         decoration: decorationTextInput(
           text: wid,
         ),
@@ -68,6 +69,7 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         parentParam: parentParam,
         expectedText: password,
         style: styleOnPrimary.bodyMedium,
+        cursorColor: Colors.white,
         decoration: decorationTextInput(
           text: wid,
           showPassword: showPassword,
