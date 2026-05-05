@@ -157,7 +157,6 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
         drawer: drawerSignIn(context),
         bottomNavigationBar: bottomNavigationBarSignin(context, showBackButton: showBackButton),
         body: Container(
-          decoration: isLoading ? decorationSplashBackground() : decorationSigninBackground(),
           child: ConstrainedBox(
             constraints: BoxConstraints.expand(),
             child: Align(
@@ -170,6 +169,11 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
           )
         )
     );
+  }
+
+  //--------------------------------------------------------------------------------------
+  void childSplashHero(List<Widget> rows) {
+
   }
 
   //--------------------------------------------------------------------------------------
@@ -537,6 +541,29 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
       ),
     );
   }
+
+  void childNewHereRows(List<Widget> rows) {
+  }
+
+  void childFooterRows(List<Widget> rows, {
+    required AFPressedDelegate onPressedSupport,
+  }) {
+  }
+
+  void childUnderlineField({
+    required List<Widget> rows,
+    required AFWidgetID wid,
+    required String label,
+    required bool obscure,
+    required AFRouteParamWithFlutterState parentParam,
+    required String value, 
+    required ValueChanged<String> onChangedEmail,
+    AFPressedDelegate? onPressedShowObscure,
+    AFPressedDelegate? onPressedForgotPassword,
+  }){
+
+  }
+
 
 }
 

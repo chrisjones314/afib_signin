@@ -47,7 +47,7 @@ void defineFundamentalTheme(AFFundamentalDeviceTheme device, AFComponentStates a
   primary.setTranslations(AFUILocaleID.englishUS, {
     AFSIWidgetID.buttonForgotPassword: "Forgot Password",
     AFSIWidgetID.buttonLogin: "Sign In",
-    AFSIWidgetID.buttonSignup: "Sign Up",
+    AFSIWidgetID.buttonSignup: "Create an Account",
     AFSIWidgetID.editEmail: "Email",
     AFSIWidgetID.editPassword: "Password",
     AFSIWidgetID.editPasswordConfirm: "Confirm Password",

@@ -55,8 +55,8 @@ class AFSISigninScreenSPI extends SigninBaseSPI {
     context.executeWireframeEvent(AFSIWidgetID.buttonResetPassword, context.p);
   }
 
-  void onChangedShowPassword(bool checked) {
-    final revised = context.p.copyWith(showPassword: checked);
+  void onChangedShowPassword() {
+    final revised = context.p.copyWith(showPassword: !context.p.showPassword);
     context.updateRouteParam(revised);
   }
 }
@@ -115,9 +115,9 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
       _loginScreen(spi, widgets);
     }
 
-    return t.childMargin(
-      margin: t.marginScreen,
-      child: ListView(
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: widgets
       )
     );
@@ -131,15 +131,33 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
     rows.add(
       t.childSplashScreenTitle(text: AFUITranslationID.appTitle)
     );
-    
-    rows.add(t.childEditEmailField(
-        wid: AFSIWidgetID.editEmail,
-        parentParam: context.p,
-        email: context.p.email,
-        onChangedEmail: spi.onChangedEmail
-      )
-    );
 
+    t.childSplashHero(rows);
+
+    t.childUnderlineField(
+        rows: rows,
+        label: "EMAIL",
+        wid: AFSIWidgetID.editEmail,
+        obscure: false,
+        parentParam: context.p,
+        value: context.p.email,
+        onChangedEmail: spi.onChangedEmail
+      );
+
+    rows.add(const SizedBox(height: 18));
+
+    t.childUnderlineField(
+        rows: rows,
+        label: "PASSWORD",
+        obscure: !context.p.showPassword,
+        wid: AFSIWidgetID.editPassword,
+        parentParam: context.p,
+        value: context.p.password,
+        onChangedEmail: spi.onChangedPassword,
+        onPressedShowObscure: spi.onChangedShowPassword,
+        onPressedForgotPassword: spi.onPressedForgotPassword,
+      );
+    /*
     rows.add(t.childEditPasswordField(
         wid: AFSIWidgetID.editPassword,
         parentParam: context.p,
@@ -147,8 +165,9 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
         showPassword: context.p.showPassword,
         onChangedPassword: spi.onChangedPassword,
         onChangedShowPassword: spi.onChangedShowPassword
-      )
+      ) 
     );
+    */
 
 
     final rememberSigninCheck = t.childCheckRememberSignin(
@@ -179,23 +198,24 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
       rows.add(t.childStatusMessage(context.p.status, statusMessage));
     }
 
+    rows.add(const SizedBox(height: 8));
     rows.add(t.childButtonPrimarySignin(
       wid: AFSIWidgetID.buttonLogin,
       text: AFSIWidgetID.buttonLogin,
       onPressed: spi.onPressedSignin
     ));
-    
+
+    t.childNewHereRows(rows);
+
     rows.add(t.childButtonSecondarySignin(
       wid: AFSIWidgetID.buttonSignup,
       text: AFSIWidgetID.buttonSignup,
       onPressed: spi.onPressedRegister
     ));
 
-    rows.add(t.childButtonSecondarySignin( 
-      wid: AFSIWidgetID.buttonForgotPassword,
-      text: AFSIWidgetID.buttonForgotPassword,
-      onPressed: spi.onPressedForgotPassword
-    ));
+    t.childFooterRows(rows,
+      onPressedSupport: spi.onPressedSupportLink
+    );
 
     rows.add(t.childSupportLink(
       wid: AFSIWidgetID.linkSupport,
