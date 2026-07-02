@@ -72,15 +72,24 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
     final t = spi.t;
     rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleForgotPassword));
 
-    rows.add(t.childMargin(
-      margin: t.marginEmail,
-      child: t.childEditEmailField(
-        wid: AFSIWidgetID.editEmail,
-        parentParam: context.p,
-        email: context.p.email,
-        onChangedEmail: spi.onChangedEmail
-      )
-    ));
+    t.childSplashHero(rows, 
+      title: "Reset password",
+      subtitle: "No worries",
+      description: "Enter the email tied to your account and we'll send a link to reset your password."
+    );
+
+    t.childUnderlineField(
+      rows: rows,
+      label: "EMAIL",
+      obscure: false,
+      hint: "you@example.com",
+      wid: AFSIWidgetID.editEmail,
+      parentParam: context.p,
+      value: context.p.email,
+      onChangedEmail: spi.onChangedEmail
+    );
+
+    rows.add(SizedBox(height: 10.0));
 
     final extraInputs = t.childExtraInputsRegister(
       parentParam: context.p
@@ -101,6 +110,10 @@ class AFSIForgotPasswordScreen extends SigninScreenBase<AFSIForgotPasswordScreen
         spi.onClickRecover();
       },
     ));
+
+    t.childFooterRows(rows,
+      onPressedSupport: spi.onPressedSupportLink
+    );
 
     rows.add(t.childSupportLink(
       wid: AFSIWidgetID.linkSupport,

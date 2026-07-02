@@ -172,7 +172,11 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
   }
 
   //--------------------------------------------------------------------------------------
-  void childSplashHero(List<Widget> rows) {
+  void childSplashHero(List<Widget> rows, {
+    required String title,
+    required String subtitle,
+    String? description,
+  }) {
 
   }
 
@@ -556,14 +560,13 @@ class AFSIDefaultTheme extends AFFunctionalTheme {
     required String label,
     required bool obscure,
     required AFRouteParamWithFlutterState parentParam,
-    required String value, 
+    required String value,
     required ValueChanged<String> onChangedEmail,
+    String? hint,
     AFPressedDelegate? onPressedShowObscure,
     AFPressedDelegate? onPressedForgotPassword,
   }){
 
   }
-
-
 }
 

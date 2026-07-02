@@ -117,7 +117,8 @@ class SigninScreenRouteParam extends AFScreenRouteParamWithFlutterState {
     String? email
   }) {
     final flutterState = AFFlutterRouteParamState(
-      textControllers: _createTextControllers(email: email)
+      textControllers: _createTextControllers(email: email),
+      tapRecognizers: AFTapGestureRecognizersHolder(),
     );
     return flutterState;
   }

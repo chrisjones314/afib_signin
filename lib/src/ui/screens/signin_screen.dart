@@ -132,7 +132,10 @@ class AFSISigninScreen extends SigninScreenBase<AFSISigninScreenSPI, SigninScree
       t.childSplashScreenTitle(text: AFUITranslationID.appTitle)
     );
 
-    t.childSplashHero(rows);
+    t.childSplashHero(rows,
+     title: "Signin",
+     subtitle: "Welcome Back"
+    );
 
     t.childUnderlineField(
         rows: rows,

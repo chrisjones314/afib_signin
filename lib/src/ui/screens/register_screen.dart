@@ -24,8 +24,8 @@ class AFSIRegisterScreenSPI extends SigninBaseSPI {
     lpi.onSignup(context.p.email, context.p.password);
   }
 
-  void onChangedShowPassword(bool show) {
-     context.updateRouteParam(context.p.copyWith(showPassword: show));
+  void onChangedShowPassword() {
+     context.updateRouteParam(context.p.copyWith(showPassword: !context.p.showPassword));
   }
 }
 
@@ -77,32 +77,48 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
 
     rows.add(t.childSplashScreenTitle(text: AFSITranslationID.titleSignup));
 
-    rows.add(t.childEditEmailField(
-        wid: AFSIWidgetID.editEmail,
-        parentParam: context.p,
-        email: context.p.email,
-        onChangedEmail: spi.onChangedEmail
-      )
+    t.childSplashHero(rows, 
+      title: "Create account",
+      subtitle: "Join us",
     );
 
-    rows.add(t.childEditPasswordField(
+    t.childUnderlineField(
+      rows: rows,
+      label: "EMAIL",
+      obscure: false,
+      hint: "you@example.com",
+      wid: AFSIWidgetID.editEmail,
+      parentParam: context.p,
+      value: context.p.email,
+      onChangedEmail: spi.onChangedEmail
+    );
+
+    rows.add(SizedBox(height: 16.0));
+
+    t.childUnderlineField(
+        rows: rows,
+        label: "PASSWORD",
+        obscure: !context.p.showPassword,
         wid: AFSIWidgetID.editPassword,
         parentParam: context.p,
-        password: context.p.password,
-        showPassword: context.p.showPassword,
-        onChangedPassword: spi.onChangedPassword,
-        onChangedShowPassword: spi.onChangedShowPassword,
-      )
-    );
+        value: context.p.password,
+        onChangedEmail: spi.onChangedPassword,
+        onPressedShowObscure: spi.onChangedShowPassword,
+      );
 
-    rows.add(t.childEditPasswordConfirmField(
+    rows.add(SizedBox(height: 16.0));
+
+    t.childUnderlineField(
+        rows: rows,
+        label: "CONFIRM PASSWORD",
+        obscure: !context.p.showPassword,
         wid: AFSIWidgetID.editPasswordConfirm,
         parentParam: context.p,
-        password: context.p.passwordConfirm,
-        showPassword: context.p.showPassword,
-        onChangedPassword: spi.onChangedPasswordConfirm
-      )
-    );
+        value: context.p.passwordConfirm,
+        onChangedEmail: spi.onChangedPasswordConfirm,
+        onPressedShowObscure: spi.onChangedShowPassword,
+      );
+    rows.add(SizedBox(height: 16.0));
 
     final extraInputs = t.childExtraInputsRegister(
       parentParam: context.p
@@ -121,6 +137,10 @@ class AFSIRegisterScreen extends SigninScreenBase<AFSIRegisterScreenSPI, SigninS
       text: AFSIWidgetID.buttonRegister,
       onPressed: spi.onPressedRegister
     ));
+
+    t.childFooterRows(rows,
+      onPressedSupport: spi.onPressedSupportLink
+    );
 
     rows.add(t.childSupportLink(
       wid: AFSIWidgetID.linkSupport,
